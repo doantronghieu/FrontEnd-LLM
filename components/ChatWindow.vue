@@ -3,7 +3,7 @@
     <div class="chat-window" v-if="visible">
     <div class="chat-header" @click="toggleVisibility">
       <span>Chat</span>
-      <img src="~/assets/chatgpt-icon.png" alt="ChatGPT Icon" class="chatgpt-icon" @click="toggleModeChatGpt">
+      <img src="~/assets/chatgpt-off-icon.png" alt="ChatGPT Icon" class="chatgpt-icon" @click="toggleModeChatGpt">
     </div>
     <div class="chat-messages" ref="chatMessages" style="flex: 1; overflow-y: auto;">
       <MessageBubble v-for="(message, index) in messages" :key="index" :message="message" />
