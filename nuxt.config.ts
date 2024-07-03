@@ -13,5 +13,7 @@ export default defineNuxtConfig({
       'defineStore',
     ],
   },
-  
+  plugins: [
+    { src: '~/plugins/pinia.client.ts', mode: 'client' }
+  ],
 })
