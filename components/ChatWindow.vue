@@ -7,11 +7,8 @@
     <div class="chat-messages" ref="chatMessages" style="flex: 1; overflow-y: auto;">
       <MessageBubble v-for="(message, index) in messages" :key="index" :message="message" />
     </div>
+
     <MessageInput @send-message="sendMessage" />
-    <button @click="deleteAllMessages" class="delete-all-button">
-      <img src="../assets/delete-icon.png" alt="Delete All Messages" class="delete-icon" />
-    </button>
-    <button @click="deleteAllMessages" class="delete-all-button">Delete All Messages</button>
   </div>
 </transition>
 
@@ -68,10 +65,7 @@ const sendMessage = (message) => {
    }, 1000);                                                                                  
  };          
 
-const deleteAllMessages = () => {
-  messagesStore.$reset();
-  scrollToBottom();
-};
+
 </script>
 
 <style scoped>
@@ -119,20 +113,4 @@ const deleteAllMessages = () => {
   transform: translateY(20px);
 }
 
-.delete-all-button {
-  background-color: transparent;
-  border: none;
-  cursor: pointer;
-  padding: 5px;
-}
-
-.delete-icon {
-  width: 20px;
-  height: 20px;
-  filter: invert(15%) sepia(99%) saturate(7000%) hue-rotate(359deg) brightness(100%) contrast(116%);
-}
-
-.delete-all-button:hover .delete-icon {
-  filter: invert(12%) sepia(99%) saturate(7000%) hue-rotate(359deg) brightness(100%) contrast(116%);
-}
 </style>
