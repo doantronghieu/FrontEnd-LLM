@@ -15,7 +15,6 @@
 
 <script setup>
 import { ref } from 'vue';
-import { ref } from 'vue';
 import MessageBubble from './MessageBubble.vue';
 import MessageInput from './MessageInput.vue';
 
