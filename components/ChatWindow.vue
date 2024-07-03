@@ -55,13 +55,27 @@ const sendMessage = (message) => {
    emit('send-message', message);                                                             
    scrollToBottom();                                                                          
 
-   // Simulate chatbot response with a random message                                         
+   // Simulate chatbot response with streaming message                                         
    setTimeout(() => {                                                                         
      const botMessage = getRandomMessage();                                                   
-     messagesStore.addMessage('chatbot', botMessage);                                         
-     scrollToBottom();                                                                        
+     streamMessage('chatbot', botMessage);                                                    
    }, 1000);                                                                                  
  };          
+
+const streamMessage = (sender, message) => {
+  const chunkSize = 5;
+  let index = 0;
+  const interval = setInterval(() => {
+    if (index < message.length) {
+      const chunk = message.slice(index, index + chunkSize);
+      messagesStore.addChunk(sender, chunk);
+      index += chunkSize;
+      scrollToBottom();
+    } else {
+      clearInterval(interval);
+    }
+  }, 100);
+};
 
 
 </script>

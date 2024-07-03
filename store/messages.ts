@@ -8,5 +8,13 @@ export const useMessagesStore = defineStore('messages', {
     addMessage(sender: string, content: string) {
       this.messages.push({ sender, content })
     },
+    addChunk(sender: string, chunk: string) {
+      const lastMessage = this.messages[this.messages.length - 1];
+      if (lastMessage && lastMessage.sender === sender) {
+        lastMessage.content += chunk;
+      } else {
+        this.messages.push({ sender, content: chunk });
+      }
+    },
   },
 })
