@@ -4,7 +4,7 @@
     <div class="chat-header" @click="toggleVisibility">
       <span>Chat</span>
     </div>
-    <div class="chat-messages" style="flex: 1; overflow-y: auto;">
+    <div class="chat-messages" ref="chatMessages" style="flex: 1; overflow-y: auto;">
       <MessageBubble v-for="(message, index) in messages" :key="index" :message="message" />
     </div>
     <MessageInput @send-message="sendMessage" />
@@ -14,6 +14,7 @@
 </template>
 
 <script setup>
+import { ref } from 'vue';
 import { ref } from 'vue';
 import MessageBubble from './MessageBubble.vue';
 import MessageInput from './MessageInput.vue';
@@ -25,6 +26,7 @@ const props = defineProps({
 const emit = defineEmits(['toggle-visibility', 'send-message']);
 
 const messages = ref([]);
+const chatMessages = ref(null);
 
 const toggleVisibility = () => {
   emit('toggle-visibility');
@@ -42,14 +44,22 @@ const getRandomMessage = () => {
   return randomMessages[Math.floor(Math.random() * randomMessages.length)];
 };
 
+const scrollToBottom = () => {
+  if (chatMessages.value) {
+    chatMessages.value.scrollTop = chatMessages.value.scrollHeight;
+  }
+};
+
 const sendMessage = (message) => {
   messages.value.push({ text: message, sender: 'user' });
   emit('send-message', message);
+  scrollToBottom();
 
   // Simulate chatbot response with a random message
   setTimeout(() => {
     const botMessage = getRandomMessage();
     messages.value.push({ text: botMessage, sender: 'chatbot' });
+    scrollToBottom();
   }, 1000);
 };
 </script>
