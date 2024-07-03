@@ -1,10 +1,16 @@
 <template>
-  <transition name="fade">
-    <div class="chat-window" v-if="visible">
-    <div class="chat-header" @click="toggleVisibility">
+<transition name="fade">
+  <div class="chat-window" v-if="visible">
+
+    <div class="chat-header">
       <span>Chat</span>
-      <img :src="modeChatGpt.value ? '~/assets/chatgpt-icon.png' : '~/assets/chatgpt-off-icon.png'" alt="ChatGPT Icon" class="chatgpt-icon" @click="toggleModeChatGpt">
+
+      <button class="chatgpt-icon" @click="toggleModeChatGpt">
+        <img v-if="modeChatGpt.value" src="~/assets/chatgpt-icon.png"  alt="ChatGPT Icon" >
+        <img v-if="!modeChatGpt.value" src="~/assets/chatgpt-off-icon.png"  alt="ChatGPT Icon" >
+      </button>
     </div>
+
     <div class="chat-messages" ref="chatMessages" style="flex: 1; overflow-y: auto;">
       <MessageBubble v-for="(message, index) in messages" :key="index" :message="message" />
     </div>
