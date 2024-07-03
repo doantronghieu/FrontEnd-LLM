@@ -51,18 +51,18 @@ const scrollToBottom = () => {
   }
 };
 
-const sendMessage = (message) => {
-  messagesStore.addMessage('user', message);
-  emit('send-message', message);
-  scrollToBottom();
-
-  // Simulate chatbot response with a random message
-  setTimeout(() => {
-    const botMessage = getRandomMessage();
-    messagesStore.addMessage('chatbot', botMessage);
-    scrollToBottom();
-  }, 1000);
-};
+const sendMessage = (message) => {                                                           
+   messagesStore.addMessage('user', message);                                                 
+   emit('send-message', message);                                                             
+   scrollToBottom();                                                                          
+                                                                                              
+   // Simulate chatbot response with a random message                                         
+   setTimeout(() => {                                                                         
+     const botMessage = getRandomMessage();                                                   
+     messagesStore.addMessage('chatbot', botMessage);                                         
+     scrollToBottom();                                                                        
+   }, 1000);                                                                                  
+ };          
 </script>
 
 <style scoped>
