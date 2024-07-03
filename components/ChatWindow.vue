@@ -85,6 +85,11 @@ const sendMessage = (message) => {
   font-weight: bold;
 }
 
+.chat-messages {
+  display: flex;
+  flex-direction: column;
+}
+
 .fade-enter-active, .fade-leave-active {
   transition: opacity 0.3s, transform 0.3s;
 }
