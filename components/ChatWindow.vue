@@ -6,8 +6,8 @@
       <span>Chat</span>
 
       <div class="chatgpt-icon" @click="toggleModeChatGpt">
-        <img v-if="modeChatGpt.value" src="~/assets/chatgpt-icon.png"  alt="ChatGPT Icon" >
-        <img v-if="!modeChatGpt.value" src="~/assets/chatgpt-off-icon.png"  alt="ChatGPT Icon" >
+        <img v-if="modeChatGpt.value" src="~/assets/chatgpt-icon.png" alt="ChatGPT Icon">
+        <img v-if="!modeChatGpt.value" src="~/assets/chatgpt-off-icon.png" alt="ChatGPT Icon">
       </div>
     </div>
 
