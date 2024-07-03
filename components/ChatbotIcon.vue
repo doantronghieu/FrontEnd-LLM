@@ -1,6 +1,6 @@
 <template>
   <div class="chatbot-icon" @click="toggleChatWindow">
-    <img src="/assets/chatgpt-icon.png" alt="Chatbot Icon" />
+    <img src="/assets/bot-icon.png" alt="Chatbot Icon" />
   </div>
 </template>
 
