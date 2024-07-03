@@ -9,6 +9,8 @@
     </div>
     <MessageInput @send-message="sendMessage" />
   </div>
+</transition>
+
 </template>
 
 <script setup>
