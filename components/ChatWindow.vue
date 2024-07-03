@@ -8,6 +8,7 @@
       <MessageBubble v-for="(message, index) in messages" :key="index" :message="message" />
     </div>
     <MessageInput @send-message="sendMessage" />
+    <button @click="deleteAllMessages" class="delete-all-button">Delete All Messages</button>
   </div>
 </transition>
 
@@ -63,6 +64,11 @@ const sendMessage = (message) => {
      scrollToBottom();                                                                        
    }, 1000);                                                                                  
  };          
+
+const deleteAllMessages = () => {
+  messagesStore.$reset();
+  scrollToBottom();
+};
 </script>
 
 <style scoped>
@@ -108,5 +114,19 @@ const sendMessage = (message) => {
 .fade-enter, .fade-leave-to /* .fade-leave-active in <2.1.8 */ {
   opacity: 0;
   transform: translateY(20px);
+}
+
+.delete-all-button {
+  background-color: #dc3545;
+  color: white;
+  border: none;
+  padding: 10px;
+  border-radius: 5px;
+  cursor: pointer;
+  margin-top: 10px;
+}
+
+.delete-all-button:hover {
+  background-color: #c82333;
 }
 </style>
