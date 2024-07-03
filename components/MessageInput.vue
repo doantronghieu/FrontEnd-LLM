@@ -2,7 +2,7 @@
   <div class="message-input">
     <input type="text" v-model="message" @keyup.enter="sendMessage" placeholder="Type a message..." />
     
-    <button @click="sendMessage"><Icon name="material-symbols:send-outline-rounded" size="2em" color="blue"/></button>
+    <button class="btn-send-msg" @click="sendMessage"><Icon name="material-symbols:send-outline-rounded" size="2em" color="blue"/></button>
     
   </div>
 </template>
@@ -36,15 +36,21 @@ const sendMessage = () => {
   flex: 1;
   padding: 10px;
   border: 1px solid #ccc;
-  border-radius: 20px;
+  border-radius: 10px;
   margin-right: 10px;
   outline: none;
 }
 
+.btn-send-msg {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
 .message-input button {
-  padding: 10px 20px;
+  padding: 5px;
   border: none;
-  border-radius: 20px;
+  border-radius: 10px;
   background-color: #007bff;
   color: white;
   cursor: pointer;
