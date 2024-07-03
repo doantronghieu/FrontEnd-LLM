@@ -1,37 +1,40 @@
 <template>
-  <div :class="['message-bubble', message.sender === 'user' ? 'user-message' : 'chatbot-message']">
-    <div class="message-content">{{ message.text }}</div>
-    <div class="timestamp">{{ message.timestamp }}</div>
+  <div class="message-bubble" :class="{ 'user-message': message.sender === 'user', 'chatbot-message': message.sender === 'chatbot' }">
+    <div class="message-content">{{ message.content }}</div>
   </div>
 </template>
 
 <script setup>
 defineProps({
-  message: Object
+  message: {
+    type: Object,
+    required: true,
+    default: () => ({ sender: '', content: '' })
+  }
 });
 </script>
 
 <style scoped>
 .message-bubble {
-  margin: 10px;
-  padding: 10px 15px;
-  border-radius: 18px;
-  max-width: 70%;
+  padding: 10px;
+  border-radius: 10px;
+  margin: 5px 0;
+  background-color: #f1f1f1;
+}
+
+.message-content {
   word-wrap: break-word;
-  line-height: 1.4;
 }
 
 .user-message {
-  background-color: #dcf8c6;
+  background-color: #007bff;
+  color: white;
   align-self: flex-end;
-  border-bottom-right-radius: 0;
-  margin-left: auto; /* Align to the right */
 }
 
 .chatbot-message {
-  background-color: #e5e5ea;
+  background-color: #e9e9e9;
+  color: black;
   align-self: flex-start;
-  border-bottom-left-radius: 0;
-  margin-right: auto; /* Align to the left */
 }
 </style>
