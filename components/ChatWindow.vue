@@ -16,9 +16,7 @@
 
 <script setup>
 import { ref, onMounted, onUnmounted } from 'vue';
-import { useMessagesStore } from '../store/messages';
-import MessageBubble from './MessageBubble.vue';
-import MessageInput from './MessageInput.vue';
+import { useMessagesStore } from '~/store/messages';
 
 const props = defineProps({
   visible: Boolean
@@ -39,7 +37,7 @@ const randomMessages = [
   "Is there anything specific you need help with?",
   "I'm here to help! What's on your mind?",
   "Feel free to ask me anything!",
-  "How's your day going so far?"
+  "How's your day going so far?",
 ];
 
 const getRandomMessage = () => {
@@ -56,7 +54,7 @@ const sendMessage = (message) => {
    messagesStore.addMessage('user', message);                                                 
    emit('send-message', message);                                                             
    scrollToBottom();                                                                          
-                                                                                              
+
    // Simulate chatbot response with a random message                                         
    setTimeout(() => {                                                                         
      const botMessage = getRandomMessage();                                                   
