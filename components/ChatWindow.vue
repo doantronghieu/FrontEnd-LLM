@@ -3,6 +3,7 @@
     <div class="chat-window" v-if="visible">
     <div class="chat-header" @click="toggleVisibility">
       <span>Chat</span>
+      <img src="~/assets/chatgpt-icon.png" alt="ChatGPT Icon" class="chatgpt-icon">
     </div>
     <div class="chat-messages" ref="chatMessages" style="flex: 1; overflow-y: auto;">
       <MessageBubble v-for="(message, index) in messages" :key="index" :message="message" />
@@ -105,6 +106,12 @@ const streamMessage = (sender, message) => {
   display: flex;
   justify-content: space-between;
   align-items: center;
+}
+
+.chatgpt-icon {
+  width: 24px;
+  height: 24px;
+  margin-left: 10px;
 }
 
 .chat-header span {
