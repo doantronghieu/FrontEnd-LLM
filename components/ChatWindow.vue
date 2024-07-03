@@ -14,7 +14,8 @@
 </template>
 
 <script setup>
-import { ref } from 'vue';
+import { ref, onMounted, onUnmounted } from 'vue';
+import { useMessagesStore } from '../store/messages';
 import MessageBubble from './MessageBubble.vue';
 import MessageInput from './MessageInput.vue';
 
@@ -24,7 +25,8 @@ const props = defineProps({
 
 const emit = defineEmits(['toggle-visibility', 'send-message']);
 
-const messages = ref([]);
+const messagesStore = useMessagesStore();
+const messages = ref(messagesStore.messages);
 const chatMessages = ref(null);
 
 const toggleVisibility = () => {
@@ -50,14 +52,14 @@ const scrollToBottom = () => {
 };
 
 const sendMessage = (message) => {
-  messages.value.push({ text: message, sender: 'user' });
+  messagesStore.addMessage('user', message);
   emit('send-message', message);
   scrollToBottom();
 
   // Simulate chatbot response with a random message
   setTimeout(() => {
     const botMessage = getRandomMessage();
-    messages.value.push({ text: botMessage, sender: 'chatbot' });
+    messagesStore.addMessage('chatbot', botMessage);
     scrollToBottom();
   }, 1000);
 };
