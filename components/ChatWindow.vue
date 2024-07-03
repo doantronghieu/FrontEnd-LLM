@@ -1,5 +1,6 @@
 <template>
-  <div class="chat-window" v-if="visible">
+  <transition name="fade">
+    <div class="chat-window" v-if="visible">
     <div class="chat-header" @click="toggleVisibility">
       <span>Chat</span>
     </div>
@@ -65,6 +66,7 @@ const sendMessage = (message) => {
   flex-direction: column;
   border-radius: 10px;
   overflow: hidden;
+  transition: opacity 0.3s, transform 0.3s;
 }
 
 .chat-header {
@@ -79,5 +81,14 @@ const sendMessage = (message) => {
 
 .chat-header span {
   font-weight: bold;
+}
+
+.fade-enter-active, .fade-leave-active {
+  transition: opacity 0.3s, transform 0.3s;
+}
+
+.fade-enter, .fade-leave-to /* .fade-leave-active in <2.1.8 */ {
+  opacity: 0;
+  transform: translateY(20px);
 }
 </style>
