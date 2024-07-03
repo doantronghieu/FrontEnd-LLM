@@ -25,23 +25,33 @@ const sendMessage = () => {
 <style scoped>
 .message-input {
   display: flex;
-  justify-content: center;
+  justify-content: space-between;
   align-items: center;
+  padding: 10px;
   border-top: 1px solid #ccc;
+  background-color: #f9f9f9;
 }
 
 .message-input input {
   flex: 1;
-  padding: 5px;
-  border: none;
-  border-right: 1px solid #ccc;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 20px;
+  margin-right: 10px;
+  outline: none;
 }
 
 .message-input button {
-  padding: 5px;
+  padding: 10px 20px;
   border: none;
+  border-radius: 20px;
   background-color: #007bff;
   color: white;
   cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.message-input button:hover {
+  background-color: #0056b3;
 }
 </style>
