@@ -1,5 +1,5 @@
 <template>
-  <div class="message-bubble" :class="{ 'user-message': message.sender === 'user', 'chatbot-message': message.sender === 'chatbot' }">
+  <div :class="['message-bubble', message.sender === 'user' ? 'user-message' : 'chatbot-message']">
     <div class="message-content">{{ message.text }}</div>
     <div class="timestamp">{{ message.timestamp }}</div>
   </div>
