@@ -114,10 +114,14 @@ const streamMessage = (sender, message) => {
   background-color: #007bff;
   color: white;
   padding: 10px;
-  cursor: pointer;
+  cursor: default;
   display: flex;
   justify-content: space-between;
   align-items: center;
+}
+
+.chatgpt-icon {
+  cursor: pointer;
 }
 
 .chatgpt-icon {
