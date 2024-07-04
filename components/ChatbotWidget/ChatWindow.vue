@@ -6,16 +6,14 @@
       <span>Chat</span>
       
       <div class="chat-providers">
-        <UTooltip text="Change to ChatGPT">
-
-          <img
-          :src="providersStore.currentProvider === 'chatgpt' ? '/chat-providers/chatgpt-icon.png' : '/chat-providers/chatgpt-off-icon.png'"
-          alt="ChatGPT Icon"
-          class="chat-provider-icon"
-          @click="toggleModeChatGpt"
-          >
-        </UTooltip>
-
+        <ChatProviderIcon
+          :isActive="providersStore.currentProvider === 'chatgpt'"
+          tooltipText="Change to ChatGPT"
+          activeIcon="/chat-providers/chatgpt-icon.png"
+          inactiveIcon="/chat-providers/chatgpt-off-icon.png"
+          iconAlt="ChatGPT Icon"
+          @toggleMode="toggleModeChatGpt"
+        />
       </div>
     </div>
 
@@ -37,6 +35,7 @@ import { useChatRandom } from '~/composables/useChatRandom';
 import { useChatGpt } from '~/composables/useChatGpt';
 import MessageBubble from './MessageBubble.vue';
 import MessageInput from './MessageInput.vue';
+import ChatProviderIcon from './ChatProviderIcon.vue'
 
 const { getRandomMessage } = useChatRandom();
 const { openaiStreamChatCompletion } = useChatGpt()
@@ -132,17 +131,6 @@ const streamFakeMessage = (sender, message) => {
   display: flex;
   justify-content: end;
   align-items: center;
-}
-
-.chat-provider-icon {
-  cursor: pointer;
-  width: 24px;
-  height: 24px;
-  margin-left: 10px;
-  transition: transform 0.2s ease-in-out;
-}
-.chat-provider-icon:hover {
-  transform: scale(1.2);
 }
 
 .chat-header span {
