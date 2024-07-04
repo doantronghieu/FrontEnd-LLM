@@ -32,7 +32,7 @@ const props = defineProps({
 
 const emit = defineEmits(['toggle-visibility', 'send-message']);
 
-const { modeChatGpt, setModeChatGpt } = useChatGpt();
+const { modeChatGpt, setModeChatGpt, openaiStreamChatCompletion } = useChatGpt();
 const messagesStore = useMessagesStore();
 const messages = ref(messagesStore.messages);
 const chatMessages = ref(null);
@@ -68,18 +68,26 @@ const scrollToBottom = () => {
   }
 };
 
-const sendMessage = (message) => {                                                           
-   messagesStore.addMessage('user', message);                                                 
-   emit('send-message', message);                                                             
-   scrollToBottom();                                                                          
+const sendMessage = async (message) => {
+  messagesStore.addMessage('user', message);
+  emit('send-message', message);
+  scrollToBottom();
 
-   // Simulate chatbot response with streaming message                                         
-   setTimeout(() => {                                                                         
-     const botMessage = getRandomMessage();                                                   
-     streamMessage('chatbot', botMessage);                                                    
-   }, 1000);                                                                                  
- };          
-
+  // Only use the openaiStreamChatCompletion function to stream the chatbot response when modeChatGpt.value is true
+  if (modeChatGpt.value) {
+    const updateMessage = (newChunk) => {
+      messagesStore.addChunk('chatbot', newChunk);
+      scrollToBottom();
+    };
+    await openaiStreamChatCompletion(message, updateMessage);
+  } else {
+    // Simulate chatbot response with streaming message
+    setTimeout(() => {
+      const botMessage = getRandomMessage();
+      streamMessage('chatbot', botMessage);
+    }, 1000);
+  }
+};
 const streamMessage = (sender, message) => {
   const chunkSize = 5;
   let index = 0;

@@ -11,6 +11,10 @@ export default defineNuxtConfig({
     "@nuxt/icon"
   ],
   compatibilityDate: "2024-07-03",
-
-
+  runtimeConfig: {
+    public: {
+      OPENAI_API_KEY: '',
+    },
+    OPENAI_API_KEY: '',
+  }
 })
