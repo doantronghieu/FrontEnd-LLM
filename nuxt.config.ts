@@ -5,10 +5,9 @@ export default defineNuxtConfig({
   devtools: { enabled: true },
   modules: [
     "@nuxt/content",
-    "@nuxtjs/tailwindcss",
     "@nuxt/image",
     "@pinia/nuxt",
-    "@nuxt/icon"
+    "@nuxt/ui"
   ],
   compatibilityDate: "2024-07-03",
   runtimeConfig: {

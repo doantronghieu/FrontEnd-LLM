@@ -19,8 +19,4 @@ composables/useChatRandom.js
 store/messages.ts
 store/providers.ts
 
-git reset --hard 1a9e9f8: e2de4e8
-
-can i refactor the code, i want to move ChatWindow, ChatbotIcon, ChatbotSmall, MessageBubble, MessageInput into one folder, `ChatbotWidget`
-
-help me refactor the code, i want to move ChatbotWidget/ folder into components folder
+git reset --hard 5b7b04a

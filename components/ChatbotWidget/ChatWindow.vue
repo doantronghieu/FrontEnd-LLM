@@ -6,12 +6,15 @@
       <span>Chat</span>
       
       <div class="chat-providers">
-        <img
+        <UTooltip text="Change to ChatGPT">
+
+          <img
           :src="providersStore.currentProvider === 'chatgpt' ? '/chat-providers/chatgpt-icon.png' : '/chat-providers/chatgpt-off-icon.png'"
           alt="ChatGPT Icon"
           class="chat-provider-icon"
           @click="toggleModeChatGpt"
-        >
+          >
+        </UTooltip>
 
       </div>
     </div>
@@ -136,6 +139,7 @@ const streamFakeMessage = (sender, message) => {
   width: 24px;
   height: 24px;
   margin-left: 10px;
+  transition: transform 0.2s ease-in-out;
 }
 .chat-provider-icon:hover {
   transform: scale(1.2);
