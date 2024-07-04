@@ -64,13 +64,19 @@ const toggleModeChatGpt = () => {
 
 const scrollToTop = () => {
   if (chatMessages.value) {
-    chatMessages.value.scrollTop = 0;
+    chatMessages.value.scrollTo({
+      top: 0,
+      behavior: 'smooth'
+    });
   }
 };
 
 const scrollToBottom = () => {
   if (chatMessages.value) {
-    chatMessages.value.scrollTop = chatMessages.value.scrollHeight;
+    chatMessages.value.scrollTo({
+      top: chatMessages.value.scrollHeight,
+      behavior: 'smooth'
+    });
   }
 };
 
