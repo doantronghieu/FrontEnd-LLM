@@ -1,4 +1,4 @@
-import { ChatbotSmall } from './.nuxt/components';
+import { ChatbotSmall } from '~/ChatbotWidget/ChatbotSmall.vue';
 <template>
   <div>
     <NuxtRouteAnnouncer />
