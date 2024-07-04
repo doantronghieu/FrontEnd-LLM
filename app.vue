@@ -1,4 +1,3 @@
-import { ChatbotSmall } from '~/ChatbotWidget/ChatbotSmall.vue';
 <template>
   <div>
     <NuxtRouteAnnouncer />
@@ -8,4 +7,6 @@ import { ChatbotSmall } from '~/ChatbotWidget/ChatbotSmall.vue';
 </template>
 
 <script setup>
+import ChatbotSmall  from '~/components/ChatbotWidget/ChatbotSmall.vue';
+
 </script>
