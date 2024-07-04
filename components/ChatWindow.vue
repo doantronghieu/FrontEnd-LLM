@@ -6,7 +6,7 @@
       <span>Chat</span>
 
       <div class="chatgpt-icon" @click="toggleModeChatGpt">
-        <img v-if="modeChatGpt.value" src="~/assets/chatgpt-icon.png" alt="ChatGPT Icon">
+        <img v-if="modeChatGpt" src="~/assets/chatgpt-icon.png" alt="ChatGPT Icon">
         <img v-else src="~/assets/chatgpt-icon.png" alt="ChatGPT Off Icon">
       </div>
     </div>
@@ -35,7 +35,7 @@ const props = defineProps({
 const emit = defineEmits(['toggle-visibility', 'send-message']);
 
 const providersStore = useProvidersStore();
-const { setModeChatGpt, openaiStreamChatCompletion } = useChatGpt();
+const { modeChatGpt, setModeChatGpt, openaiStreamChatCompletion } = useChatGpt();
 const { getRandomMessage } = useChatRandom();
 
 const messagesStore = useMessagesStore();
