@@ -1,7 +1,7 @@
 <template>
   <div>
     <ChatbotIcon @toggle-chat-window="toggleChatWindow" />
-    <ChatWindow :visible="chatWindowVisible" @send-message="sendMessage" />
+    <ChatWindow :visible="chatWindowVisible"/>
   </div>
 </template>
 
@@ -14,8 +14,4 @@ const toggleChatWindow = () => {
   chatWindowVisible.value = !chatWindowVisible.value;
 };
 
-const sendMessage = (message) => {
-  // Logic to handle the sent message
-  console.log('Message sent:', message);
-};
 </script>
