@@ -4,10 +4,9 @@
 
     <div class="chat-header">
       <span>Chat</span>
-
-      <div class="chatgpt-icon" @click="toggleModeChatGpt">
-        <img v-if="providersStore.currentProvider === 'chatgpt'" src="~/assets/chatgpt-icon.png" alt="ChatGPT Icon">
-        <img v-else src="~/assets/chatgpt-icon.png" alt="ChatGPT Off Icon">
+      
+      <div class="chat-providers">
+        <img src="~/assets/chatgpt-icon.png" alt="ChatGPT Icon" class="chat-provider-icon" @click="toggleModeChatGpt">
       </div>
     </div>
 
@@ -28,20 +27,21 @@ import { useProvidersStore } from '~/store/providers';
 import { useChatRandom } from '~/composables/useChatRandom';
 import { useChatGpt } from '~/composables/useChatGpt'
 
+const { getRandomMessage } = useChatRandom();
+const { openaiStreamChatCompletion } = useChatGpt()
+
+const providersStore = useProvidersStore();
+const messagesStore = useMessagesStore();
+
 const props = defineProps({
   visible: Boolean
 });
 
 const emit = defineEmits(['toggle-visibility', 'send-message']);
 
-const providersStore = useProvidersStore();
-const { getRandomMessage } = useChatRandom();
-
-const messagesStore = useMessagesStore();
 const messages = ref(messagesStore.messages);
 const chatMessages = ref(null);
 
-const { openaiStreamChatCompletion } = useChatGpt()
 const toggleModeChatGpt = () => {
   providersStore.setProvider(providersStore.currentProvider === 'random' ? 'chatgpt' : 'random');
   messagesStore.addMessage('user', providersStore.currentProvider === 'chatgpt' ? "Turning on using ChatGPT" : "Turning off using ChatGPT");
@@ -88,7 +88,6 @@ const streamFakeMessage = (sender, message) => {
   }, 100);
 };
 
-
 </script>
 
 <style scoped>
@@ -118,11 +117,20 @@ const streamFakeMessage = (sender, message) => {
   align-items: center;
 }
 
-.chatgpt-icon {
+.chat-providers {
+  display: flex;
+  justify-content: end;
+  align-items: center;
+}
+
+.chat-provider-icon {
   cursor: pointer;
   width: 24px;
   height: 24px;
   margin-left: 10px;
+}
+.chat-provider-icon:hover {
+  transform: scale(1.2);
 }
 
 .chat-header span {

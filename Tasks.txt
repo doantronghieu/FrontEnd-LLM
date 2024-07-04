@@ -18,6 +18,5 @@ composables/useChatGpt.js
 composables/useChatRandom.js
 store/messages.ts
 
-git reset --hard d6e17bd: Update
+git reset --hard 7240920: Update
 
-i think maybe we do not need to use modeChatGpt, just use providers store is enough, help me refactor the code
