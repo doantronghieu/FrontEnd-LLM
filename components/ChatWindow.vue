@@ -6,7 +6,13 @@
       <span>Chat</span>
       
       <div class="chat-providers">
-        <img src="~/assets/chatgpt-icon.png" alt="ChatGPT Icon" class="chat-provider-icon" @click="toggleModeChatGpt">
+        <img
+          :src="providersStore.currentProvider === 'chatgpt' ? '/chat-providers/chatgpt-icon.png' : '/chat-providers/chatgpt-off-icon.png'"
+          alt="ChatGPT Icon"
+          class="chat-provider-icon"
+          @click="toggleModeChatGpt"
+        >
+
       </div>
     </div>
 
@@ -95,8 +101,8 @@ const streamFakeMessage = (sender, message) => {
   position: fixed;
   bottom: 80px;
   right: 20px;
-  width: 350px;
-  height: 450px;
+  width: 360px;
+  height: 460px;
   background-color: white;
   border: 1px solid #ccc;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
