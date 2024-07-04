@@ -7,7 +7,7 @@
 
       <div class="chatgpt-icon" @click="toggleModeChatGpt">
         <img v-if="modeChatGpt.value" src="~/assets/chatgpt-icon.png" alt="ChatGPT Icon">
-        <img v-else src="~/assets/chatgpt-off-icon.png" alt="ChatGPT Icon">
+        <img v-else src="~/assets/chatgpt-off-icon.png" alt="ChatGPT Off Icon">
       </div>
     </div>
 
@@ -122,9 +122,6 @@ const streamMessage = (sender, message) => {
 
 .chatgpt-icon {
   cursor: pointer;
-}
-
-.chatgpt-icon {
   width: 24px;
   height: 24px;
   margin-left: 10px;
