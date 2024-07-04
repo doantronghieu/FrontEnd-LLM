@@ -20,6 +20,24 @@ const sendMessage = () => {
     message.value = '';
   }
 };
+
+const scrollToTop = () => {
+  if (chatMessages.value) {
+    chatMessages.value.scrollTo({
+      top: 0,
+      behavior: 'smooth'
+    });
+  }
+};
+
+const scrollToBottom = () => {
+  if (chatMessages.value) {
+    chatMessages.value.scrollTo({
+      top: chatMessages.value.scrollHeight,
+      behavior: 'smooth'
+    });
+  }
+};
 </script>
 
 <style scoped>
@@ -53,4 +71,6 @@ const sendMessage = () => {
 .message-input button:hover {
   background-color: #e0e0e0;
 }
+
+
 </style>

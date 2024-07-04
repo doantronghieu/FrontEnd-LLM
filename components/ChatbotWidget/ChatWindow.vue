@@ -3,6 +3,19 @@
   <div class="chat-window" v-if="visible">
 
     <div class="chat-header">
+      <div class="scroll-buttons">
+        <UTooltip text="Scroll up">
+          <button @click="scrollToTop">
+            <Icon name="material-symbols:arrow-upward" size="1em" color="white"/>
+          </button>
+        </UTooltip>
+        <UTooltip text="Scroll down">
+          <button @click="scrollToBottom">
+            <Icon name="material-symbols:arrow-downward" size="1em" color="white"/>
+          </button>
+        </UTooltip>
+      </div>
+
       <span>Chat</span>
       
       <div class="chat-providers">
@@ -22,14 +35,6 @@
     </div>
 
     <div class="message-input-container">
-      <div class="scroll-buttons">
-        <button @click="scrollToTop">
-          <Icon name="material-symbols:arrow-upward" size="2em" color="blue"/>
-        </button>
-        <button @click="scrollToBottom">
-          <Icon name="material-symbols:arrow-downward" size="2em" color="blue"/>
-        </button>
-      </div>
       <MessageInput @send-message="sendMessage"></MessageInput>
     </div>
   </div>
@@ -168,23 +173,16 @@ const streamFakeMessage = (sender, message) => {
 .scroll-buttons {
   display: flex;
   justify-content: space-between;
-  padding: 10px;
-  border-top: 1px solid #ccc;
-  background-color: #f9f9f9;
 }
 
 .scroll-buttons button {
-  padding: 5px 10px;
-  border: none;
-  border-radius: 5px;
-  background-color: #007bff;
-  color: white;
   cursor: pointer;
-  transition: background-color 0.3s ease;
+  transition: transform 0.2s ease-in-out;
+  padding: 3px;
 }
 
 .scroll-buttons button:hover {
-  background-color: #0056b3;
+  transform: scale(1.5);
 }
 
 .fade-enter-active, .fade-leave-active {

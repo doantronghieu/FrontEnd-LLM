@@ -9,14 +9,17 @@
 
 README.md
 app.vue
-components/ChatWindow.vue
-components/ChatbotIcon.vue
-components/ChatbotSmall.vue
-components/MessageBubble.vue
-components/MessageInput.vue
+components/ChatbotWidget/ChatProviderIcon.vue
+components/ChatbotWidget/ChatWindow.vue
+components/ChatbotWidget/ChatbotIcon.vue
+components/ChatbotWidget/ChatbotSmall.vue
+components/ChatbotWidget/MessageBubble.vue
+components/ChatbotWidget/MessageInput.vue
 composables/useChatGpt.js
 composables/useChatRandom.js
+nuxt.config.ts
 store/messages.ts
 store/providers.ts
 
-git reset --hard 5b7b04a
+git reset --hard 82f1434
+
