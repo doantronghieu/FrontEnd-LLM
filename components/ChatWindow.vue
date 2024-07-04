@@ -24,6 +24,7 @@
 <script setup>
 import { ref } from 'vue';
 import { useMessagesStore } from '~/store/messages';
+import { useProvidersStore } from '~/store/providers';
 import { useChatGpt } from '~/composables/useChatGpt';
 import { useChatRandom } from '~/composables/useChatRandom';
 
@@ -33,16 +34,17 @@ const props = defineProps({
 
 const emit = defineEmits(['toggle-visibility', 'send-message']);
 
-const { modeChatGpt, setModeChatGpt, openaiStreamChatCompletion } = useChatGpt();
-const { getRandomMessage } = useChatRandom()
+const providersStore = useProvidersStore();
+const { setModeChatGpt, openaiStreamChatCompletion } = useChatGpt();
+const { getRandomMessage } = useChatRandom();
 
 const messagesStore = useMessagesStore();
 const messages = ref(messagesStore.messages);
 const chatMessages = ref(null);
 
 const toggleModeChatGpt = () => {
-  setModeChatGpt(!modeChatGpt.value);
-  if (modeChatGpt.value) {
+  providersStore.setProvider(providersStore.currentProvider === 'random' ? 'chatgpt' : 'random');
+  if (providersStore.currentProvider === 'chatgpt') {
     messagesStore.addMessage('user', "Turning on using ChatGPT"); 
   } else {
     messagesStore.addMessage('user', "Turning off using ChatGPT"); 
@@ -60,7 +62,7 @@ const sendMessage = async (message) => {
   emit('send-message', message);
   scrollToBottom();
 
-  if (modeChatGpt.value) {
+  if (providersStore.currentProvider === 'chatgpt') {
     const updateMessage = (newChunk) => {
       messagesStore.addChunk('chatbot', newChunk);
       scrollToBottom();
