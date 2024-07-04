@@ -6,3 +6,14 @@
 - Write unit tests for the Vue.js components and the API integration layer to ensure code quality and maintainability.
 - Document the chatbot widget's codebase, design decisions, and setup instructions for future reference and collaboration.
 
+
+README.md
+app.vue
+components/ChatWindow.vue
+components/ChatbotIcon.vue
+components/ChatbotSmall.vue
+components/MessageBubble.vue
+components/MessageInput.vue
+composables/useChatGpt.js
+store/messages.ts
+

@@ -7,7 +7,7 @@
 
       <div class="chatgpt-icon" @click="toggleModeChatGpt">
         <img v-if="modeChatGpt.value" src="~/assets/chatgpt-icon.png" alt="ChatGPT Icon">
-        <img v-else src="~/assets/chatgpt-off-icon.png" alt="ChatGPT Off Icon">
+        <img v-else src="~/assets/chatgpt-icon.png" alt="ChatGPT Off Icon">
       </div>
     </div>
 
@@ -39,6 +39,11 @@ const chatMessages = ref(null);
 
 const toggleModeChatGpt = () => {
   setModeChatGpt(!modeChatGpt.value);
+  if (modeChatGpt.value) {
+    messagesStore.addMessage('user', "Turning on using ChatGPT"); 
+  } else {
+    messagesStore.addMessage('user', "Turning off using ChatGPT"); 
+  }
 };
 
 const toggleVisibility = () => {
