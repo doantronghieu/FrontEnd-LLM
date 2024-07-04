@@ -5,8 +5,6 @@
 </template>
 
 <script setup>
-import {ref} from 'vue';
-import { useChatGpt } from '@/composables/useChatGpt';
 
 defineProps({
   message: {
@@ -15,12 +13,6 @@ defineProps({
     default: () => ({ sender: '', content: '' })
   }
 });
-
-const updateMessage = (newContent) => {
-  message.value.content = newContent;
-};
-
-const { openaiStreamChatCompletion } = useChatGpt();
 
 </script>
 

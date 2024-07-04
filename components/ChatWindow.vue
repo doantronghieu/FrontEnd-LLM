@@ -22,7 +22,7 @@
 </template>
 
 <script setup>
-import { ref, onMounted, onUnmounted } from 'vue';
+import { ref } from 'vue';
 import { useMessagesStore } from '~/store/messages';
 import { useChatGpt } from '~/composables/useChatGpt';
 
@@ -44,10 +44,6 @@ const toggleModeChatGpt = () => {
   } else {
     messagesStore.addMessage('user', "Turning off using ChatGPT"); 
   }
-};
-
-const toggleVisibility = () => {
-  emit('toggle-visibility');
 };
 
 const randomMessages = [
@@ -73,7 +69,6 @@ const sendMessage = async (message) => {
   emit('send-message', message);
   scrollToBottom();
 
-  // Only use the openaiStreamChatCompletion function to stream the chatbot response when modeChatGpt.value is true
   if (modeChatGpt.value) {
     const updateMessage = (newChunk) => {
       messagesStore.addChunk('chatbot', newChunk);
@@ -84,11 +79,12 @@ const sendMessage = async (message) => {
     // Simulate chatbot response with streaming message
     setTimeout(() => {
       const botMessage = getRandomMessage();
-      streamMessage('chatbot', botMessage);
+      streamFakeMessage('chatbot', botMessage);
     }, 1000);
   }
 };
-const streamMessage = (sender, message) => {
+
+const streamFakeMessage = (sender, message) => {
   const chunkSize = 5;
   let index = 0;
   const interval = setInterval(() => {
