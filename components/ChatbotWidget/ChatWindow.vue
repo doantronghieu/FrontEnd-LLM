@@ -21,6 +21,10 @@
       <MessageBubble v-for="(message, index) in messages" :key="index" :message="message" />
     </div>
 
+    <div class="scroll-buttons">
+      <button @click="scrollToTop">Scroll to Top</button>
+      <button @click="scrollToBottom">Scroll to Bottom</button>
+    </div>
     <MessageInput @send-message="sendMessage" />
   </div>
 </transition>
@@ -56,6 +60,12 @@ const toggleModeChatGpt = () => {
   providersStore.setProvider(providersStore.currentProvider === 'random' ? 'chatgpt' : 'random');
   messagesStore.addMessage('user', providersStore.currentProvider === 'chatgpt' ? "Turning on using ChatGPT" : "Turning off using ChatGPT");
   scrollToBottom();
+};
+
+const scrollToTop = () => {
+  if (chatMessages.value) {
+    chatMessages.value.scrollTop = 0;
+  }
 };
 
 const scrollToBottom = () => {
@@ -141,6 +151,28 @@ const streamFakeMessage = (sender, message) => {
 .chat-messages {
   display: flex;
   flex-direction: column;
+}
+
+.scroll-buttons {
+  display: flex;
+  justify-content: space-between;
+  padding: 10px;
+  border-top: 1px solid #ccc;
+  background-color: #f9f9f9;
+}
+
+.scroll-buttons button {
+  padding: 5px 10px;
+  border: none;
+  border-radius: 5px;
+  background-color: #007bff;
+  color: white;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.scroll-buttons button:hover {
+  background-color: #0056b3;
 }
 
 .fade-enter-active, .fade-leave-active {
