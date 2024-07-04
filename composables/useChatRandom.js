@@ -1,4 +1,4 @@
-export function useRandomChat() {
+export function useChatRandom() {
   const randomMessages = [
     "Hello! How can I assist you today?",
     "Is there anything specific you need help with?",

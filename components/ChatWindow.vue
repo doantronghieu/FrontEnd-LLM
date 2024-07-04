@@ -25,7 +25,7 @@
 import { ref } from 'vue';
 import { useMessagesStore } from '~/store/messages';
 import { useChatGpt } from '~/composables/useChatGpt';
-import { useRandomChat } from '~/composables/useRandomChat';
+import { useChatRandom } from '~/composables/useChatRandom';
 
 const props = defineProps({
   visible: Boolean
@@ -34,7 +34,7 @@ const props = defineProps({
 const emit = defineEmits(['toggle-visibility', 'send-message']);
 
 const { modeChatGpt, setModeChatGpt, openaiStreamChatCompletion } = useChatGpt();
-const { getRandomMessage } = useRandomChat()
+const { getRandomMessage } = useChatRandom()
 
 const messagesStore = useMessagesStore();
 const messages = ref(messagesStore.messages);

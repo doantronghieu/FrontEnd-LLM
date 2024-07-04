@@ -15,7 +15,9 @@ components/ChatbotSmall.vue
 components/MessageBubble.vue
 components/MessageInput.vue
 composables/useChatGpt.js
+composables/useChatRandom.js
 store/messages.ts
 
-git reset --hard 1be4780
+git reset --hard b576737
 
+refactor the current code, add more store, `providers`, 
