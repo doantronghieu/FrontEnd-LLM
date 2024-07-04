@@ -41,23 +41,16 @@ const sendMessage = () => {
   outline: none;
 }
 
-.btn-send-msg {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
 .message-input button {
   padding: 5px;
   border: none;
   border-radius: 10px;
-  background-color: #007bff;
-  color: white;
+  background-color: transparent;
   cursor: pointer;
   transition: background-color 0.3s ease;
 }
 
 .message-input button:hover {
-  background-color: #0056b3;
+  background-color: #e0e0e0;
 }
 </style>

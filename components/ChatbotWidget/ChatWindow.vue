@@ -21,11 +21,16 @@
       <MessageBubble v-for="(message, index) in messages" :key="index" :message="message" />
     </div>
 
-    <div class="scroll-buttons">
-      <button @click="scrollToTop">Scroll to Top</button>
-      <button @click="scrollToBottom">Scroll to Bottom</button>
-    </div>
-    <MessageInput @send-message="sendMessage" />
+    <MessageInput @send-message="sendMessage">
+      <template #append>
+        <button @click="scrollToTop">
+          <Icon name="material-symbols:arrow-upward" size="2em" color="blue"/>
+        </button>
+        <button @click="scrollToBottom">
+          <Icon name="material-symbols:arrow-downward" size="2em" color="blue"/>
+        </button>
+      </template>
+    </MessageInput>
   </div>
 </transition>
 
