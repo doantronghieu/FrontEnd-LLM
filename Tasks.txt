@@ -18,9 +18,6 @@ composables/useChatGpt.js
 composables/useChatRandom.js
 store/messages.ts
 
-git reset --hard 9c0f892
+git reset --hard d6e17bd: Update
 
-refactor the current code, add more store, `providers`, currently it has 2 provider is 'random', 'chatgpt'
-the store has action, setProvider
-if the provider is `random`, chatbot response with random message
-if the provider is `chatgpt`, chatbot response with openai chat
+i think maybe we do not need to use modeChatGpt, just use providers store is enough, help me refactor the code

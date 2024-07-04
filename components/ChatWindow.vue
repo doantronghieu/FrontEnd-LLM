@@ -6,7 +6,7 @@
       <span>Chat</span>
 
       <div class="chatgpt-icon" @click="toggleModeChatGpt">
-        <img v-if="modeChatGpt" src="~/assets/chatgpt-icon.png" alt="ChatGPT Icon">
+        <img v-if="providersStore.currentProvider === 'chatgpt'" src="~/assets/chatgpt-icon.png" alt="ChatGPT Icon">
         <img v-else src="~/assets/chatgpt-icon.png" alt="ChatGPT Off Icon">
       </div>
     </div>
@@ -25,8 +25,8 @@
 import { ref } from 'vue';
 import { useMessagesStore } from '~/store/messages';
 import { useProvidersStore } from '~/store/providers';
-import { useChatGpt } from '~/composables/useChatGpt';
 import { useChatRandom } from '~/composables/useChatRandom';
+import { useChatGpt } from '~/composables/useChatGpt'
 
 const props = defineProps({
   visible: Boolean
@@ -35,20 +35,16 @@ const props = defineProps({
 const emit = defineEmits(['toggle-visibility', 'send-message']);
 
 const providersStore = useProvidersStore();
-const { modeChatGpt, setModeChatGpt, openaiStreamChatCompletion } = useChatGpt();
 const { getRandomMessage } = useChatRandom();
 
 const messagesStore = useMessagesStore();
 const messages = ref(messagesStore.messages);
 const chatMessages = ref(null);
 
+const { openaiStreamChatCompletion } = useChatGpt()
 const toggleModeChatGpt = () => {
   providersStore.setProvider(providersStore.currentProvider === 'random' ? 'chatgpt' : 'random');
-  if (providersStore.currentProvider === 'chatgpt') {
-    messagesStore.addMessage('user', "Turning on using ChatGPT"); 
-  } else {
-    messagesStore.addMessage('user', "Turning off using ChatGPT"); 
-  }
+  messagesStore.addMessage('user', providersStore.currentProvider === 'chatgpt' ? "Turning on using ChatGPT" : "Turning off using ChatGPT");
 };
 
 const scrollToBottom = () => {
