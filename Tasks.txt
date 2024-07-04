@@ -17,3 +17,4 @@ components/MessageInput.vue
 composables/useChatGpt.js
 store/messages.ts
 
+git reset --hard 6357d5f
