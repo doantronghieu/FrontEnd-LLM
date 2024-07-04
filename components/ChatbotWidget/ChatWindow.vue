@@ -55,6 +55,7 @@ const chatMessages = ref(null);
 const toggleModeChatGpt = () => {
   providersStore.setProvider(providersStore.currentProvider === 'random' ? 'chatgpt' : 'random');
   messagesStore.addMessage('user', providersStore.currentProvider === 'chatgpt' ? "Turning on using ChatGPT" : "Turning off using ChatGPT");
+  scrollToBottom();
 };
 
 const scrollToBottom = () => {
