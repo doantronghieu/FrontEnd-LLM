@@ -3,7 +3,7 @@ import OpenAI from 'openai';
 
 export function useChatGpt() {
   const config = useRuntimeConfig()
-
+  
   const openai = new OpenAI({
     apiKey: config.public.OPENAI_API_KEY,
     dangerouslyAllowBrowser: true,

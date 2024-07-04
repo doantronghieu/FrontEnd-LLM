@@ -15,5 +15,6 @@ export default defineNuxtConfig({
       OPENAI_API_KEY: '',
     },
     OPENAI_API_KEY: '',
+    ENDPOINT_BACKEND: '12345',
   }
 })
