@@ -25,6 +25,7 @@
 import { ref } from 'vue';
 import { useMessagesStore } from '~/store/messages';
 import { useChatGpt } from '~/composables/useChatGpt';
+import { useRandomChat } from '~/composables/useRandomChat';
 
 const props = defineProps({
   visible: Boolean
@@ -33,6 +34,8 @@ const props = defineProps({
 const emit = defineEmits(['toggle-visibility', 'send-message']);
 
 const { modeChatGpt, setModeChatGpt, openaiStreamChatCompletion } = useChatGpt();
+const { getRandomMessage } = useRandomChat()
+
 const messagesStore = useMessagesStore();
 const messages = ref(messagesStore.messages);
 const chatMessages = ref(null);
@@ -44,18 +47,6 @@ const toggleModeChatGpt = () => {
   } else {
     messagesStore.addMessage('user', "Turning off using ChatGPT"); 
   }
-};
-
-const randomMessages = [
-  "Hello! How can I assist you today?",
-  "Is there anything specific you need help with?",
-  "I'm here to help! What's on your mind?",
-  "Feel free to ask me anything!",
-  "How's your day going so far?",
-];
-
-const getRandomMessage = () => {
-  return randomMessages[Math.floor(Math.random() * randomMessages.length)];
 };
 
 const scrollToBottom = () => {
