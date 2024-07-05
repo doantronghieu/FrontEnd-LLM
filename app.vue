@@ -1,8 +1,15 @@
 <template>
   <div>
+
+    <!-- <UContainer> -->
+      <!-- <NuxtPage /> -->
+    <!-- </UContainer> -->
+
     <NuxtRouteAnnouncer />
     <NuxtWelcome />
+
     <ChatbotSmall />
+    <UNotifications />
   </div>
 </template>
 

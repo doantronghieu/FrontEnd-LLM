@@ -58,6 +58,8 @@ const { openaiStreamChatCompletion } = useChatGpt()
 const providersStore = useProvidersStore();
 const messagesStore = useMessagesStore();
 
+const toast = useToast()
+
 const props = defineProps({
   visible: Boolean
 });
@@ -69,8 +71,15 @@ const chatMessages = ref(null);
 
 const toggleModeChatGpt = () => {
   providersStore.setProvider(providersStore.currentProvider === 'random' ? 'chatgpt' : 'random');
-  messagesStore.addMessage('user', providersStore.currentProvider === 'chatgpt' ? "Turning on using ChatGPT" : "Turning off using ChatGPT");
   scrollToBottom();
+
+  toast.add({
+    id:"Chat_Provider_Notification",
+    title:"Chat Provider",
+    description:providersStore.currentProvider === 'chatgpt' ? "Turning on using ChatGPT" : "Turning off using ChatGPT",
+    color:providersStore.currentProvider === 'chatgpt' ? "green" : "red",
+    timeout:"1500"
+  })
 };
 
 const scrollToTop = () => {
