@@ -78,7 +78,7 @@ const toggleModeChatGpt = () => {
     title:"Chat Provider",
     description:providersStore.currentProvider === 'chatgpt' ? "Turning on using ChatGPT" : "Turning off using ChatGPT",
     color:providersStore.currentProvider === 'chatgpt' ? "green" : "red",
-    timeout:"1500"
+    timeout:1500,
   })
 };
 
