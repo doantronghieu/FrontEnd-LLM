@@ -30,7 +30,7 @@
           activeIcon="/chat-providers/chatgpt-icon.png"
           inactiveIcon="/chat-providers/chatgpt-off-icon.png"
           iconAlt="ChatGPT Icon"
-          @toggleMode="toggleChatProvider"
+          @toggleMode="() => toggleChatProvider('chatgpt')"
         />
       </div>
     </div>
@@ -74,15 +74,15 @@ const emit = defineEmits(['toggle-visibility', 'send-message', 'fullscreen-chang
 const messages = ref(messagesStore.messages);
 const chatMessages = ref(null);
 
-const toggleChatProvider = () => {
-  providersStore.setProvider(providersStore.currentProvider === 'random' ? 'chatgpt' : 'random');
+const toggleChatProvider = (provider) => {
+  providersStore.setProvider(provider);
   scrollToBottom();
 
   toast.add({
     id:"Chat_Provider_Notification",
     title:"Chat Provider",
-    description:providersStore.currentProvider === 'chatgpt' ? "Turning on using ChatGPT" : "Turning off using ChatGPT",
-    color:providersStore.currentProvider === 'chatgpt' ? "green" : "red",
+    description:provider === 'chatgpt' ? "Turning on using ChatGPT" : "Turning off using ChatGPT",
+    color:provider === 'chatgpt' ? "green" : "red",
     timeout:1500,
   })
 };
