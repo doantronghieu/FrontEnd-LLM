@@ -7,8 +7,9 @@ export default defineNuxtConfig({
     "@nuxt/content",
     "@nuxt/image",
     "@pinia/nuxt",
-    "@nuxt/ui"
+    "@nuxt/ui",
   ],
+  
   compatibilityDate: "2024-07-03",
   runtimeConfig: {
     public: {
