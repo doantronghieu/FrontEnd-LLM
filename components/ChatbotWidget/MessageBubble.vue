@@ -1,10 +1,12 @@
 <template>
   <div class="message-bubble" :class="{ 'user-message': message.sender === 'user', 'chatbot-message': message.sender === 'chatbot' }">
-    <div class="message-content">{{ message.content }}</div>
+    <div class="message-content" v-html="renderMarkdown(message.content)"></div>
   </div>
 </template>
 
 <script setup>
+import { marked } from 'marked';
+
 defineProps({
   message: {
     type: Object,
@@ -13,6 +15,9 @@ defineProps({
   }
 });
 
+const renderMarkdown = (content) => {
+  return marked(content);
+};
 </script>
 
 <style scoped>
