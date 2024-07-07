@@ -69,7 +69,7 @@ const props = defineProps({
   visible: Boolean
 });
 
-const emit = defineEmits(['toggle-visibility', 'send-message']);
+const emit = defineEmits(['toggle-visibility', 'send-message', 'fullscreen-change']);
 
 const messages = ref(messagesStore.messages);
 const chatMessages = ref(null);
