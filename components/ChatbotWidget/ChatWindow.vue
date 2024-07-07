@@ -9,6 +9,7 @@
             <Icon :name="isFullscreen ? 'material-symbols:fullscreen-exit' : 'material-symbols:fullscreen'" size="1em" color="white"/>
           </button>
         </UTooltip>
+        
         <UTooltip text="Scroll up">
           <button @click="scrollToTop">
             <Icon name="material-symbols:arrow-upward" size="1em" color="white"/>
@@ -27,10 +28,19 @@
         <ChatProviderIcon
           :isActive="providersStore.currentProvider === 'chatgpt'"
           tooltipText="Change to ChatGPT"
-          activeIcon="/chat-providers/chatgpt-icon.png"
-          inactiveIcon="/chat-providers/chatgpt-off-icon.png"
+          activeIcon="/chat-providers/chat-gpt-icon.png"
+          inactiveIcon="/chat-providers/chat-gpt-off-icon.png"
           iconAlt="ChatGPT Icon"
           @toggleMode="() => toggleChatProvider('chatgpt')"
+        />
+        
+        <ChatProviderIcon
+          :isActive="providersStore.currentProvider === 'custom'"
+          tooltipText="Change to Chat Custom"
+          activeIcon="/chat-providers/chat-custom-icon.png"
+          inactiveIcon="/chat-providers/chat-custom-off-icon.png"
+          iconAlt="ChatCustom Icon"
+          @toggleMode="() => toggleChatProvider('custom')"
         />
       </div>
     </div>
@@ -75,14 +85,31 @@ const messages = ref(messagesStore.messages);
 const chatMessages = ref(null);
 
 const toggleChatProvider = (provider) => {
+  let description = '';
+  if (providersStore.currentProvider === provider) {
+    description = `Turning off using ${provider} AI`
+  } else if (provider === 'chatgpt') {
+    description = "Turning on using ChatGPT"
+  } else if (provider === 'custom') {
+    description = "Turning on using Chat Custom"
+  }
+  
+  let color = '';
+  if (providersStore.currentProvider === provider) {
+    color = 'red'
+  } else {
+    color = 'green'
+  }
+  
+  
   providersStore.setProvider(provider);
   scrollToBottom();
 
   toast.add({
     id:"Chat_Provider_Notification",
-    title:"Chat Provider",
-    description:provider === 'chatgpt' ? "Turning on using ChatGPT" : "Turning off using ChatGPT",
-    color:provider === 'chatgpt' ? "green" : "red",
+    title:"Changing Chat Provider",
+    description:description,
+    color:color,
     timeout:1500,
   })
 };
@@ -91,6 +118,15 @@ const scrollToTop = () => {
   if (chatMessages.value) {
     chatMessages.value.scrollTo({
       top: 0,
+      behavior: 'smooth'
+    });
+  }
+};
+
+const scrollToBottom = () => {
+  if (chatMessages.value) {
+    chatMessages.value.scrollTo({
+      top: chatMessages.value.scrollHeight,
       behavior: 'smooth'
     });
   }
@@ -106,15 +142,6 @@ const toggleFullscreen = () => {
     document.exitFullscreen();
   }
   emit('fullscreen-change', isFullscreen.value);
-};
-
-const scrollToBottom = () => {
-  if (chatMessages.value) {
-    chatMessages.value.scrollTo({
-      top: chatMessages.value.scrollHeight,
-      behavior: 'smooth'
-    });
-  }
 };
 
 const sendMessage = async (message) => {
