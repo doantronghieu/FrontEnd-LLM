@@ -105,6 +105,7 @@ const toggleFullscreen = () => {
   } else {
     document.exitFullscreen();
   }
+  emit('fullscreen-change', isFullscreen.value);
 };
 
 const scrollToBottom = () => {

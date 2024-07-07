@@ -1,10 +1,14 @@
 <template>
-  <div class="chatbot-icon" @click="toggleChatWindow">
+  <div v-if="visible" class="chatbot-icon" @click="toggleChatWindow">
     <img src="/assets/bot-icon.png" alt="Chatbot Icon" />
   </div>
 </template>
 
 <script setup>
+const props = defineProps({
+  visible: Boolean
+});
+
 const emit = defineEmits(['toggle-chat-window']);
 
 const toggleChatWindow = () => {
