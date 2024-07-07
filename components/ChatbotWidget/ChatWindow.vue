@@ -63,15 +63,17 @@ import { useMessagesStore } from '~/store/messages';
 import { useProvidersStore } from '~/store/providers';
 import { useChatRandom } from '~/composables/useChatRandom';
 import { useChatGpt } from '~/composables/useChatGpt';
+import { useChatCustom } from '~/composables/useChatCustom';
 import MessageBubble from './MessageBubble.vue';
 import MessageInput from './MessageInput.vue';
 import ChatProviderIcon from './ChatProviderIcon.vue'
 
-const { getRandomMessage } = useChatRandom();
-const { streamChatGpt } = useChatGpt()
-
 const providersStore = useProvidersStore();
 const messagesStore = useMessagesStore();
+
+const { getRandomMessage } = useChatRandom();
+const { streamChatGpt } = useChatGpt()
+const { streamChatCustom } = useChatCustom();
 
 const toast = useToast()
 
@@ -100,7 +102,6 @@ const toggleChatProvider = (provider) => {
   } else {
     color = 'green'
   }
-  
   
   providersStore.setProvider(provider);
   scrollToBottom();
@@ -149,13 +150,25 @@ const sendMessage = async (message) => {
   emit('send-message', message);
   scrollToBottom();
 
+  const updateMessage = (newChunk) => {
+    messagesStore.addChunk('chatbot', newChunk);
+    scrollToBottom();
+  };
+  
   if (providersStore.currentProvider === 'chatgpt') {
-    const updateMessage = (newChunk) => {
-      messagesStore.addChunk('chatbot', newChunk);
-      scrollToBottom();
-    };
     await streamChatGpt(message, updateMessage);
-  } else {
+  } 
+  else if (providersStore.currentProvider === 'custom') {
+    await streamChatCustom(
+      message,
+      updateMessage,
+      undefined, // Use default SERVER_FASTAPI from config
+      undefined, // Use default HISTORY_TYPE from config
+      'user123',  // Replace with actual user ID if available
+      'session456' // Replace with actual session ID if available
+    );
+  }
+  else {
     // Simulate chatbot response with streaming message
     setTimeout(() => {
       const botMessage = getRandomMessage();

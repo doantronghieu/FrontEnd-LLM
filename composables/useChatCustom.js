@@ -1,48 +1,57 @@
+// useChatCustom.js
 import { ref } from 'vue';
 
 export function useChatCustom() {
-  const config = useRuntimeConfig()
-  const axios = require("@nuxtjs/axios")
-
-  const streamChatCustom = async function*(
+  const config = useRuntimeConfig();
+  
+  const streamChatCustom = async (
     query,
-    serverFastapi = config.SERVER_FASTAPI,
-    historyType = config.HISTORY_TYPE,
+    updateMessage,
+    serverFastapi = config.public.SERVER_FASTAPI,
+    historyType = config.public.HISTORY_TYPE,
     userId = null,
-    sessionId = 'default',
-  ) {
+    sessionId = 'default'
+  ) => {
     const url = `${serverFastapi}/stream-agent`;
-    const params = {
+    const params = new URLSearchParams({
       query,
       history_type: historyType,
-      user_id: userId,
+      user_id: userId || 'default_user',
       session_id: sessionId,
-    };
-  
+    });
+
     try {
-      const response = await axios({
-        url,
-        params,
+      const response = await fetch(`${url}?${params}`, {
         method: 'GET',
-        responseType: 'stream',
+        headers: {
+          'Content-Type': 'application/json',
+        },
       });
-  
+
+      if (!response.ok) {
+        throw new Error(`HTTP error! status: ${response.status}`);
+      }
+
+      const reader = response.body.getReader();
       const decoder = new TextDecoder();
-      response.data.on('data', (chunk) => {
-        const decodedChunk = decoder.decode(chunk);
-        yield decodedChunk;
-      });
-  
-      await new Promise((resolve, reject) => {
-        response.data.on('end', resolve);
-        response.data.on('error', reject);
-      });
+
+      while (true) {
+        const { done, value } = await reader.read();
+        
+        if (done) {
+          break;
+        }
+        
+        const chunk = decoder.decode(value);
+        updateMessage(chunk);
+      }
     } catch (error) {
-      console.error(error);
+      console.error('Error in streamChatCustom:', error);
+      updateMessage('[Error: Unable to fetch response]');
     }
   };
-  
+
   return {
-    streamAgentAsync: streamChatCustom
-  }
+    streamChatCustom,
+  };
 }

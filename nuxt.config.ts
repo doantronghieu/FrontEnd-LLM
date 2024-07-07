@@ -14,11 +14,11 @@ export default defineNuxtConfig({
   runtimeConfig: {
     public: {
       OPENAI_API_KEY: '',
+      SERVER_FASTAPI: 'http://127.0.0.1:8000',
+      HISTORY_TYPE: 'dynamodb',
     },
     OPENAI_API_KEY: '',
     ENDPOINT_BACKEND: '12345',
 
-    SERVER_FASTAPI: 'http://127.0.0.1:8000',
-    HISTORY_TYPE: 'dynamodb',
   }
 })
