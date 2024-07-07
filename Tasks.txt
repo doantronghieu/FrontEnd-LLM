@@ -23,9 +23,3 @@ store/providers.ts
 
 git reset --hard 82f1434
 
-In ChatWindow, next to scroll-buttons, i want to have another button, its function is to maximize/minimize the chat window to fullscreen (still remain the ChatbotIcon) and viceversa, 
-Use <Icon name="material-symbols:fullscreen" size="1em" color="white"/> (isChatWindowFull state) and <Icon name="material-symbols:fullscreen-exit" size="1em" color="white"/> (not isChatWindowFull state) for coresponding button state
-
-In ChatWindow, add transition animation when  maximizing/minimizing the chat window
-
-Can i still show ChatbotIcon when ChatWindow is maximized

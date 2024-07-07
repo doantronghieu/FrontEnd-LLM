@@ -21,23 +21,7 @@ const sendMessage = () => {
   }
 };
 
-const scrollToTop = () => {
-  if (chatMessages.value) {
-    chatMessages.value.scrollTo({
-      top: 0,
-      behavior: 'smooth'
-    });
-  }
-};
 
-const scrollToBottom = () => {
-  if (chatMessages.value) {
-    chatMessages.value.scrollTo({
-      top: chatMessages.value.scrollHeight,
-      behavior: 'smooth'
-    });
-  }
-};
 </script>
 
 <style scoped>

@@ -10,7 +10,7 @@ export function useChatGpt() {
   })
   const model = ref('gpt-3.5-turbo')
 
-  const openaiStreamChatCompletion = async (msg, updateMessage) => {
+  const streamChatGpt = async (msg, updateMessage) => {
     const stream = await openai.chat.completions.create({
       messages: [{ role: 'user', content: msg }],
       stream: true,
@@ -25,6 +25,6 @@ export function useChatGpt() {
 
   return {
     openai,
-    openaiStreamChatCompletion,
+    streamChatGpt,
   };
 }

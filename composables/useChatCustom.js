@@ -4,7 +4,7 @@ export function useChatCustom() {
   const config = useRuntimeConfig()
   const axios = require("@nuxtjs/axios")
 
-  const streamAgentAsync = async function*(
+  const streamChatCustom = async function*(
     query,
     serverFastapi = config.SERVER_FASTAPI,
     historyType = config.HISTORY_TYPE,
@@ -43,6 +43,6 @@ export function useChatCustom() {
   };
   
   return {
-    streamAgentAsync
+    streamAgentAsync: streamChatCustom
   }
 }

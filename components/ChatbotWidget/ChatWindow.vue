@@ -22,7 +22,7 @@
       </div>
 
       <span>Chat</span>
-      
+
       <div class="chat-providers">
         <ChatProviderIcon
           :isActive="providersStore.currentProvider === 'chatgpt'"
@@ -58,7 +58,7 @@ import MessageInput from './MessageInput.vue';
 import ChatProviderIcon from './ChatProviderIcon.vue'
 
 const { getRandomMessage } = useChatRandom();
-const { openaiStreamChatCompletion } = useChatGpt()
+const { streamChatGpt } = useChatGpt()
 
 const providersStore = useProvidersStore();
 const messagesStore = useMessagesStore();
@@ -127,7 +127,7 @@ const sendMessage = async (message) => {
       messagesStore.addChunk('chatbot', newChunk);
       scrollToBottom();
     };
-    await openaiStreamChatCompletion(message, updateMessage);
+    await streamChatGpt(message, updateMessage);
   } else {
     // Simulate chatbot response with streaming message
     setTimeout(() => {
@@ -176,7 +176,7 @@ const streamFakeMessage = (sender, message) => {
   height: 100%;
   bottom: 0;
   right: 0;
-  border-radius: 0;
+  border-radius: 25px;
 }
 
 .chat-header {
