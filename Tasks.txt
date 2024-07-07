@@ -27,3 +27,5 @@ In ChatWindow, next to scroll-buttons, i want to have another button, its functi
 Use <Icon name="material-symbols:fullscreen" size="1em" color="white"/> (isChatWindowFull state) and <Icon name="material-symbols:fullscreen-exit" size="1em" color="white"/> (not isChatWindowFull state) for coresponding button state
 
 In ChatWindow, add transition animation when  maximizing/minimizing the chat window
+
+Can i still show ChatbotIcon when ChatWindow is maximized
