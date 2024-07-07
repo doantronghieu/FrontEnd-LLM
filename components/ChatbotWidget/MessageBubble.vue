@@ -5,7 +5,6 @@
 </template>
 
 <script setup>
-
 defineProps({
   message: {
     type: Object,
@@ -23,7 +22,7 @@ defineProps({
   margin: 5px 15px; /* Added 15px margin to both sides */                                    
   background-color: #f1f1f1;                                                                 
 }                                                                                            
-                                                                                             
+
 .user-message {                                                                              
   background-color: #007bff;                                                                 
   color: white;                                                                              
