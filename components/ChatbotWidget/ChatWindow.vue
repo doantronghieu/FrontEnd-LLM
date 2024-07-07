@@ -167,7 +167,7 @@ const streamFakeMessage = (sender, message) => {
   flex-direction: column;
   border-radius: 10px;
   overflow: hidden;
-  transition: opacity 0.3s, transform 0.3s;
+  transition: width 0.3s, height 0.3s, bottom 0.3s, right 0.3s, border-radius 0.3s, opacity 0.3s, transform 0.3s;
 }
 
 .chat-window.fullscreen {
