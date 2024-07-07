@@ -30,7 +30,7 @@
           activeIcon="/chat-providers/chatgpt-icon.png"
           inactiveIcon="/chat-providers/chatgpt-off-icon.png"
           iconAlt="ChatGPT Icon"
-          @toggleMode="toggleModeChatGpt"
+          @toggleMode="toggleChatProvider"
         />
       </div>
     </div>
@@ -74,7 +74,7 @@ const emit = defineEmits(['toggle-visibility', 'send-message', 'fullscreen-chang
 const messages = ref(messagesStore.messages);
 const chatMessages = ref(null);
 
-const toggleModeChatGpt = () => {
+const toggleChatProvider = () => {
   providersStore.setProvider(providersStore.currentProvider === 'random' ? 'chatgpt' : 'random');
   scrollToBottom();
 
