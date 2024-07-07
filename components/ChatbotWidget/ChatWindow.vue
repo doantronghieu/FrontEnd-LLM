@@ -1,9 +1,14 @@
 <template>
 <transition name="fade">
-  <div class="chat-window" v-if="visible">
+  <div class="chat-window" v-if="visible" :class="{ fullscreen: isFullscreen }">
 
     <div class="chat-header">
       <div class="scroll-buttons">
+        <UTooltip text="Maximize/Minimize">
+          <button @click="toggleFullscreen">
+            <Icon :name="isFullscreen ? 'material-symbols:fullscreen-exit' : 'material-symbols:fullscreen'" size="1em" color="white"/>
+          </button>
+        </UTooltip>
         <UTooltip text="Scroll up">
           <button @click="scrollToTop">
             <Icon name="material-symbols:arrow-upward" size="1em" color="white"/>
@@ -91,6 +96,17 @@ const scrollToTop = () => {
   }
 };
 
+const isFullscreen = ref(false);
+
+const toggleFullscreen = () => {
+  isFullscreen.value = !isFullscreen.value;
+  if (isFullscreen.value) {
+    document.documentElement.requestFullscreen();
+  } else {
+    document.exitFullscreen();
+  }
+};
+
 const scrollToBottom = () => {
   if (chatMessages.value) {
     chatMessages.value.scrollTo({
@@ -152,6 +168,14 @@ const streamFakeMessage = (sender, message) => {
   border-radius: 10px;
   overflow: hidden;
   transition: opacity 0.3s, transform 0.3s;
+}
+
+.chat-window.fullscreen {
+  width: 100%;
+  height: 100%;
+  bottom: 0;
+  right: 0;
+  border-radius: 0;
 }
 
 .chat-header {
