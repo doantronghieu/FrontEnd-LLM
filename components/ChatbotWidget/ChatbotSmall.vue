@@ -1,6 +1,6 @@
 <template>
   <div>
-    <ChatbotIcon @toggle-chat-window="toggleChatWindow" :visible="!chatWindowVisible || !isFullscreen" />
+    <ChatbotIcon @toggle-chat-window="toggleChatWindow" :visible="true" />
     <ChatWindow :visible="chatWindowVisible" @fullscreen-change="handleFullscreenChange"/>
   </div>
 </template>
@@ -19,6 +19,9 @@ const toggleChatWindow = () => {
 
 const handleFullscreenChange = (fullscreen) => {
   isFullscreen.value = fullscreen;
+  if (!fullscreen) {
+    chatWindowVisible.value = false;
+  }
 };
 
 </script>
