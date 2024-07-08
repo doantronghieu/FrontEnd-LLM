@@ -23,6 +23,4 @@ store/providers.ts
 
 git reset --hard 82f1434
 
-In ChatWindow, chat-window.fullscreen, although fullscreen but i still want to keep the ChatbotIcon, so i can click on the icon again to close the chat window, can we do it
-
-In ChatWindow, for example .chat-window.fullscreen i set bottom to 10, when i do fullscreen mode, maybe the window chat-header is spilled out of the screen so i can not see it 
+In ChatWindow, when i maximizing, i see a jerk in the transition animation
