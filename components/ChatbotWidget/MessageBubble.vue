@@ -24,7 +24,7 @@ const renderMarkdown = (content) => {
 .message-bubble {                                                                            
   padding: 10px;                                                                             
   border-radius: 10px;                                                                       
-  margin: 5px 15px; /* Added 15px margin to both sides */                                    
+  margin: 5px 10px; /* Adjusted margin for better responsiveness */
   background-color: #f1f1f1;                                                                 
 }                                                                                            
 
@@ -32,14 +32,14 @@ const renderMarkdown = (content) => {
   background-color: #007bff;                                                                 
   color: white;                                                                              
   align-self: flex-end;                                                                      
-  margin-left: 15%; /* Added margin to the left side */                                      
+  margin-left: 10%; /* Adjusted margin for better responsiveness */
 }                                                                                            
                                                                                              
 .chatbot-message {                                                                           
   background-color: #e9e9e9;                                                                 
   color: black;                                                                              
   align-self: flex-start;                                                                    
-  margin-right: 15%; /* Added margin to the right side */                                    
+  margin-right: 10%; /* Adjusted margin for better responsiveness */
 }     
 
 .message-content {

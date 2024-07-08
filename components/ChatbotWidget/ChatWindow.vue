@@ -199,8 +199,8 @@ const streamFakeMessage = (sender, message) => {
   position: fixed;
   bottom: 80px;
   right: 20px;
-  width: 360px;
-  height: 460px;
+  width: 90%;
+  height: 80vh;
   background-color: white;
   border: 1px solid #ccc;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
@@ -213,7 +213,7 @@ const streamFakeMessage = (sender, message) => {
 
 .chat-window.fullscreen {
   width: 100%;
-  height: 90vh;
+  height: 95vh;
   bottom: 1;
   right: 0;
   border-radius: 25px;

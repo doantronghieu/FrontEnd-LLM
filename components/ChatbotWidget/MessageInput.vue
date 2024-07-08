@@ -29,7 +29,7 @@ const sendMessage = () => {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 10px;
+  padding: 8px;
   border-top: 1px solid #ccc;
   background-color: #f9f9f9;
 }
@@ -44,7 +44,7 @@ const sendMessage = () => {
 }
 
 .message-input button {
-  padding: 5px;
+  padding: 4px;
   border: none;
   border-radius: 10px;
   background-color: transparent;

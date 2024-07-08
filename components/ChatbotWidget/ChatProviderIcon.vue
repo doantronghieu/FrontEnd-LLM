@@ -43,8 +43,8 @@ const toggleMode = () => {
 <style scoped>
 .chat-provider-icon {
   cursor: pointer;
-  width: 24px;
-  height: 24px;
+  width: 20px;
+  height: 20px;
   margin-left: 10px;
   transition: transform 0.2s ease-in-out;
 }

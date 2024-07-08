@@ -22,8 +22,8 @@ const toggleChatWindow = () => {
   bottom: 20px;
   right: 20px;
   cursor: pointer;
-  width: 60px;
-  height: 60px;
+  width: 50px;
+  height: 50px;
   border-radius: 50%;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
   transition: transform 0.2s ease-in-out;
