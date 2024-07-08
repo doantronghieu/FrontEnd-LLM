@@ -6,7 +6,7 @@
     <!-- </UContainer> -->
 
     <NuxtRouteAnnouncer />
-    <NuxtWelcome />
+    <!-- <NuxtWelcome /> -->
 
     <ChatbotSmall />
     <UNotifications />
