@@ -7,6 +7,8 @@
 <script setup>
 import { marked } from 'marked';
 
+marked.use({ breaks: true, gfm: true })
+
 defineProps({
   message: {
     type: Object,
@@ -16,7 +18,7 @@ defineProps({
 });
 
 const renderMarkdown = (content) => {
-  return marked(content);
+  return marked.parse(content, );
 };
 </script>
 

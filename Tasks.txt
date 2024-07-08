@@ -6,6 +6,10 @@
 - Write unit tests for the Vue.js components and the API integration layer to ensure code quality and maintainability.
 - Document the chatbot widget's codebase, design decisions, and setup instructions for future reference and collaboration.
 
+###
+Suggest me some links for sport news
+Python function to add numbers
+###
 
 README.md
 app.vue

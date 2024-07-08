@@ -193,6 +193,8 @@ const sendMessage = async (message) => {
 };
 
 const streamFakeMessage = (sender, message) => {
+  showProgress.value = false;
+
   const chunkSize = 5;
   let index = 0;
   const interval = setInterval(() => {
