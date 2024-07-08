@@ -47,6 +47,7 @@
 
     <div class="chat-messages" ref="chatMessages" style="flex: 1; overflow-y: auto;">
       <MessageBubble v-for="(message, index) in messages" :key="index" :message="message" />
+      <UProgress v-if="showProgress" animation="carousel" />
     </div>
 
     <div class="message-input-container">
@@ -149,12 +150,18 @@ const toggleFullscreen = () => {
   emit('fullscreen-change', isFullscreen.value);
 };
 
+const showProgress = ref(false);
+
 const sendMessage = async (message) => {
   messagesStore.addMessage('user', message);
   emit('send-message', message);
   scrollToBottom();
+  showProgress.value = true;
 
   const updateMessage = (newChunk) => {
+    if (showProgress.value) {
+      showProgress.value = false;
+    }
     messagesStore.addChunk('chatbot', newChunk);
     scrollToBottom();
   };
