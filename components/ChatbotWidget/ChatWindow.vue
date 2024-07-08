@@ -47,7 +47,7 @@
 
     <div class="chat-messages" ref="chatMessages" style="flex: 1; overflow-y: auto;">
       <MessageBubble v-for="(message, index) in messages" :key="index" :message="message" />
-      <UProgress v-if="showProgress" animation="elastic" size="md" color="sky"/>
+      <UProgress v-if="showProgress" animation="elastic" size="md" :color="config.public.NUXT_MAIN_COLOR"/>
     </div>
 
     <div class="message-input-container">
@@ -68,6 +68,8 @@ import { useChatCustom } from '~/composables/useChatCustom';
 import MessageBubble from './MessageBubble.vue';
 import MessageInput from './MessageInput.vue';
 import ChatProviderIcon from './ChatProviderIcon.vue'
+
+const config = useRuntimeConfig();
 
 const providersStore = useProvidersStore();
 const messagesStore = useMessagesStore();
@@ -105,7 +107,7 @@ const toggleChatProvider = (provider) => {
   if (providersStore.currentProvider === provider) {
     color = 'red'
   } else {
-    color = 'green'
+    color = config.public.NUXT_MAIN_COLOR
   }
   
   providersStore.setProvider(provider);
@@ -167,9 +169,11 @@ const sendMessage = async (message) => {
   };
   
   if (providersStore.currentProvider === 'chatgpt') {
+    scrollToBottom();
     await streamChatGpt(message, updateMessage);
   } 
   else if (providersStore.currentProvider === 'custom') {
+    scrollToBottom();
     await streamChatCustom(
       message,
       updateMessage,
