@@ -21,6 +21,4 @@ nuxt.config.ts
 store/messages.ts
 store/providers.ts
 
-git reset --hard 82f1434
-
-In ChatWindow, when i maximizing, i see a jerk in the transition animation
+git reset --hard 188acc2
