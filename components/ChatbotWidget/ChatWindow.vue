@@ -73,7 +73,7 @@ const messagesStore = useMessagesStore();
 
 const { getRandomMessage } = useChatRandom();
 const { streamChatGpt } = useChatGpt()
-const { streamChatCustom } = useChatCustom();
+const { streamChatCustom, getUserIp } = useChatCustom();
 
 const toast = useToast()
 
@@ -85,6 +85,10 @@ const emit = defineEmits(['toggle-visibility', 'send-message', 'fullscreen-chang
 
 const messages = ref(messagesStore.messages);
 const chatMessages = ref(null);
+
+onMounted(async () => {
+  await getUserIp();
+});
 
 const toggleChatProvider = (provider) => {
   let description = '';
@@ -199,7 +203,7 @@ const streamFakeMessage = (sender, message) => {
   position: fixed;
   bottom: 80px;
   right: 20px;
-  width: 70%;
+  width: 50%;
   height: 60vh;
   background-color: white;
   border: 1px solid #ccc;

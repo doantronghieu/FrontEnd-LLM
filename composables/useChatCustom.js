@@ -3,7 +3,21 @@ import { ref } from 'vue';
 
 export function useChatCustom() {
   const config = useRuntimeConfig();
-  
+  const userIp = ref(null);
+
+  const getUserIp = async () => {
+    if (!userIp.value) {
+      try {
+        const response = await fetch('/api/get-ip');
+        const data = await response.json();
+        userIp.value = data.ip;
+      } catch (error) {
+        console.error('Error fetching IP:', error);
+      }
+    }
+    return userIp.value;
+  };
+
   const streamChatCustom = async (
     query,
     updateMessage,
@@ -12,12 +26,14 @@ export function useChatCustom() {
     userId = null,
     sessionId = 'default'
   ) => {
+    const ip = await getUserIp();
+    
     const url = `${serverFastapi}/stream-agent`;
     const params = new URLSearchParams({
       query,
       history_type: historyType,
-      user_id: userId || 'default_user',
-      session_id: sessionId,
+      user_id: ip || userId || 'default_user',
+      session_id: ip || sessionId,
     });
 
     try {
@@ -53,5 +69,6 @@ export function useChatCustom() {
 
   return {
     streamChatCustom,
+    getUserIp,
   };
 }
