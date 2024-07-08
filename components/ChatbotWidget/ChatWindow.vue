@@ -213,10 +213,12 @@ const streamFakeMessage = (sender, message) => {
 
 .chat-window.fullscreen {
   width: 100%;
-  height: 100%;
+  height: 100vh;
   bottom: 0;
   right: 0;
   border-radius: 25px;
+  display: flex;
+  flex-direction: column;
 }
 
 .chat-header {
