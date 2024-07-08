@@ -47,7 +47,7 @@
 
     <div class="chat-messages" ref="chatMessages" style="flex: 1; overflow-y: auto;">
       <MessageBubble v-for="(message, index) in messages" :key="index" :message="message" />
-      <UProgress v-if="showProgress" animation="carousel" />
+      <UProgress v-if="showProgress" animation="elastic" size="md" color="sky"/>
     </div>
 
     <div class="message-input-container">
