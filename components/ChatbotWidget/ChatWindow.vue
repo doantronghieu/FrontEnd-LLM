@@ -262,7 +262,7 @@ const streamFakeMessage = (sender, message) => {
 }
 
 .fade-enter-active, .fade-leave-active {
-  transition: width 0.3s, height 0.3s, bottom 0.3s, right 0.3s, border-radius 0.3s, opacity 0.3s, transform 0.3s;
+  transition: width 0.5s ease-in-out, height 0.5s ease-in-out, bottom 0.5s ease-in-out, right 0.5s ease-in-out, border-radius 0.5s ease-in-out, opacity 0.5s ease-in-out, transform 0.5s ease-in-out, background-color 0.5s ease-in-out;
 }
 
 .fade-enter, .fade-leave-to /* .fade-leave-active in <2.1.8 */ {
