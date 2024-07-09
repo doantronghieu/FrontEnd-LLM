@@ -29,6 +29,5 @@ store/providers.ts
 git reset --hard 188acc2
 
 
-<Icon name="mdi:arrow-top-left-bottom-right" size="1em" color="white"/>
 
 In ChatWindow, can we do this, i want to add on the The intersection of the two edges is in the upper left corner of the chat-header div box, the button <Icon name="mdi:arrow-top-left-bottom-right" size="1em" color="white"/>

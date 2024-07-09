@@ -7,26 +7,19 @@ Look at the [Nuxt 3 documentation](https://nuxt.com/docs/getting-started/introdu
 ``` bash
 npx nuxi@latest init FrontEnd-LLM
 cd FrontEnd-LLM/
-npx nuxi@latest module add content
-npx nuxi@latest module add tailwindcss
 
-npm run dev # Development Server
-```
-
-Make sure to install the dependencies:
-
-```bash
-# npm
 npm install
 
-# pnpm
-pnpm install
-
-# yarn
-yarn install
-
-# bun
-bun install
+npm install pm2@latest -g
+npx nuxi@latest module add content
+npx nuxi@latest module add ui
+npx nuxi@latest module add image
+npm i @pinia/nuxt
+npm i pinia -f
+npm i -D @iconify-json/material-symbols
+npm i @nuxtjs/axios
+npm i marked
+npm i openai
 ```
 
 ## Development Server
@@ -36,49 +29,23 @@ Start the development server on `http://localhost:3000`:
 ```bash
 # npm
 npm run dev
-
-# pnpm
-pnpm run dev
-
-# yarn
-yarn dev
-
-# bun
-bun run dev
 ```
 
 ## Production
 
-Build the application for production:
-
 ```bash
-# npm
-npm run build
+npm run build # Build the application for production
+npm run preview # Locally preview production build
+node ./server/index.mjs # production deployment
 
-# pnpm
-pnpm run build
-
-# yarn
-yarn build
-
-# bun
-bun run build
-```
-
-Locally preview production build:
-
-```bash
-# npm
-npm run preview
-
-# pnpm
-pnpm run preview
-
-# yarn
-yarn preview
-
-# bun
-bun run preview
+pm2 start .output/server/index.mjs
 ```
 
 Check out the [deployment documentation](https://nuxt.com/docs/getting-started/deployment) for more information.
+
+## Docker
+
+```bash
+docker build -t nuxtjs-app .
+docker run -d -p 3000:3000 --name nuxtjs-app nuxtjs-app
+```

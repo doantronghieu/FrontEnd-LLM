@@ -214,26 +214,26 @@ const streamFakeMessage = (sender, message) => {
 <style scoped>
 .chat-window {
   position: fixed;
-  bottom: 90px;
-  right: 20px;
+  bottom: 9vh;
+  right: 1.5vw;
   width: 50%;
   height: 60vh;
   background-color: white;
-  border: 1px solid #ccc;
+  border: 0.2vw solid #ccc;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
   display: flex;
   flex-direction: column;
-  border-radius: 10px;
+  border-radius: 1vw;
   overflow: hidden;
   transition: width 0.3s, height 0.3s, bottom 0.3s, right 0.3s, border-radius 0.3s, opacity 0.3s, transform 0.3s, background-color 0.3s;
 }
 
 .chat-window.fullscreen {
-  width: 100%;
-  height: 90vh;
-  bottom: 1;
-  right: 0;
-  border-radius: 25px;
+  width: 80%;
+  height: 85vh;
+  bottom: 9vh;
+  right: 1.5vw;
+  border-radius: 1vw;
   display: flex;
   flex-direction: column;
 }
@@ -241,7 +241,7 @@ const streamFakeMessage = (sender, message) => {
 .chat-header {
   background-color: #007bff;
   color: white;
-  padding: 10px;
+  padding: 0.5vw;
   cursor: default;
   display: flex;
   justify-content: space-between;
@@ -271,7 +271,7 @@ const streamFakeMessage = (sender, message) => {
 .scroll-buttons button {
   cursor: pointer;
   transition: transform 0.2s ease-in-out;
-  padding: 3px;
+  padding: 0.2vw;
 }
 
 .scroll-buttons button:hover {

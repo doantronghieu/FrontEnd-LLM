@@ -39,7 +39,7 @@ const sendMessage = () => {
   padding: 10px;
   border: 1px solid #ccc;
   border-radius: 10px;
-  margin-right: 10px;
+  margin-right: 10px;                 
   outline: none;
 }
 

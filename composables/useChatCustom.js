@@ -27,7 +27,7 @@ export function useChatCustom() {
     sessionId = 'default'
   ) => {
     const ip = await getUserIp();
-    console.log(historyType)
+    
     const url = `${serverFastapi}/stream-agent`;
     const params = new URLSearchParams({
       query,

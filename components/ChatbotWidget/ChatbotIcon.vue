@@ -20,8 +20,8 @@ const toggleChatWindow = () => {
 <style scoped>
 .chatbot-icon {
   position: fixed;
-  bottom: 20px;
-  right: 20px;
+  bottom: 1vh;
+  right: 1.5vw;
   cursor: pointer;
   width: 70px;
   height: 70px;
