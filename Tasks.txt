@@ -27,6 +27,8 @@ store/messages.ts
 store/providers.ts
 
 git reset --hard 188acc2
-<UProgress animation="carousel" />
 
-MessageBubble, ChatWindow, after i sent the message, when waiting for the first chunk of response back, i want to show <UProgress animation="carousel" />, immediately when the first chunk of response received, remove it
+
+<Icon name="mdi:arrow-top-left-bottom-right" size="1em" color="white"/>
+
+In ChatWindow, can we do this, when we hover on the top left corner of the chat-header, the cursor pointer change to <Icon name="mdi:arrow-top-left-bottom-right" size="1em" color="white"/>
