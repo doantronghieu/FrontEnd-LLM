@@ -214,7 +214,7 @@ const streamFakeMessage = (sender, message) => {
 <style scoped>
 .chat-window {
   position: fixed;
-  bottom: 9vh;
+  bottom: 8vh;
   right: 1.5vw;
   width: 50%;
   height: 60vh;
@@ -231,7 +231,7 @@ const streamFakeMessage = (sender, message) => {
 .chat-window.fullscreen {
   width: 80%;
   height: 85vh;
-  bottom: 9vh;
+  bottom: 8vh;
   right: 1.5vw;
   border-radius: 1vw;
   display: flex;
