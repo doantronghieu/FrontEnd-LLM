@@ -144,11 +144,6 @@ const isFullscreen = ref(false);
 
 const toggleFullscreen = () => {
   isFullscreen.value = !isFullscreen.value;
-  if (isFullscreen.value) {
-    document.documentElement.requestFullscreen();
-  } else {
-    document.exitFullscreen();
-  }
   emit('fullscreen-change', isFullscreen.value);
 };
 
