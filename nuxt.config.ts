@@ -17,9 +17,9 @@ export default defineNuxtConfig({
       SERVER_FASTAPI: '',
       HISTORY_TYPE: '',
       NUXT_MAIN_COLOR: 'sky',
+      PATH_BOT_ICON: '/assets/bot-icon.png',
     },
     OPENAI_API_KEY: '',
     ENDPOINT_BACKEND: '12345',
-
   }
 })
