@@ -46,6 +46,17 @@ Check out the [deployment documentation](https://nuxt.com/docs/getting-started/d
 ## Docker
 
 ```bash
-docker build -t nuxtjs-app .
+docker build -t doantronghieu/llm-nuxtjs:latest -f Dockerfile.nuxtjs
+
+docker push doantronghieu/llm-nuxtjs:latest
+
 docker run -d -p 3000:3000 --name nuxtjs-app nuxtjs-app
+```
+
+### For VTC
+
+```bash
+docker build -t doantronghieu/vtc-llm-nuxtjs:latest -f Dockerfile.nuxtjs
+
+docker push doantronghieu/vtc-llm-nuxtjs:latest
 ```
