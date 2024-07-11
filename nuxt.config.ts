@@ -21,5 +21,8 @@ export default defineNuxtConfig({
     },
     OPENAI_API_KEY: '',
     ENDPOINT_BACKEND: '12345',
-  }
+  },
+  nitro: { // Note
+    preset: 'node-server'
+  },
 })

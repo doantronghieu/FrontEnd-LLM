@@ -18,7 +18,7 @@ defineProps({
 });
 
 const renderMarkdown = (content) => {
-  return marked.parse(content, );
+  return marked.parse(content);
 };
 </script>
 
