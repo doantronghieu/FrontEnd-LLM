@@ -12,6 +12,12 @@ export default {
 
 <style scoped>
 .background {
-  /* Add your background styles here */
+  background: linear-gradient(135deg, #ff9a9e 0%, #fad0c4 100%);
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: -1;
 }
 </style>
