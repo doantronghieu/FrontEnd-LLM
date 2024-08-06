@@ -31,7 +31,8 @@ const sendMessage = () => {
   align-items: center;
   padding: 8px;
   border-top: 1px solid #ccc;
-  background-color: #f9f9f9;
+  background-color: #ffffff;
+  
 }
 
 .message-input input {
@@ -41,6 +42,8 @@ const sendMessage = () => {
   border-radius: 10px;
   margin-right: 10px;                 
   outline: none;
+  background-color: #ffffff;
+
 }
 
 .message-input button {
