@@ -23,28 +23,58 @@ const renderMarkdown = (content) => {
 </script>
 
 <style scoped>
-.message-bubble {                                                                            
-  padding: 10px;                                                                             
-  border-radius: 10px;                                                                       
-  margin: 5px 10px; /* Adjusted margin for better responsiveness */
-  background-color: #f1f1f1;                                                                 
-}                                                                                            
+.message-bubble {
+  padding: 12px;
+  border-radius: 18px;
+  margin: 8px 0;
+  max-width: 80%;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+}
 
-.user-message {                                                                              
-  background-color: #007bff;                                                                 
-  color: white;                                                                              
-  align-self: flex-end;                                                                      
-  margin-left: 10%; /* Adjusted margin for better responsiveness */
-}                                                                                            
-                                                                                             
-.chatbot-message {                                                                           
-  background-color: #e9e9e9;                                                                 
-  color: black;                                                                              
-  align-self: flex-start;                                                                    
-  margin-right: 10%; /* Adjusted margin for better responsiveness */
-}     
+.user-message {
+  background-color: #007bff;
+  color: white;
+  align-self: flex-end;
+  margin-left: auto;
+  border-bottom-right-radius: 4px;
+}
+
+.chatbot-message {
+  background-color: #f0f0f0;
+  color: #333;
+  align-self: flex-start;
+  margin-right: auto;
+  border-bottom-left-radius: 4px;
+}
 
 .message-content {
   word-wrap: break-word;
+  line-height: 1.4;
+}
+
+.message-content :deep(p) {
+  margin: 0 0 8px 0;
+}
+
+.message-content :deep(p:last-child) {
+  margin-bottom: 0;
+}
+
+.message-content :deep(a) {
+  color: inherit;
+  text-decoration: underline;
+}
+
+.message-content :deep(code) {
+  background-color: rgba(0, 0, 0, 0.1);
+  padding: 2px 4px;
+  border-radius: 4px;
+}
+
+.message-content :deep(pre) {
+  background-color: rgba(0, 0, 0, 0.05);
+  padding: 8px;
+  border-radius: 4px;
+  overflow-x: auto;
 }
 </style>

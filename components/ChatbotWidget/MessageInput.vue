@@ -1,27 +1,38 @@
 <template>
   <div class="message-input">
-    <input type="text" v-model="message" @keyup.enter="sendMessage" placeholder="Type a message..." />
-    
-    <button class="btn-send-msg" @click="sendMessage"><Icon name="material-symbols:send-outline-rounded" size="2em" color="blue"/></button>
-    
+    <input 
+      type="text" 
+      v-model="message" 
+      @keyup.enter="sendMessage" 
+      placeholder="Type a message..." 
+      :disabled="isLoading"
+    />
+    <button class="btn-send-msg" @click="sendMessage" :disabled="isLoading || !message.trim()">
+      <Icon :name="isLoading ? 'eos-icons:loading' : 'material-symbols:send-outline-rounded'" size="1.5em" :color="isLoading || !message.trim() ? '#999' : '#007bff'"/>
+    </button>
   </div>
 </template>
 
 <script setup>
-import { ref } from 'vue';
+import { ref, computed } from 'vue';
 
 const emit = defineEmits(['send-message']);
 
 const message = ref('');
+const isLoading = ref(false);
 
 const sendMessage = () => {
-  if (message.value.trim()) {
+  if (message.value.trim() && !isLoading.value) {
+    isLoading.value = true;
     emit('send-message', message.value);
     message.value = '';
+    setTimeout(() => {
+      isLoading.value = false;
+    }, 1000); // Simulated delay, replace with actual loading state
   }
 };
 
-
+const isDisabled = computed(() => isLoading.value || !message.value.trim());
 </script>
 
 <style scoped>
@@ -29,35 +40,51 @@ const sendMessage = () => {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 8px;
-  border-top: 1px solid #ccc;
+  padding: 10px;
+  border-top: 1px solid #eee;
   background-color: #ffffff;
-  
 }
 
 .message-input input {
   flex: 1;
-  padding: 10px;
+  padding: 12px;
   border: 1px solid #ccc;
-  border-radius: 10px;
-  margin-right: 10px;                 
+  border-radius: 20px;
+  margin-right: 10px;
   outline: none;
-  background-color: #ffffff;
+  background-color: #f8f8f8;
+  font-size: 14px;
+  transition: border-color 0.3s, box-shadow 0.3s;
+}
 
+.message-input input:focus {
+  border-color: #007bff;
+  box-shadow: 0 0 0 2px rgba(0, 123, 255, 0.25);
+}
+
+.message-input input:disabled {
+  background-color: #e9ecef;
+  cursor: not-allowed;
 }
 
 .message-input button {
-  padding: 4px;
+  padding: 8px;
   border: none;
-  border-radius: 10px;
+  border-radius: 50%;
   background-color: transparent;
   cursor: pointer;
   transition: background-color 0.3s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
-.message-input button:hover {
+.message-input button:hover:not(:disabled) {
   background-color: #e0e0e0;
 }
 
-
+.message-input button:disabled {
+  cursor: not-allowed;
+  opacity: 0.6;
+}
 </style>

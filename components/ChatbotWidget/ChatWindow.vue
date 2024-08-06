@@ -1,56 +1,207 @@
 <template>
-<transition name="fade">
-  <div class="chat-window" v-if="visible" :class="{ fullscreen: isFullscreen }">
-    <div class="chat-header">
-      <div class="scroll-buttons">
-        <UTooltip text="Maximize/Minimize">
-          <button @click="toggleFullscreen">
-            <Icon :name="isFullscreen ? 'material-symbols:fullscreen-exit' : 'material-symbols:fullscreen'" size="1.2em" color="white"/>
-          </button>
-        </UTooltip>
-        
-        <UTooltip text="Scroll up">
-          <button @click="scrollToTop">
-            <Icon name="material-symbols:arrow-upward" size="1.2em" color="white"/>
-          </button>
-        </UTooltip>
-        <UTooltip text="Scroll down">
-          <button @click="scrollToBottom">
-            <Icon name="material-symbols:arrow-downward" size="1.2em" color="white"/>
-          </button>
-        </UTooltip>
+  <transition name="fade">
+    <div class="chat-window" v-if="visible" :class="{ fullscreen: isFullscreen }">
+      <div class="chat-header">
+        <div class="scroll-buttons">
+          <UTooltip text="Maximize/Minimize">
+            <button @click="toggleFullscreen">
+              <Icon :name="isFullscreen ? 'material-symbols:fullscreen-exit' : 'material-symbols:fullscreen'" size="1.2em" color="white"/>
+            </button>
+          </UTooltip>
+          
+          <UTooltip text="Scroll up">
+            <button @click="scrollToTop">
+              <Icon name="material-symbols:arrow-upward" size="1.2em" color="white"/>
+            </button>
+          </UTooltip>
+          <UTooltip text="Scroll down">
+            <button @click="scrollToBottom">
+              <Icon name="material-symbols:arrow-downward" size="1.2em" color="white"/>
+            </button>
+          </UTooltip>
+        </div>
+  
+        <span>Chat</span>
+  
+        <div class="chat-providers">
+          <ChatProviderIcon
+            :isActive="providersStore.currentProvider === 'chatgpt'"
+            tooltipText="Change to ChatGPT"
+            activeIcon="/chat-providers/chat-gpt-icon.png"
+            inactiveIcon="/chat-providers/chat-gpt-off-icon.png"
+            iconAlt="ChatGPT Icon"
+            @toggleMode="() => toggleChatProvider('chatgpt')"
+          />
+          
+          <ChatProviderIcon
+            :isActive="providersStore.currentProvider === 'custom'"
+            tooltipText="Change to Chat Custom"
+            activeIcon="/chat-providers/chat-custom-icon.png"
+            inactiveIcon="/chat-providers/chat-custom-off-icon.png"
+            iconAlt="ChatCustom Icon"
+            @toggleMode="() => toggleChatProvider('custom')"
+          />
+        </div>
       </div>
-
-      <span>Chat</span>
-
-      <div class="chat-providers">
-        <ChatProviderIcon
-          v-for="provider in ['chatgpt', 'custom']"
-          :key="provider"
-          :isActive="providersStore.currentProvider === provider"
-          :tooltipText="`Change to ${provider === 'chatgpt' ? 'ChatGPT' : 'Chat Custom'}`"
-          :activeIcon="`/chat-providers/chat-${provider}-icon.png`"
-          :inactiveIcon="`/chat-providers/chat-${provider}-off-icon.png`"
-          :iconAlt="`${provider === 'chatgpt' ? 'ChatGPT' : 'ChatCustom'} Icon`"
-          @toggleMode="() => toggleChatProvider(provider)"
-        />
+  
+      <div class="chat-messages" ref="chatMessages">
+        <MessageBubble v-for="(message, index) in messages" :key="index" :message="message" />
+        <UProgress v-if="showProgress" animation="elastic" size="md" :color="config.public.NUXT_MAIN_COLOR"/>
+      </div>
+  
+      <div class="message-input-container">
+        <MessageInput @send-message="sendMessage"></MessageInput>
       </div>
     </div>
-
-    <div class="chat-messages" ref="chatMessages">
-      <MessageBubble v-for="(message, index) in messages" :key="index" :message="message" />
-      <UProgress v-if="showProgress" animation="elastic" size="md" :color="config.public.NUXT_MAIN_COLOR"/>
-    </div>
-
-    <div class="message-input-container">
-      <MessageInput @send-message="sendMessage"></MessageInput>
-    </div>
-  </div>
-</transition>
+  </transition>
 </template>
 
 <script setup>
-// ... (keep the existing script code)
+import { ref } from 'vue';
+import { useMessagesStore } from '~/store/messages';
+import { useProvidersStore } from '~/store/providers';
+import { useChatRandom } from '~/composables/useChatRandom';
+import { useChatGpt } from '~/composables/useChatGpt';
+import { useChatCustom } from '~/composables/useChatCustom';
+import MessageBubble from './MessageBubble.vue';
+import MessageInput from './MessageInput.vue';
+import ChatProviderIcon from './ChatProviderIcon.vue'
+
+const config = useRuntimeConfig();
+
+const providersStore = useProvidersStore();
+const messagesStore = useMessagesStore();
+
+const { getRandomMessage } = useChatRandom();
+const { streamChatGpt } = useChatGpt()
+const { streamChatCustom, getUserIp } = useChatCustom();
+
+const toast = useToast()
+
+const props = defineProps({
+  visible: Boolean
+});
+
+const emit = defineEmits(['toggle-visibility', 'send-message', 'fullscreen-change']);
+
+const messages = ref(messagesStore.messages);
+const chatMessages = ref(null);
+
+onMounted(async () => {
+  await getUserIp();
+});
+
+const toggleChatProvider = (provider) => {
+  let description = '';
+  if (providersStore.currentProvider === provider) {
+    description = `Turning off using ${provider} AI`
+  } else if (provider === 'chatgpt') {
+    description = "Turning on using ChatGPT"
+  } else if (provider === 'custom') {
+    description = "Turning on using Chat Custom"
+  }
+  
+  let color = '';
+  if (providersStore.currentProvider === provider) {
+    color = 'red'
+  } else {
+    color = config.public.NUXT_MAIN_COLOR
+  }
+  
+  providersStore.setProvider(provider);
+  scrollToBottom();
+
+  toast.add({
+    id:"Chat_Provider_Notification",
+    title:"Changing Chat Provider",
+    description:description,
+    color:color,
+    timeout:1500,
+  })
+};
+
+const scrollToTop = () => {
+  if (chatMessages.value) {
+    chatMessages.value.scrollTo({
+      top: 0,
+      behavior: 'smooth'
+    });
+  }
+};
+
+const scrollToBottom = () => {
+  if (chatMessages.value) {
+    chatMessages.value.scrollTo({
+      top: chatMessages.value.scrollHeight,
+      behavior: 'smooth'
+    });
+  }
+};
+
+const isFullscreen = ref(false);
+
+const toggleFullscreen = () => {
+  isFullscreen.value = !isFullscreen.value;
+  emit('fullscreen-change', isFullscreen.value);
+};
+
+const showProgress = ref(false);
+
+const sendMessage = async (message) => {
+  messagesStore.addMessage('user', message);
+  emit('send-message', message);
+  scrollToBottom();
+  showProgress.value = true;
+
+  const updateMessage = (newChunk) => {
+    if (showProgress.value) {
+      showProgress.value = false;
+    }
+    messagesStore.addChunk('chatbot', newChunk);
+    scrollToBottom();
+  };
+  
+  if (providersStore.currentProvider === 'chatgpt') {
+    scrollToBottom();
+    await streamChatGpt(message, updateMessage);
+  } 
+  else if (providersStore.currentProvider === 'custom') {
+    scrollToBottom();
+    await streamChatCustom(
+      message,
+      updateMessage,
+      undefined, // Use default SERVER_FASTAPI from config
+      undefined, // Use default HISTORY_TYPE from config
+      'user123',  // Replace with actual user ID if available
+      'session456' // Replace with actual session ID if available
+    );
+  }
+  else {
+    // Simulate chatbot response with streaming message
+    setTimeout(() => {
+      const botMessage = getRandomMessage();
+      streamFakeMessage('chatbot', botMessage);
+    }, 1000);
+  }
+};
+
+const streamFakeMessage = (sender, message) => {
+  showProgress.value = false;
+
+  const chunkSize = 5;
+  let index = 0;
+  const interval = setInterval(() => {
+    if (index < message.length) {
+      const chunk = message.slice(index, index + chunkSize);
+      messagesStore.addChunk(sender, chunk);
+      index += chunkSize;
+      scrollToBottom();
+    } else {
+      clearInterval(interval);
+    }
+  }, 100);
+};
+
 </script>
 
 <style scoped>
