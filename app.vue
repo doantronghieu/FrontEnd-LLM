@@ -57,12 +57,12 @@ html {
 
 @media (max-width: 768px) {
   body {
-    font-size: 16px;
+    font-size: 14px;
   }
 }
 
 ::-webkit-scrollbar {
-  width: 8px;
+  width: 6px;
 }
 
 ::-webkit-scrollbar-track {
@@ -71,25 +71,23 @@ html {
 
 ::-webkit-scrollbar-thumb {
   background: var(--color-primary);
-  border-radius: 4px;
+  border-radius: 3px;
 }
 
 ::-webkit-scrollbar-thumb:hover {
   background: var(--color-secondary);
 }
 
-/* Add smooth page transitions */
 .page-enter-active,
 .page-leave-active {
-  transition: opacity 0.3s, transform 0.3s;
+  transition: opacity 0.5s, transform 0.5s;
 }
 .page-enter-from,
 .page-leave-to {
   opacity: 0;
-  transform: translateY(10px);
+  transform: translateY(20px);
 }
 
-/* Improve accessibility */
 .sr-only {
   position: absolute;
   width: 1px;
