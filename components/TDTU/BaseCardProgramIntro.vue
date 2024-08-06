@@ -28,10 +28,14 @@ const handleClick = () => {
 <style scoped>
 .base-card-program-intro {
   @apply cursor-pointer transition-all duration-300 ease-in-out bg-white bg-opacity-90;
+  border-radius: 10px;
+  overflow: hidden;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
 
 .base-card-program-intro:hover {
   @apply transform scale-105 shadow-lg;
+  box-shadow: 0 10px 15px rgba(0, 0, 0, 0.1);
 }
 
 .text-primary {

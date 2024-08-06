@@ -97,4 +97,13 @@ ${props.contact}
 .program-content :deep(p) {
   margin-bottom: 0.75rem;
 }
+
+.program-content :deep(ul), .program-content :deep(ol) {
+  margin-left: 1.5rem;
+  margin-bottom: 1rem;
+}
+
+.program-content :deep(li) {
+  margin-bottom: 0.5rem;
+}
 </style>

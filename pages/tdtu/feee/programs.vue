@@ -122,4 +122,23 @@ const handleKeyDown = (event) => {
 .text-primary {
   color: var(--color-primary);
 }
+
+/* Add responsive styles */
+@media (max-width: 640px) {
+  .container {
+    padding-left: 1rem;
+    padding-right: 1rem;
+  }
+}
+
+/* Improve modal animation */
+.modal-enter-active,
+.modal-leave-active {
+  transition: opacity 0.3s ease;
+}
+
+.modal-enter-from,
+.modal-leave-to {
+  opacity: 0;
+}
 </style>

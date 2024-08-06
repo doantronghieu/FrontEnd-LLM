@@ -29,11 +29,14 @@ defineProps({
   max-width: 400px;
   margin: 1rem;
   background-color: rgba(255, 255, 255, 0.9);
-  transition: transform 0.3s ease;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  border-radius: 10px;
+  overflow: hidden;
 }
 
 .base-card-personnel:hover {
   transform: translateY(-5px);
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
 }
 
 .text-primary {
