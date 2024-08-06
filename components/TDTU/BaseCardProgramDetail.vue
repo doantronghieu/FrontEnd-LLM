@@ -37,7 +37,7 @@ defineEmits(['close']);
 const renderedContent = computed(() => {
   const content = `
 **Faculty:** ${props.faculty}
----
+
 **Program Type:** ${props.programType}
 
 **Education Level:** ${props.educationLevel}
@@ -67,6 +67,7 @@ ${props.careerProspects}
 <style scoped>
 .base-card-program-detail {
   overflow-y: auto;
+  height: 85vh;
   margin: 1rem;
   position: relative;
   

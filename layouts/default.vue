@@ -16,12 +16,12 @@ const links = [
   },                                                                                                                            
   {                                                                                                                             
     label: 'Personnel',                                                                                                         
-    icon: 'i-heroicons-home',                                                                                                   
+    icon: 'heroicons:user-group-16-solid',                                                                                                   
     to: '/tdtu/feee/personnel'                                                                                                  
   },                                                                                                                            
   {                                                                                                                             
     label: 'Programms',                                                                                                         
-    icon: 'i-heroicons-home',                                                                                                   
+    icon: 'heroicons:academic-cap-16-solid',                                                                                                   
     to: '/tdtu/feee/programs'                                                                                                   
   }                                                                                                                             
 ]                                                                                                                               
