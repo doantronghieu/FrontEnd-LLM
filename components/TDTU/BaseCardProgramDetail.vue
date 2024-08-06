@@ -2,7 +2,7 @@
   <UCard>
     <div class="base-card-program-detail rounded-lg shadow-lg">
       <button @click="$emit('close')" class="close-button focus:outline-none focus:ring focus:border-blue-300">
-        Close
+        <UIcon name="i-heroicons-x-mark" class="w-6 h-6" />
       </button>
       <h2 class="text-2xl font-bold mb-4">{{ studyField }}</h2>
       <div v-html="renderedContent"></div>
@@ -36,38 +36,38 @@ defineEmits(['close']);
 
 const renderedContent = computed(() => {
   const content = `
-<span style="color:cyan">**Faculty**</span>: ${props.faculty} 
+<span class="text-cyan-600 font-bold">Faculty:</span> ${props.faculty} 
 <br>
-<span style="color:cyan">**Program Type**</span>: ${props.programType}
+<span class="text-cyan-600 font-bold">Program Type:</span> ${props.programType}
 <br>
-<span style="color:cyan">**Education Level:**</span> ${props.educationLevel}
+<span class="text-cyan-600 font-bold">Education Level:</span> ${props.educationLevel}
 <br>
-<span style="color:cyan">**Introduction:**</span>
+<span class="text-cyan-600 font-bold">Introduction:</span>
 ${props.introduction}
 <br>
 <br>
 
-<span style="color:cyan">**Career Prospects:**</span>
+<span class="text-cyan-600 font-bold">Career Prospects:</span>
 ${props.careerProspects}
 <br>
 <br>
 
-<span style="color:cyan">**Outcome:**</span>
+<span class="text-cyan-600 font-bold">Outcome:</span>
 ${props.outcome}
 <br>
-<span style="color:cyan">**Syllabub:**</span>
+<span class="text-cyan-600 font-bold">Syllabub:</span>
 ${props.syllabub}
 <br>
-<span style="color:cyan">**Admission Candidates:**</span>
+<span class="text-cyan-600 font-bold">Admission Candidates:</span>
 ${props.admissionCandidates}
 <br>
-<span style="color:cyan">**Registration:**</span>
+<span class="text-cyan-600 font-bold">Registration:</span>
 ${props.registration}
 <br>
-<span style="color:cyan">**Tuition:**</span>
+<span class="text-cyan-600 font-bold">Tuition:</span>
 ${props.tuition}
 <br>
-<span style="color:cyan">**Contact:**</span>
+<span class="text-cyan-600 font-bold">Contact:</span>
 ${props.contact}
   `;
   return marked.parse(content);
@@ -77,19 +77,23 @@ ${props.contact}
 <style scoped>
 .base-card-program-detail {
   overflow-y: auto;
-  height: 85vh;
+  max-height: 85vh;
   margin: 1rem;
   position: relative;
-  
-
 }
 
 .close-button {
   position: absolute;
   top: 10px;
   right: 10px;
-  padding: 5px 10px;
-  border-radius: 4px;
+  padding: 5px;
+  border-radius: 50%;
   cursor: pointer;
+  background-color: #f3f4f6;
+  transition: background-color 0.3s;
+}
+
+.close-button:hover {
+  background-color: #e5e7eb;
 }
 </style>

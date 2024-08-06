@@ -2,31 +2,31 @@
   <div class="container mx-auto px-4 py-8">
     <h1 class="text-4xl font-bold mb-8 text-gray-800">Programs</h1>
 
-    <!-- Search and filter controls -->
     <div class="mb-8 flex flex-wrap items-center gap-4">
-      <UInput v-model="searchQuery" placeholder="Search programs..." class="w-full sm:w-64" />
+      <UInput v-model="searchQuery" placeholder="Search programs..." class="w-full sm:w-64">
+        <template #right>
+          <UButton v-if="searchQuery" icon="i-heroicons-x-mark" color="gray" variant="ghost" @click="searchQuery = ''" />
+        </template>
+      </UInput>
       <USelect v-model="filterEducationLevel" :options="educationLevelOptions" placeholder="Education Level" class="w-full sm:w-64" />
       <USelect v-model="filterProgramType" :options="programTypeOptions" placeholder="Program Type" class="w-full sm:w-64" />
     </div>
 
-    <!-- Programs grid -->
     <TransitionGroup name="fade" tag="div" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
       <BaseCardProgramIntro
         v-for="program in filteredPrograms"
         :key="program.link"
         v-bind="program"
         @click="openModal(program)"
-        class="transition-all duration-300 ease-in-out hover:shadow-lg"
+        class="transition-all duration-300 ease-in-out hover:shadow-lg cursor-pointer"
       />
     </TransitionGroup>
 
-    <!-- No results message -->
     <p v-if="filteredPrograms.length === 0" class="text-center text-gray-600 mt-8">
       No programs found matching your criteria.
     </p>
 
-    <!-- Program detail modal -->
-    <UModal v-model="isModalOpen" :ui="{ width: 'max-w-4xl' }" fullscreen>
+    <UModal v-model="isModalOpen" :ui="{ width: 'max-w-4xl' }" @close="closeModal">
       <div v-if="selectedProgram" class="modal-content">
         <BaseCardProgramDetail
           v-bind="selectedProgram"
@@ -53,7 +53,7 @@ const { programList } = storeToRefs(programStore);
 const selectedProgram = ref(null);
 const isModalOpen = ref(false);
 
-await useFetch(() => programStore.fetchProgramData());
+const { pending } = await useFetch(() => programStore.fetchProgramData());
 
 const searchQuery = ref('');
 const filterEducationLevel = ref('');

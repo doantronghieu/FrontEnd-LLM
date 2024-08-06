@@ -2,13 +2,15 @@
   <div class="container mx-auto px-4">
     <h1 class="text-3xl font-bold mb-6 text-gray-800">Personnel</h1>
     
-    <!-- Search and filter controls -->
     <div class="mb-6 flex flex-wrap items-center gap-4">
-      <UInput v-model="searchQuery" placeholder="Search personnel..." class="w-full sm:w-64" />
+      <UInput v-model="searchQuery" placeholder="Search personnel..." class="w-full sm:w-64">
+        <template #right>
+          <UButton v-if="searchQuery" icon="i-heroicons-x-mark" color="gray" variant="ghost" @click="searchQuery = ''" />
+        </template>
+      </UInput>
       <USelect v-model="filterDepartment" :options="departmentOptions" placeholder="Filter by department" class="w-full sm:w-64" />
     </div>
     
-    <!-- Personnel grid -->
     <TransitionGroup name="fade" tag="div" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
       <BaseCardPersonnel
         v-for="personnel in filteredPersonnel"
@@ -18,7 +20,6 @@
       />
     </TransitionGroup>
     
-    <!-- No results message -->
     <p v-if="filteredPersonnel.length === 0" class="text-center text-gray-600 mt-8">
       No personnel found matching your criteria.
     </p>
@@ -38,7 +39,7 @@ definePageMeta({
 const personnelStore = usePersonnelStore();
 const { personnelList } = storeToRefs(personnelStore);
 
-await useFetch(() => personnelStore.fetchPersonnelData());
+const { pending } = await useFetch(() => personnelStore.fetchPersonnelData());
 
 const searchQuery = ref('');
 const filterDepartment = ref('');
