@@ -68,7 +68,7 @@ export default {
     </main>                                                                                                                     
   </div>                                                                                                                        
 </template>                                                                                                                     
-
+                                                                                                                                
 <script setup>                                                                                                                  
 const links = [                                                                                                                 
   {                                                                                                                             
@@ -78,29 +78,29 @@ const links = [
   },                                                                                                                            
   {                                                                                                                             
     label: 'Personnel',                                                                                                         
-    icon: 'i-heroicons-home',                                                                                                   
+    icon: 'heroicons:user-group-16-solid',                                                                                                   
     to: '/tdtu/feee/personnel'                                                                                                  
   },                                                                                                                            
   {                                                                                                                             
     label: 'Programms',                                                                                                         
-    icon: 'i-heroicons-home',                                                                                                   
+    icon: 'heroicons:academic-cap-16-solid',                                                                                                   
     to: '/tdtu/feee/programs'                                                                                                   
   }                                                                                                                             
 ]                                                                                                                               
 </script>                                                                                                                       
-
+                                                                                                                                
 <style scoped>                                                                                                                  
 .default-layout {                                                                                                               
   display: flex;                                                                                                                
   flex-direction: row;                                                                                                          
   min-height: 100vh;                                                                                                            
 }                                                                                                                               
-
+                                                                                                                                
 .sidebar {                                                                                                                      
   width: 140px; /* Adjust the width as needed */                                                                                
   overflow-y: auto;                                                                                                             
 }                                                                                                                               
-
+                                                                                                                                
 .content {                                                                                                                      
   flex: 1;                                                                                                                      
   padding: 20px;                                                                                                                
@@ -212,52 +212,101 @@ defineProps({
 ```
 ./components/TDTU/BaseCardProgramDetail.vue:
 ```
-<template>                                                                                                                      
-  <UCard class="base-card-program-detail">                                                                                      
-    <div class="flex flex-col space-y-4 overflow-y-auto">                                                                       
-      <h2 class="text-2xl font-bold">{{ studyField }}</h2>                                                                      
-      <p><strong>Faculty:</strong> {{ faculty }}</p>                                                                            
-      <p><strong>Program Type:</strong> {{ programType }}</p>                                                                   
-      <p><strong>Education Level:</strong> {{ educationLevel }}</p>                                                             
-      <div v-html="introduction"></div>                                                                                         
-      <div v-html="careerProspects"></div>                                                                                      
-      <div v-html="outcome"></div>                                                                                              
-      <div v-html="syllabub"></div>                                                                                             
-      <div v-html="admissionCandidates"></div>                                                                                  
-      <div v-html="registration"></div>                                                                                         
-      <div v-html="tuition"></div>                                                                                              
-      <div v-html="contact"></div>                                                                                              
-      <button class="focus:outline-none focus:ring focus:border-blue-300">Close</button> <!-- Focusable element -->             
-    </div>                                                                                                                      
-  </UCard>                                                                                                                      
-</template>                                                                                                                     
+<template>
+  <UCard>
+    <div class="base-card-program-detail rounded-lg shadow-lg">
+      <button @click="$emit('close')" class="close-button focus:outline-none focus:ring focus:border-blue-300">
+        Close
+      </button>
+      <h2 class="text-2xl font-bold mb-4">{{ studyField }}</h2>
+      <div v-html="renderedContent"></div>
+    </div>
+  </UCard>
+</template>
 
-<script setup>                                                                                                                  
-defineProps({                                                                                                                   
-  faculty: { type: String, required: true },                                                                                    
-  studyField: { type: String, required: true },                                                                                 
-  link: { type: String, required: true },                                                                                       
-  programType: { type: String, required: true },                                                                                
-  educationLevel: { type: String, required: true },                                                                             
-  introduction: { type: String, required: true },                                                                               
-  careerProspects: { type: String, required: true },                                                                            
-  outcome: { type: String, required: true },                                                                                    
-  syllabub: { type: String, required: true },                                                                                   
-  admissionCandidates: { type: String, required: true },                                                                        
-  registration: { type: String, required: true },                                                                               
-  tuition: { type: String, required: true },                                                                                    
-  contact: { type: String, required: true },                                                                                    
-});                                                                                                                             
-</script>                                                                                                                       
+<script setup>
+import { marked } from 'marked';
+import { computed } from 'vue';
 
-<style scoped>                                                                                                                  
-.base-card-program-detail {                                                                                                     
-  max-width: 600px;                                                                                                             
-  max-height: 80vh;                                                                                                             
-  overflow-y: auto;                                                                                                             
-  margin: 1rem;                                                                                                                 
-}                                                                                                                               
-</style>  
+marked.use({ breaks: true, gfm: true })
+
+const props = defineProps({
+  faculty: { type: String, required: true },
+  studyField: { type: String, required: true },
+  link: { type: String, required: true },
+  programType: { type: String, required: true },
+  educationLevel: { type: String, required: true },
+  introduction: { type: String, required: true },
+  careerProspects: { type: String, required: true },
+  outcome: { type: String, required: true },
+  syllabub: { type: String, required: true },
+  admissionCandidates: { type: String, required: true },
+  registration: { type: String, required: true },
+  tuition: { type: String, required: true },
+  contact: { type: String, required: true },
+});
+
+defineEmits(['close']);
+
+const renderedContent = computed(() => {
+  const content = `
+<span style="color:cyan">**Faculty**</span>: ${props.faculty} 
+<br>
+<span style="color:cyan">**Program Type**</span>: ${props.programType}
+<br>
+<span style="color:cyan">**Education Level:**</span> ${props.educationLevel}
+<br>
+<span style="color:cyan">**Introduction:**</span>
+${props.introduction}
+<br>
+<br>
+
+<span style="color:cyan">**Career Prospects:**</span>
+${props.careerProspects}
+<br>
+<br>
+
+<span style="color:cyan">**Outcome:**</span>
+${props.outcome}
+<br>
+<span style="color:cyan">**Syllabub:**</span>
+${props.syllabub}
+<br>
+<span style="color:cyan">**Admission Candidates:**</span>
+${props.admissionCandidates}
+<br>
+<span style="color:cyan">**Registration:**</span>
+${props.registration}
+<br>
+<span style="color:cyan">**Tuition:**</span>
+${props.tuition}
+<br>
+<span style="color:cyan">**Contact:**</span>
+${props.contact}
+  `;
+  return marked.parse(content);
+});
+</script>
+
+<style scoped>
+.base-card-program-detail {
+  overflow-y: auto;
+  height: 85vh;
+  margin: 1rem;
+  position: relative;
+  
+
+}
+
+.close-button {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  padding: 5px 10px;
+  border-radius: 4px;
+  cursor: pointer;
+}
+</style>
 ```
 ./components/TDTU/BaseCardProgramIntro.vue:
 ```
@@ -271,7 +320,7 @@ defineProps({
     </div>                                                                                                                      
   </UCard>                                                                                                                      
 </template>                                                                                                                     
-
+                                                                                                                                
 <script setup>                                                                                                                  
 defineProps({                                                                                                                   
   faculty: { type: String, required: true },                                                                                    
@@ -280,14 +329,14 @@ defineProps({
   programType: { type: String, required: true },                                                                                
   educationLevel: { type: String, required: true },                                                                             
 });                                                                                                                             
-
+                                                                                                                                
 const emit = defineEmits(['click']);                                                                                            
-
+                                                                                                                                
 const handleClick = () => {                                                                                                     
   emit('click');                                                                                                                
 };                                                                                                                              
 </script>                                                                                                                       
-
+                                                                                                                                
 <style scoped>                                                                                                                  
 .base-card-program-intro {                                                                                                      
   max-width: 400px;                                                                                                             
@@ -295,48 +344,11 @@ const handleClick = () => {
   cursor: pointer;                                                                                                              
   transition: transform 0.2s;                                                                                                   
 }                                                                                                                               
-
+                                                                                                                                
 .base-card-program-intro:hover {                                                                                                
   transform: scale(1.05);                                                                                                       
 }                                                                                                                               
 </style>          
-```
-./data/tdtu/feee/personnel.json:
-```
-[
-  {
-    "Faculty": "Điện - Điện tử",
-    "Name": "TS. Trần Thanh Phương",
-    "Position": "Tiến sĩ, Phó trưởng Khoa, Phụ trách Khoa Điện - Điện tử, Trưởng bộ môn Điện tử - Viễn thông",
-    "Major": "Điện tử - Viễn thông",
-    "Email": "tranthanhphuong@tdt.edu.vn",
-    "Office": "C117",
-    "Department": "Ban chủ nhiệm khoa, Bộ môn Điện tử - Viễn thông"
-  },
-  
-]
-
-```
-./data/tdtu/feee/programs.json:
-```
-[
-  {
-    "Faculty": "Điện - Điện tử",
-    "StudyField": "Kỹ thuật Cơ điện tử",
-    "Link": "https:\/\/feee.tdtu.edu.vn\/giao-duc\/dai-hoc-tieu-chuan\/nganh-ky-thuat-co-dien-tu-chuong-trinh-tieu-chuan",
-    "ProgramType": "Tiêu chuẩn",
-    "EducationLevel": "Đại học",
-    "Introduction": "## Giới thiệu chương trình đào tạo ngành Kỹ thuật cơ điện tử\n\nChương trình đào tạo ngành Kỹ thuật cơ điện tử được xây dựng phù hợp định hướng đào tạo quốc tế, giúp người học am hiểu kỹ thuật cơ khí, điện tử, công nghệ thông tin và công nghệ hiện đại. Sinh viên sẽ được cung cấp kiến thức và kỹ năng chuyên môn trong các lĩnh vực sau:\n\n- Chế tạo và điều khiển robot\n- Thiết kế, chế tạo và cải tiến sản phẩm cơ điện tử\n- Điều khiển thiết bị và hệ thống tự động\n- Tự động hóa sản xuất và truyền thông trong công nghiệp\n\nChương trình hướng đến việc đào tạo kỹ sư có năng lực sáng tạo và đáp ứng nhu cầu nhân lực trong cách mạng công nghiệp 4.0.",
-    "CareerProspects": "## Triển vọng nghề nghiệp của ngành Kỹ thuật cơ điện tử\n\nSinh viên tốt nghiệp ngành Kỹ thuật cơ điện tử có thể làm việc ở các vị trí sau:\n\n### a. Viện, Trung tâm nghiên cứu, trường Đại học\n- Tiếp tục học sau đại học, tham gia giảng dạy hoặc nghiên cứu chuyên ngành cơ khí – cơ điện tử.\n- Nghiên cứu viên tại Viện Nghiên cứu cơ khí, Viện Nghiên cứu Điện tử – tin học – Tự động hóa.\n\n### b. Doanh nghiệp sản xuất\n- Kỹ sư thiết kế, chế tạo máy móc tự động hóa.\n- Kỹ sư vận hành, bảo trì các hệ thống máy móc trong công nghiệp.\n\n### c. Doanh nghiệp tư vấn kỹ thuật\n- Chuyên viên tư vấn, thiết kế, phân tích mô phỏng công nghệ.\n- Nhân viên hỗ trợ kỹ thuật hoặc giới thiệu sản phẩm.\n\n### d. Cơ hội tuyển dụng nước ngoài\n- Cơ hội cao trong việc tuyển dụng lao động nước ngoài như Nhật Bản, Hàn Quốc.",
-    "Outcome": "https:\/\/feee.tdtu.edu.vn\/chi-tiet-nganh\/chuan-dau-ra-2022-nganh-ky-thuat-co-dien-tu-chuong-trinh-tieu-chuan",
-    "Syllabub": "Chương trình đào tạo của Đại học Tôn Đức Thắng được thiết kế đồng bộ với phương pháp giảng dạy, học tập và đánh giá kết quả học tập để đảm bảo người học tích lũy kiến thức và năng lực theo chuẩn đầu ra đại học. Chương trình này tương thích với TOP 100 đại học tốt nhất Thế giới, nhưng được điều chỉnh để phù hợp với điều kiện thực tế tại Việt Nam và mục tiêu đào tạo của trường.\n\nNhà trường thường rà soát và đánh giá chương trình đào tạo để đảm bảo người học đáp ứng yêu cầu xã hội và cập nhật công nghệ mới. Quá trình này có sự tham gia của nhà khoa học, nhà tuyển dụng, cựu sinh viên, sinh viên và giảng viên. Chương trình đào tạo được công bố qua cổng thông tin sinh viên và trên website chính thức của trường.\n\n[Chi tiết](https:\/\/feee.tdtu.edu.vn\/chi-tiet-nganh\/chuong-trinh-dao-tao-2022-nganh-ki-thuat-co-dien-tu-chuong-trinh-tieu-chuan)",
-    "AdmissionCandidates": "Thí sinh tốt nghiệp THPT hoặc tương đương.",
-    "Registration": "https:\/\/admission.tdtu.edu.vn\/dai-hoc\/tuyen-sinh\/phuong-thuc-2024",
-    "Tuition": "Mức Học phí trung bình (đồng\/năm) năm 2024: 31,680,000\nTham khảo: https:\/\/admission.tdtu.edu.vn\/hoc-tai-tdtu\/hoc-phi-hoc-bong-2024",
-    "Contact": "Số 19 Nguyễn Hữu Thọ, Phường Tân Phong, Quận 7, TP. Hồ Chí Minh, Việt Nam\n\nTư vấn tuyển sinh đại học:\n- Hotline: 19002024\n- Email: tuvantuyensinh@tdtu.edu.vn\n\nTư vấn tuyển sinh sau đại học:\n- Hotline: 0944 314 466\n- Email: tssdh@tdtu.edu.vn\n\nTư vấn liên kết đào tạo quốc tế:\n- Hotline: 0935 035 270\n- Email: tuvantuyensinhlkqt@tdtu.edu.vn\n\nKhoa Điện - Điện tử:\n- Phòng C008 - Số 19 Nguyễn Hữu Thọ, Phường Tân Phong, Quận 7, TP. Hồ Chí Minh, Việt Nam\n- Điện thoại: 02837.755.028\n- Email: khoadien@tdtu.edu.vn\n- website: https:\/\/feee.tdtu.edu.vn\/\n- Facebook: https:\/\/web.facebook.com\/feee.tdtu.edu.vn?_rdc=1&_rdr\n- Youtube: https:\/\/www.youtube.com\/channel\/UCkeB4slthGY9B3MHCfdOfLA"
-   },
-   
-]
 ```
 ./pages/tdtu/feee/personnel.vue:
 ```
@@ -359,80 +371,101 @@ const handleClick = () => {
   </div>                                                                                                                        
 </template>                                                                                                                     
 
-<script setup>                                                                                                                  
-import { usePersonnelStore } from '~/store/personnelStore';                                                                     
-import { onMounted } from 'vue';                                                                                                
-import BaseCardPersonnel from '~/components/TDTU/BaseCardPersonnel.vue'; // Ensure this path is correct                         
- 
-const personnelStore = usePersonnelStore();                                                                                     
-const { personnelList } = personnelStore;                                                                                       
- 
-onMounted(() => {                                                                                                               
-  personnelStore.fetchPersonnelData();                                                                                          
-});                                                                                                                             
-</script>  
+<script setup>
+import { usePersonnelStore } from '~/store/personnelStore';
+import { storeToRefs } from 'pinia';
+import BaseCardPersonnel from '~/components/TDTU/BaseCardPersonnel.vue';
+
+definePageMeta({
+  fetchKey: 'personnel'
+});
+
+const personnelStore = usePersonnelStore();
+const { personnelList } = storeToRefs(personnelStore);
+
+await useFetch(() => personnelStore.fetchPersonnelData());
+</script>
+
+
 ```
 ./pages/tdtu/feee/programs.vue:
 ```
-<template>                                                                                                                      
-  <div>                                                                                                                         
-    <h1 class="text-3xl font-bold mb-4">Programs</h1>                                                                           
-    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">                                                          
-      <BaseCardProgramIntro                                                                                                     
-        v-for="program in programList"                                                                                          
-        :key="program.link"                                                                                                     
-        :faculty="program.faculty"                                                                                              
-        :studyField="program.studyField"                                                                                        
-        :link="program.link"                                                                                                    
-        :programType="program.programType"                                                                                      
-        :educationLevel="program.educationLevel"                                                                                
-        @click="openModal(program)"                                                                                             
-      />                                                                                                                        
-    </div>                                                                                                                      
-    <UModal v-model="isModalOpen">                                                                                              
-       <BaseCardProgramDetail                                                                                                   
-         v-if="selectedProgram"                                                                                                 
-         :faculty="selectedProgram.faculty"                                                                                     
-         :studyField="selectedProgram.studyField"                                                                               
-         :link="selectedProgram.link"                                                                                           
-         :programType="selectedProgram.programType"                                                                             
-         :educationLevel="selectedProgram.educationLevel"                                                                       
-         :introduction="selectedProgram.introduction"                                                                           
-         :careerProspects="selectedProgram.careerProspects"                                                                     
-         :outcome="selectedProgram.outcome"                                                                                     
-         :syllabub="selectedProgram.syllabub"                                                                                   
-         :admissionCandidates="selectedProgram.admissionCandidates"                                                             
-         :registration="selectedProgram.registration"                                                                           
-         :tuition="selectedProgram.tuition"                                                                                     
-         :contact="selectedProgram.contact"                                                                                     
-       />                                                                                                                       
-     </UModal>                                                                                                                  
-  </div>                                                                                                                        
-</template>                                                                                                                     
+<template>
+  <div>
+    <h1 class="text-3xl font-bold mb-4">Programs</h1>
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+      <BaseCardProgramIntro
+        v-for="program in programList"
+        :key="program.link"
+        :faculty="program.faculty"
+        :studyField="program.studyField"
+        :link="program.link"
+        :programType="program.programType"
+        :educationLevel="program.educationLevel"
+        @click="openModal(program)"
+      />
+    </div>
+    <UModal v-model="isModalOpen" fullscreen>
+      <div v-if="selectedProgram" class="modal-content">
+        <BaseCardProgramDetail
+          :faculty="selectedProgram.faculty"
+          :studyField="selectedProgram.studyField"
+          :link="selectedProgram.link"
+          :programType="selectedProgram.programType"
+          :educationLevel="selectedProgram.educationLevel"
+          :introduction="selectedProgram.introduction"
+          :careerProspects="selectedProgram.careerProspects"
+          :outcome="selectedProgram.outcome"
+          :syllabub="selectedProgram.syllabub"
+          :admissionCandidates="selectedProgram.admissionCandidates"
+          :registration="selectedProgram.registration"
+          :tuition="selectedProgram.tuition"
+          :contact="selectedProgram.contact"
+          @close="closeModal"
+        />
+      </div>
+    </UModal>
+  </div>
+</template>
 
-<script setup>                                                                                                                  
-import { useProgramStore } from '~/store/programStore';                                                                         
-import { ref, onMounted } from 'vue';                                                                                           
-import BaseCardProgramIntro from '~/components/TDTU/BaseCardProgramIntro.vue';                                                  
-import BaseCardProgramDetail from '~/components/TDTU/BaseCardProgramDetail.vue';                                                
+<script setup>
+import { useProgramStore } from '~/store/programStore';
+import { ref } from 'vue';
+import { storeToRefs } from 'pinia';
+import BaseCardProgramIntro from '~/components/TDTU/BaseCardProgramIntro.vue';
+import BaseCardProgramDetail from '~/components/TDTU/BaseCardProgramDetail.vue';
 
-const programStore = useProgramStore();                                                                                         
-const { programList, selectedProgram } = programStore;                                                                          
-const isModalOpen = ref(false);                                                                                                 
+definePageMeta({
+  fetchKey: 'programs'
+});
 
-onMounted(() => {                                                                                                               
-  programStore.fetchProgramData();                                                                                              
-});                                                                                                                             
+const programStore = useProgramStore();
+const { programList } = storeToRefs(programStore);
+const selectedProgram = ref(null);
+const isModalOpen = ref(false);
 
-const openModal = (program) => {                                                                                                
-  programStore.setSelectedProgram(program);                                                                                     
-  isModalOpen.value = true;                                                                                                     
-};                                                                                                                              
+await useFetch(() => programStore.fetchProgramData());
 
-const closeModal = () => {                                                                                                      
-  isModalOpen.value = false;                                                                                                    
-};                                                                                                                              
-</script>  
+
+const openModal = (program) => {
+  selectedProgram.value = program;
+  isModalOpen.value = true;
+  // console.log('Selected program:', selectedProgram.value); // Debug log
+};
+
+const closeModal = () => {
+  isModalOpen.value = false;
+  selectedProgram.value = null;
+};
+
+</script>
+
+<style scoped>
+.modal-content {
+  width: 100%;
+  margin: 0 auto;
+}
+</style>
 ```
 ./store/messages.ts:
 ```

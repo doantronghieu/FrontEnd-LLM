@@ -36,29 +36,39 @@ defineEmits(['close']);
 
 const renderedContent = computed(() => {
   const content = `
-**Faculty:** ${props.faculty}
-
-**Program Type:** ${props.programType}
-
-**Education Level:** ${props.educationLevel}
-
-**Introduction:** 
+<span style="color:cyan">**Faculty**</span>: ${props.faculty} 
+<br>
+<span style="color:cyan">**Program Type**</span>: ${props.programType}
+<br>
+<span style="color:cyan">**Education Level:**</span> ${props.educationLevel}
+<br>
+<span style="color:cyan">**Introduction:**</span>
 ${props.introduction}
+<br>
+<br>
 
-**Career Prospects:** 
+<span style="color:cyan">**Career Prospects:**</span>
 ${props.careerProspects}
+<br>
+<br>
 
-**Outcome:** ${props.outcome}
-
-**Syllabub:** ${props.syllabub}
-
-**Admission Candidates:** ${props.admissionCandidates}
-
-**Registration:** ${props.registration}
-
-**Tuition:** ${props.tuition}
-
-**Contact:** ${props.contact}
+<span style="color:cyan">**Outcome:**</span>
+${props.outcome}
+<br>
+<span style="color:cyan">**Syllabub:**</span>
+${props.syllabub}
+<br>
+<span style="color:cyan">**Admission Candidates:**</span>
+${props.admissionCandidates}
+<br>
+<span style="color:cyan">**Registration:**</span>
+${props.registration}
+<br>
+<span style="color:cyan">**Tuition:**</span>
+${props.tuition}
+<br>
+<span style="color:cyan">**Contact:**</span>
+${props.contact}
   `;
   return marked.parse(content);
 });

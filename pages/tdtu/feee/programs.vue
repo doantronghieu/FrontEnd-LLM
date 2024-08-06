@@ -38,18 +38,22 @@
 
 <script setup>
 import { useProgramStore } from '~/store/programStore';
-import { ref, onMounted, watch } from 'vue';
+import { ref } from 'vue';
+import { storeToRefs } from 'pinia';
 import BaseCardProgramIntro from '~/components/TDTU/BaseCardProgramIntro.vue';
 import BaseCardProgramDetail from '~/components/TDTU/BaseCardProgramDetail.vue';
 
+definePageMeta({
+  fetchKey: 'programs'
+});
+
 const programStore = useProgramStore();
-const { programList } = programStore;
+const { programList } = storeToRefs(programStore);
 const selectedProgram = ref(null);
 const isModalOpen = ref(false);
 
-onMounted(() => {
-  programStore.fetchProgramData();
-});
+await useFetch(() => programStore.fetchProgramData());
+
 
 const openModal = (program) => {
   selectedProgram.value = program;
@@ -62,13 +66,6 @@ const closeModal = () => {
   selectedProgram.value = null;
 };
 
-// Watch for changes in isModalOpen
-// watch(isModalOpen, (newValue) => {
-//   if (newValue) {
-//     console.log('Modal opened, selected program:', selectedProgram.value); // Debug log
-    
-//   }
-// });
 </script>
 
 <style scoped>
