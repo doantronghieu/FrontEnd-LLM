@@ -6,6 +6,7 @@
       @keyup.enter="sendMessage" 
       placeholder="Type a message..." 
       :disabled="isLoading"
+      ref="inputField"
     />
     <button class="btn-send-msg" @click="sendMessage" :disabled="isLoading || !message.trim()">
       <Icon :name="isLoading ? 'eos-icons:loading' : 'material-symbols:send-outline-rounded'" size="1.5em" :color="isLoading || !message.trim() ? '#999' : '#007bff'"/>
@@ -20,15 +21,15 @@ const emit = defineEmits(['send-message']);
 
 const message = ref('');
 const isLoading = ref(false);
+const inputField = ref(null);
 
 const sendMessage = () => {
   if (message.value.trim() && !isLoading.value) {
     isLoading.value = true;
     emit('send-message', message.value);
     message.value = '';
-    setTimeout(() => {
-      isLoading.value = false;
-    }, 1000); // Simulated delay, replace with actual loading state
+    isLoading.value = false;
+    inputField.value?.focus();
   }
 };
 
@@ -47,7 +48,7 @@ const isDisabled = computed(() => isLoading.value || !message.value.trim());
 
 .message-input input {
   flex: 1;
-  padding: 12px;
+  padding: 12px 16px;
   border: 1px solid #ccc;
   border-radius: 20px;
   margin-right: 10px;
@@ -73,7 +74,7 @@ const isDisabled = computed(() => isLoading.value || !message.value.trim());
   border-radius: 50%;
   background-color: transparent;
   cursor: pointer;
-  transition: background-color 0.3s ease;
+  transition: background-color 0.3s ease, transform 0.3s ease;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -81,10 +82,22 @@ const isDisabled = computed(() => isLoading.value || !message.value.trim());
 
 .message-input button:hover:not(:disabled) {
   background-color: #e0e0e0;
+  transform: scale(1.1);
 }
 
 .message-input button:disabled {
   cursor: not-allowed;
   opacity: 0.6;
+}
+
+@media (max-width: 768px) {
+  .message-input {
+    padding: 8px;
+  }
+  
+  .message-input input {
+    padding: 10px 14px;
+    font-size: 16px;
+  }
 }
 </style>

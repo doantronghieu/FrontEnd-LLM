@@ -41,6 +41,12 @@
             iconAlt="ChatCustom Icon"
             @toggleMode="() => toggleChatProvider('custom')"
           />
+          
+          <UTooltip text="Close">
+            <button @click="closeChat" class="close-button">
+              <Icon name="material-symbols:close" size="1.2em" color="white"/>
+            </button>
+          </UTooltip>
         </div>
       </div>
   
@@ -261,16 +267,22 @@ const streamFakeMessage = (sender, message) => {
   gap: 5px;
 }
 
-.scroll-buttons button {
+.scroll-buttons button, .close-button {
   cursor: pointer;
-  transition: transform 0.2s ease-in-out;
+  transition: transform 0.2s ease-in-out, background-color 0.2s ease-in-out;
   padding: 5px;
   background: none;
   border: none;
+  border-radius: 50%;
 }
 
-.scroll-buttons button:hover {
+.scroll-buttons button:hover, .close-button:hover {
   transform: scale(1.2);
+  background-color: rgba(255, 255, 255, 0.2);
+}
+
+.close-button {
+  margin-left: 12px;
 }
 
 .fade-enter-active, .fade-leave-active {

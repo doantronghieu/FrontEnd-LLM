@@ -5,6 +5,7 @@
       :alt="iconAlt"
       class="chat-provider-icon"
       @click="toggleMode"
+      :class="{ 'active': isActive }"
     />
   </UTooltip>
 </template>
@@ -43,13 +44,19 @@ const toggleMode = () => {
 <style scoped>
 .chat-provider-icon {
   cursor: pointer;
-  width: 24px;
-  height: 24px;
+  width: 28px;
+  height: 28px;
   margin-left: 12px;
-  transition: transform 0.3s ease-in-out, filter 0.3s ease-in-out;
+  transition: transform 0.3s ease-in-out, filter 0.3s ease-in-out, opacity 0.3s ease-in-out;
+  opacity: 0.7;
 }
 .chat-provider-icon:hover {
   transform: scale(1.2);
   filter: brightness(1.2);
+  opacity: 1;
+}
+.chat-provider-icon.active {
+  opacity: 1;
+  transform: scale(1.1);
 }
 </style>

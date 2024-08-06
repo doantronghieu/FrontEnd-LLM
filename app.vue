@@ -62,7 +62,7 @@ html {
 }
 
 ::-webkit-scrollbar {
-  width: 6px;
+  width: 8px;
 }
 
 ::-webkit-scrollbar-track {
@@ -71,7 +71,7 @@ html {
 
 ::-webkit-scrollbar-thumb {
   background: var(--color-primary);
-  border-radius: 3px;
+  border-radius: 4px;
 }
 
 ::-webkit-scrollbar-thumb:hover {
