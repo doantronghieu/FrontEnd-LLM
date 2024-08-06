@@ -210,6 +210,7 @@ const streamFakeMessage = (sender, message) => {
 
 </script>
 
+
 <style scoped>
 .chat-window {
   position: fixed;
@@ -260,6 +261,7 @@ const streamFakeMessage = (sender, message) => {
   flex: 1;
   overflow-y: auto;
   padding: 10px;
+  scroll-behavior: smooth;
 }
 
 .scroll-buttons {

@@ -1,8 +1,10 @@
 <template>
   <div class="message-container" :class="{ 'user-message': message.sender === 'user' }">
-    <div class="message-bubble" :class="{ 'user-message': message.sender === 'user', 'chatbot-message': message.sender === 'chatbot' }">
-      <div class="message-content" v-html="renderMarkdown(message.content)"></div>
-    </div>
+    <transition name="fade-in">
+      <div class="message-bubble" :class="{ 'user-message': message.sender === 'user', 'chatbot-message': message.sender === 'chatbot' }">
+        <div class="message-content" v-html="renderMarkdown(message.content)"></div>
+      </div>
+    </transition>
   </div>
 </template>
 
@@ -107,5 +109,13 @@ const renderMarkdown = (content) => {
   .message-bubble {
     max-width: 90%;
   }
+}
+
+.fade-in-enter-active, .fade-in-leave-active {
+  transition: opacity 0.3s ease, transform 0.3s ease;
+}
+.fade-in-enter-from, .fade-in-leave-to {
+  opacity: 0;
+  transform: translateY(10px);
 }
 </style>

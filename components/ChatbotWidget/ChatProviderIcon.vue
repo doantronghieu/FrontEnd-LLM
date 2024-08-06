@@ -49,6 +49,7 @@ const toggleMode = () => {
   margin-left: 12px;
   transition: transform 0.3s ease-in-out, filter 0.3s ease-in-out, opacity 0.3s ease-in-out;
   opacity: 0.7;
+  border-radius: 50%;
 }
 .chat-provider-icon:hover {
   transform: scale(1.2);
@@ -58,5 +59,6 @@ const toggleMode = () => {
 .chat-provider-icon.active {
   opacity: 1;
   transform: scale(1.1);
+  box-shadow: 0 0 0 2px rgba(255, 255, 255, 0.5);
 }
 </style>

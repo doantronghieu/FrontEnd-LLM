@@ -68,7 +68,7 @@ const isDisabled = computed(() => isLoading.value || !message.value.trim());
   cursor: not-allowed;
 }
 
-.message-input button {
+.btn-send-msg {
   padding: 8px;
   border: none;
   border-radius: 50%;
@@ -80,12 +80,12 @@ const isDisabled = computed(() => isLoading.value || !message.value.trim());
   justify-content: center;
 }
 
-.message-input button:hover:not(:disabled) {
+.btn-send-msg:hover:not(:disabled) {
   background-color: #e0e0e0;
   transform: scale(1.1);
 }
 
-.message-input button:disabled {
+.btn-send-msg:disabled {
   cursor: not-allowed;
   opacity: 0.6;
 }

@@ -29,6 +29,7 @@ const toggleChatWindow = () => {
   transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
   z-index: 9999;
   overflow: hidden;
+  background-color: #ffffff;
 }
 
 .chatbot-icon:hover {
@@ -45,5 +46,14 @@ const toggleChatWindow = () => {
 
 .chatbot-icon:hover img {
   filter: brightness(1.1);
+}
+
+@media (max-width: 768px) {
+  .chatbot-icon {
+    width: 50px;
+    height: 50px;
+    bottom: 15px;
+    right: 15px;
+  }
 }
 </style>
