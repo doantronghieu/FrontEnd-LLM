@@ -35,8 +35,7 @@ const links = [
 }                                                                                                                               
                                                                                                                                 
 .sidebar {                                                                                                                      
-  width: 250px; /* Adjust the width as needed */                                                                                
-  background-color: #f4f4f4; /* Adjust the background color as needed */                                                        
+  width: 140px; /* Adjust the width as needed */                                                                                
   overflow-y: auto;                                                                                                             
 }                                                                                                                               
                                                                                                                                 

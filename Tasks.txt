@@ -43,4 +43,4 @@ I see that BaseCardProgramDetail component not interact with event
 When i click on BaseCardProgramIntro, the background is darker, i think that the modal is show, but  BaseCardProgramDetail is not shown. The log: focus-trap.js?v=c4414143:1 There are no focusable elements inside the <FocusTrap />
 (anonymous)	@
 
-The navigation bar must 
+The BackgroundComponent must also flow through the navigation bar

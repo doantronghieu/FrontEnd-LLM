@@ -1,0 +1,511 @@
+./app.vue:
+```
+<template>
+  <div>
+
+    <!-- <UContainer>
+      <NuxtPage />
+    </UContainer> -->
+
+    <NuxtRouteAnnouncer />
+    <!-- <NuxtWelcome /> -->
+
+    
+
+    <BackgroundComponent />
+    <ChatbotSmall />
+    <UNotifications />
+
+    <NuxtLayout>                                                                                                                
+      <NuxtPage />                                                                                                              
+    </NuxtLayout>  
+  </div>
+</template>
+
+<script setup>
+import ChatbotSmall  from '~/components/ChatbotWidget/ChatbotSmall.vue';
+import BackgroundComponent from '~/components/ui/BackgroundComponent.vue';
+
+</script>
+
+```
+./components/ui/BackgroundComponent.vue:
+```
+<template>
+  <div class="background">
+    <!-- Background content goes here -->
+  </div>
+</template>
+
+<script>
+export default {
+  name: 'BackgroundComponent',
+};
+</script>
+
+<style scoped>
+.background {
+  background: linear-gradient(135deg, #ADD8E6 0%, #FFB6C1 100%);
+  width: 100%;
+  height: 100%;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: -100;
+}
+</style>
+
+```
+./layouts/default.vue:
+```
+<template>                                                                                                                      
+  <div class="default-layout">                                                                                                  
+    <UVerticalNavigation :links="links" class="sidebar" />                                                                      
+    <main class="content">                                                                                                      
+      <NuxtPage />                                                                                                              
+    </main>                                                                                                                     
+  </div>                                                                                                                        
+</template>                                                                                                                     
+
+<script setup>                                                                                                                  
+const links = [                                                                                                                 
+  {                                                                                                                             
+    label: 'Home',                                                                                                              
+    icon: 'i-heroicons-home',                                                                                                   
+    to: '/'                                                                                                                     
+  },                                                                                                                            
+  {                                                                                                                             
+    label: 'Personnel',                                                                                                         
+    icon: 'i-heroicons-home',                                                                                                   
+    to: '/tdtu/feee/personnel'                                                                                                  
+  },                                                                                                                            
+  {                                                                                                                             
+    label: 'Programms',                                                                                                         
+    icon: 'i-heroicons-home',                                                                                                   
+    to: '/tdtu/feee/programs'                                                                                                   
+  }                                                                                                                             
+]                                                                                                                               
+</script>                                                                                                                       
+
+<style scoped>                                                                                                                  
+.default-layout {                                                                                                               
+  display: flex;                                                                                                                
+  flex-direction: row;                                                                                                          
+  min-height: 100vh;                                                                                                            
+}                                                                                                                               
+
+.sidebar {                                                                                                                      
+  width: 140px; /* Adjust the width as needed */                                                                                
+  overflow-y: auto;                                                                                                             
+}                                                                                                                               
+
+.content {                                                                                                                      
+  flex: 1;                                                                                                                      
+  padding: 20px;                                                                                                                
+}                                                                                                                               
+</style>      
+```
+./store/personnelStore.js:
+```
+import { defineStore } from 'pinia';                                                                                            
+ import personnelData from '~/data/tdtu/feee/personnel.json';                                                                    
+  
+ export const usePersonnelStore = defineStore('personnel', {                                                                     
+   state: () => ({                                                                                                               
+     personnelList: [],                                                                                                          
+   }),                                                                                                                           
+   actions: {                                                                                                                    
+     fetchPersonnelData() {                                                                                                      
+       if (Array.isArray(personnelData)) {                                                                                       
+         this.personnelList = personnelData.map(personnel => ({                                                                  
+           faculty: personnel.Faculty,                                                                                           
+           name: personnel.Name,                                                                                                 
+           position: personnel.Position,                                                                                         
+           major: personnel.Major,                                                                                               
+           email: personnel.Email,                                                                                               
+           office: personnel.Office,                                                                                             
+           department: personnel.Department,                                                                                     
+         }));                                                                                                                    
+       } else {                                                                                                                  
+         console.error('Invalid data format for personnel data:', personnelData);                                                
+         this.personnelList = [];                                                                                                
+       }                                                                                                                         
+     },                                                                                                                          
+   },                                                                                                                            
+ });   
+```
+./store/programStore.js:
+```
+import { defineStore } from 'pinia';                                                                                            
+ import programData from '~/data/tdtu/feee/programs.json';                                                                       
+  
+ export const useProgramStore = defineStore('program', {                                                                         
+   state: () => ({                                                                                                               
+     programList: [],                                                                                                            
+     selectedProgram: null,                                                                                                      
+   }),                                                                                                                           
+   actions: {                                                                                                                    
+     fetchProgramData() {                                                                                                        
+       if (Array.isArray(programData)) {                                                                                         
+         this.programList = programData.map(program => ({                                                                        
+           faculty: program.Faculty,                                                                                             
+           studyField: program.StudyField,                                                                                       
+           link: program.Link,                                                                                                   
+           programType: program.ProgramType,                                                                                     
+           educationLevel: program.EducationLevel,                                                                               
+           introduction: program.Introduction,                                                                                   
+           careerProspects: program.CareerProspects,                                                                             
+           outcome: program.Outcome,                                                                                             
+           syllabub: program.Syllabub,                                                                                           
+           admissionCandidates: program.AdmissionCandidates,                                                                     
+           registration: program.Registration,                                                                                   
+           tuition: program.Tuition,                                                                                             
+           contact: program.Contact,                                                                                             
+         }));                                                                                                                    
+       } else {                                                                                                                  
+         console.error('Invalid data format for program data:', programData);                                                    
+         this.programList = [];                                                                                                  
+       }                                                                                                                         
+     },                                                                                                                          
+     setSelectedProgram(program) {                                                                                               
+       this.selectedProgram = program;                                                                                           
+     },                                                                                                                          
+   },                                                                                                                            
+ });                                 
+```
+./components/TDTU/BaseCardPersonnel.vue:
+```
+<template>                                                                                                                      
+  <UCard class="base-card-personnel">                                                                                           
+    <div class="flex flex-col space-y-2">                                                                                       
+      <h2 class="text-xl font-bold">{{ name }}</h2>                                                                             
+      <p><strong>Position:</strong> {{ position }}</p>                                                                          
+      <p><strong>Major:</strong> {{ major }}</p>                                                                                
+      <p><strong>Faculty:</strong> {{ faculty }}</p>                                                                            
+      <p><strong>Department:</strong> {{ department }}</p>                                                                      
+      <p><strong>Email:</strong> <a :href="`mailto:${email}`">{{ email }}</a></p>                                               
+      <p><strong>Office:</strong> {{ office }}</p>                                                                              
+    </div>                                                                                                                      
+  </UCard>                                                                                                                      
+</template>                                                                                                                     
+ 
+<script setup>                                                                                                                  
+defineProps({                                                                                                                   
+  faculty: { type: String, required: true },                                                                                    
+  name: { type: String, required: true },                                                                                       
+  position: { type: String, required: true },                                                                                   
+  major: { type: String, required: true },                                                                                      
+  email: { type: String, required: true },                                                                                      
+  office: { type: String, required: true },                                                                                     
+  department: { type: String, required: true },                                                                                 
+});                                                                                                                             
+</script>                                                                                                                       
+ 
+<style scoped>                                                                                                                  
+.base-card-personnel {                                                                                                          
+  max-width: 400px;                                                                                                             
+  margin: 1rem;                                                                                                                 
+}                                                                                                                               
+</style>                  
+```
+./components/TDTU/BaseCardProgramDetail.vue:
+```
+<template>                                                                                                                      
+  <UCard class="base-card-program-detail">                                                                                      
+    <div class="flex flex-col space-y-4 overflow-y-auto">                                                                       
+      <h2 class="text-2xl font-bold">{{ studyField }}</h2>                                                                      
+      <p><strong>Faculty:</strong> {{ faculty }}</p>                                                                            
+      <p><strong>Program Type:</strong> {{ programType }}</p>                                                                   
+      <p><strong>Education Level:</strong> {{ educationLevel }}</p>                                                             
+      <div v-html="introduction"></div>                                                                                         
+      <div v-html="careerProspects"></div>                                                                                      
+      <div v-html="outcome"></div>                                                                                              
+      <div v-html="syllabub"></div>                                                                                             
+      <div v-html="admissionCandidates"></div>                                                                                  
+      <div v-html="registration"></div>                                                                                         
+      <div v-html="tuition"></div>                                                                                              
+      <div v-html="contact"></div>                                                                                              
+      <button class="focus:outline-none focus:ring focus:border-blue-300">Close</button> <!-- Focusable element -->             
+    </div>                                                                                                                      
+  </UCard>                                                                                                                      
+</template>                                                                                                                     
+
+<script setup>                                                                                                                  
+defineProps({                                                                                                                   
+  faculty: { type: String, required: true },                                                                                    
+  studyField: { type: String, required: true },                                                                                 
+  link: { type: String, required: true },                                                                                       
+  programType: { type: String, required: true },                                                                                
+  educationLevel: { type: String, required: true },                                                                             
+  introduction: { type: String, required: true },                                                                               
+  careerProspects: { type: String, required: true },                                                                            
+  outcome: { type: String, required: true },                                                                                    
+  syllabub: { type: String, required: true },                                                                                   
+  admissionCandidates: { type: String, required: true },                                                                        
+  registration: { type: String, required: true },                                                                               
+  tuition: { type: String, required: true },                                                                                    
+  contact: { type: String, required: true },                                                                                    
+});                                                                                                                             
+</script>                                                                                                                       
+
+<style scoped>                                                                                                                  
+.base-card-program-detail {                                                                                                     
+  max-width: 600px;                                                                                                             
+  max-height: 80vh;                                                                                                             
+  overflow-y: auto;                                                                                                             
+  margin: 1rem;                                                                                                                 
+}                                                                                                                               
+</style>  
+```
+./components/TDTU/BaseCardProgramIntro.vue:
+```
+<template>                                                                                                                      
+  <UCard class="base-card-program-intro" @click="handleClick">                                                                  
+    <div class="flex flex-col space-y-2">                                                                                       
+      <h2 class="text-xl font-bold">{{ studyField }}</h2>                                                                       
+      <p><strong>Faculty:</strong> {{ faculty }}</p>                                                                            
+      <p><strong>Program Type:</strong> {{ programType }}</p>                                                                   
+      <p><strong>Education Level:</strong> {{ educationLevel }}</p>                                                             
+    </div>                                                                                                                      
+  </UCard>                                                                                                                      
+</template>                                                                                                                     
+
+<script setup>                                                                                                                  
+defineProps({                                                                                                                   
+  faculty: { type: String, required: true },                                                                                    
+  studyField: { type: String, required: true },                                                                                 
+  link: { type: String, required: true },                                                                                       
+  programType: { type: String, required: true },                                                                                
+  educationLevel: { type: String, required: true },                                                                             
+});                                                                                                                             
+
+const emit = defineEmits(['click']);                                                                                            
+
+const handleClick = () => {                                                                                                     
+  emit('click');                                                                                                                
+};                                                                                                                              
+</script>                                                                                                                       
+
+<style scoped>                                                                                                                  
+.base-card-program-intro {                                                                                                      
+  max-width: 400px;                                                                                                             
+  margin: 1rem;                                                                                                                 
+  cursor: pointer;                                                                                                              
+  transition: transform 0.2s;                                                                                                   
+}                                                                                                                               
+
+.base-card-program-intro:hover {                                                                                                
+  transform: scale(1.05);                                                                                                       
+}                                                                                                                               
+</style>          
+```
+./data/tdtu/feee/personnel.json:
+```
+[
+  {
+    "Faculty": "Điện - Điện tử",
+    "Name": "TS. Trần Thanh Phương",
+    "Position": "Tiến sĩ, Phó trưởng Khoa, Phụ trách Khoa Điện - Điện tử, Trưởng bộ môn Điện tử - Viễn thông",
+    "Major": "Điện tử - Viễn thông",
+    "Email": "tranthanhphuong@tdt.edu.vn",
+    "Office": "C117",
+    "Department": "Ban chủ nhiệm khoa, Bộ môn Điện tử - Viễn thông"
+  },
+  
+]
+
+```
+./data/tdtu/feee/programs.json:
+```
+[
+  {
+    "Faculty": "Điện - Điện tử",
+    "StudyField": "Kỹ thuật Cơ điện tử",
+    "Link": "https:\/\/feee.tdtu.edu.vn\/giao-duc\/dai-hoc-tieu-chuan\/nganh-ky-thuat-co-dien-tu-chuong-trinh-tieu-chuan",
+    "ProgramType": "Tiêu chuẩn",
+    "EducationLevel": "Đại học",
+    "Introduction": "## Giới thiệu chương trình đào tạo ngành Kỹ thuật cơ điện tử\n\nChương trình đào tạo ngành Kỹ thuật cơ điện tử được xây dựng phù hợp định hướng đào tạo quốc tế, giúp người học am hiểu kỹ thuật cơ khí, điện tử, công nghệ thông tin và công nghệ hiện đại. Sinh viên sẽ được cung cấp kiến thức và kỹ năng chuyên môn trong các lĩnh vực sau:\n\n- Chế tạo và điều khiển robot\n- Thiết kế, chế tạo và cải tiến sản phẩm cơ điện tử\n- Điều khiển thiết bị và hệ thống tự động\n- Tự động hóa sản xuất và truyền thông trong công nghiệp\n\nChương trình hướng đến việc đào tạo kỹ sư có năng lực sáng tạo và đáp ứng nhu cầu nhân lực trong cách mạng công nghiệp 4.0.",
+    "CareerProspects": "## Triển vọng nghề nghiệp của ngành Kỹ thuật cơ điện tử\n\nSinh viên tốt nghiệp ngành Kỹ thuật cơ điện tử có thể làm việc ở các vị trí sau:\n\n### a. Viện, Trung tâm nghiên cứu, trường Đại học\n- Tiếp tục học sau đại học, tham gia giảng dạy hoặc nghiên cứu chuyên ngành cơ khí – cơ điện tử.\n- Nghiên cứu viên tại Viện Nghiên cứu cơ khí, Viện Nghiên cứu Điện tử – tin học – Tự động hóa.\n\n### b. Doanh nghiệp sản xuất\n- Kỹ sư thiết kế, chế tạo máy móc tự động hóa.\n- Kỹ sư vận hành, bảo trì các hệ thống máy móc trong công nghiệp.\n\n### c. Doanh nghiệp tư vấn kỹ thuật\n- Chuyên viên tư vấn, thiết kế, phân tích mô phỏng công nghệ.\n- Nhân viên hỗ trợ kỹ thuật hoặc giới thiệu sản phẩm.\n\n### d. Cơ hội tuyển dụng nước ngoài\n- Cơ hội cao trong việc tuyển dụng lao động nước ngoài như Nhật Bản, Hàn Quốc.",
+    "Outcome": "https:\/\/feee.tdtu.edu.vn\/chi-tiet-nganh\/chuan-dau-ra-2022-nganh-ky-thuat-co-dien-tu-chuong-trinh-tieu-chuan",
+    "Syllabub": "Chương trình đào tạo của Đại học Tôn Đức Thắng được thiết kế đồng bộ với phương pháp giảng dạy, học tập và đánh giá kết quả học tập để đảm bảo người học tích lũy kiến thức và năng lực theo chuẩn đầu ra đại học. Chương trình này tương thích với TOP 100 đại học tốt nhất Thế giới, nhưng được điều chỉnh để phù hợp với điều kiện thực tế tại Việt Nam và mục tiêu đào tạo của trường.\n\nNhà trường thường rà soát và đánh giá chương trình đào tạo để đảm bảo người học đáp ứng yêu cầu xã hội và cập nhật công nghệ mới. Quá trình này có sự tham gia của nhà khoa học, nhà tuyển dụng, cựu sinh viên, sinh viên và giảng viên. Chương trình đào tạo được công bố qua cổng thông tin sinh viên và trên website chính thức của trường.\n\n[Chi tiết](https:\/\/feee.tdtu.edu.vn\/chi-tiet-nganh\/chuong-trinh-dao-tao-2022-nganh-ki-thuat-co-dien-tu-chuong-trinh-tieu-chuan)",
+    "AdmissionCandidates": "Thí sinh tốt nghiệp THPT hoặc tương đương.",
+    "Registration": "https:\/\/admission.tdtu.edu.vn\/dai-hoc\/tuyen-sinh\/phuong-thuc-2024",
+    "Tuition": "Mức Học phí trung bình (đồng\/năm) năm 2024: 31,680,000\nTham khảo: https:\/\/admission.tdtu.edu.vn\/hoc-tai-tdtu\/hoc-phi-hoc-bong-2024",
+    "Contact": "Số 19 Nguyễn Hữu Thọ, Phường Tân Phong, Quận 7, TP. Hồ Chí Minh, Việt Nam\n\nTư vấn tuyển sinh đại học:\n- Hotline: 19002024\n- Email: tuvantuyensinh@tdtu.edu.vn\n\nTư vấn tuyển sinh sau đại học:\n- Hotline: 0944 314 466\n- Email: tssdh@tdtu.edu.vn\n\nTư vấn liên kết đào tạo quốc tế:\n- Hotline: 0935 035 270\n- Email: tuvantuyensinhlkqt@tdtu.edu.vn\n\nKhoa Điện - Điện tử:\n- Phòng C008 - Số 19 Nguyễn Hữu Thọ, Phường Tân Phong, Quận 7, TP. Hồ Chí Minh, Việt Nam\n- Điện thoại: 02837.755.028\n- Email: khoadien@tdtu.edu.vn\n- website: https:\/\/feee.tdtu.edu.vn\/\n- Facebook: https:\/\/web.facebook.com\/feee.tdtu.edu.vn?_rdc=1&_rdr\n- Youtube: https:\/\/www.youtube.com\/channel\/UCkeB4slthGY9B3MHCfdOfLA"
+   },
+   
+]
+```
+./pages/tdtu/feee/personnel.vue:
+```
+<template>                                                                                                                      
+  <div>                                                                                                                         
+    <h1 class="text-3xl font-bold mb-4">Personnel</h1>                                                                          
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">                                                          
+      <BaseCardPersonnel                                                                                                        
+        v-for="personnel in personnelList"                                                                                      
+        :key="personnel.email"                                                                                                  
+        :faculty="personnel.faculty"                                                                                            
+        :name="personnel.name"                                                                                                  
+        :position="personnel.position"                                                                                          
+        :major="personnel.major"                                                                                                
+        :email="personnel.email"                                                                                                
+        :office="personnel.office"                                                                                              
+        :department="personnel.department"                                                                                      
+      />                                                                                                                        
+    </div>                                                                                                                      
+  </div>                                                                                                                        
+</template>                                                                                                                     
+
+<script setup>                                                                                                                  
+import { usePersonnelStore } from '~/store/personnelStore';                                                                     
+import { onMounted } from 'vue';                                                                                                
+import BaseCardPersonnel from '~/components/TDTU/BaseCardPersonnel.vue'; // Ensure this path is correct                         
+ 
+const personnelStore = usePersonnelStore();                                                                                     
+const { personnelList } = personnelStore;                                                                                       
+ 
+onMounted(() => {                                                                                                               
+  personnelStore.fetchPersonnelData();                                                                                          
+});                                                                                                                             
+</script>  
+```
+./pages/tdtu/feee/programs.vue:
+```
+<template>                                                                                                                      
+  <div>                                                                                                                         
+    <h1 class="text-3xl font-bold mb-4">Programs</h1>                                                                           
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">                                                          
+      <BaseCardProgramIntro                                                                                                     
+        v-for="program in programList"                                                                                          
+        :key="program.link"                                                                                                     
+        :faculty="program.faculty"                                                                                              
+        :studyField="program.studyField"                                                                                        
+        :link="program.link"                                                                                                    
+        :programType="program.programType"                                                                                      
+        :educationLevel="program.educationLevel"                                                                                
+        @click="openModal(program)"                                                                                             
+      />                                                                                                                        
+    </div>                                                                                                                      
+    <UModal v-model="isModalOpen">                                                                                              
+       <BaseCardProgramDetail                                                                                                   
+         v-if="selectedProgram"                                                                                                 
+         :faculty="selectedProgram.faculty"                                                                                     
+         :studyField="selectedProgram.studyField"                                                                               
+         :link="selectedProgram.link"                                                                                           
+         :programType="selectedProgram.programType"                                                                             
+         :educationLevel="selectedProgram.educationLevel"                                                                       
+         :introduction="selectedProgram.introduction"                                                                           
+         :careerProspects="selectedProgram.careerProspects"                                                                     
+         :outcome="selectedProgram.outcome"                                                                                     
+         :syllabub="selectedProgram.syllabub"                                                                                   
+         :admissionCandidates="selectedProgram.admissionCandidates"                                                             
+         :registration="selectedProgram.registration"                                                                           
+         :tuition="selectedProgram.tuition"                                                                                     
+         :contact="selectedProgram.contact"                                                                                     
+       />                                                                                                                       
+     </UModal>                                                                                                                  
+  </div>                                                                                                                        
+</template>                                                                                                                     
+
+<script setup>                                                                                                                  
+import { useProgramStore } from '~/store/programStore';                                                                         
+import { ref, onMounted } from 'vue';                                                                                           
+import BaseCardProgramIntro from '~/components/TDTU/BaseCardProgramIntro.vue';                                                  
+import BaseCardProgramDetail from '~/components/TDTU/BaseCardProgramDetail.vue';                                                
+
+const programStore = useProgramStore();                                                                                         
+const { programList, selectedProgram } = programStore;                                                                          
+const isModalOpen = ref(false);                                                                                                 
+
+onMounted(() => {                                                                                                               
+  programStore.fetchProgramData();                                                                                              
+});                                                                                                                             
+
+const openModal = (program) => {                                                                                                
+  programStore.setSelectedProgram(program);                                                                                     
+  isModalOpen.value = true;                                                                                                     
+};                                                                                                                              
+
+const closeModal = () => {                                                                                                      
+  isModalOpen.value = false;                                                                                                    
+};                                                                                                                              
+</script>  
+```
+./store/messages.ts:
+```
+import { defineStore } from 'pinia'
+
+export const useMessagesStore = defineStore('messages', {
+  state: () => ({
+    messages: [] as { sender: string, content: string }[],
+  }),
+  actions: {
+    addMessage(sender: string, content: string) {
+      this.messages.push({ sender, content })
+    },
+    addChunk(sender: string, chunk: string) {
+      const lastMessage = this.messages[this.messages.length - 1];
+      if (lastMessage && lastMessage.sender === sender) {
+        lastMessage.content += chunk;
+      } else {
+        this.messages.push({ sender, content: chunk });
+      }
+    },
+  },
+})
+
+```
+./store/providers.ts:
+```
+import { defineStore } from 'pinia';
+
+export const useProvidersStore = defineStore('providers', {
+  state: () => ({
+    currentProvider: 'random' as 'random' | 'chatgpt' | 'custom',
+  }),
+  actions: {
+    setProvider(provider: 'random' | 'chatgpt' | 'custom') {
+      this.currentProvider = provider;
+    },
+  },
+});
+
+```
+./server.js:
+```
+const express = require('express');                                                                                             
+const fs = require('fs');                                                                                                       
+const path = require('path');                                                                                                   
+ 
+const app = express();                                                                                                          
+const port = 3000;                                                                                                              
+ 
+app.get('/api/personnel', (req, res) => {                                                                                       
+  const filePath = path.join(__dirname, 'data', 'tdtu', 'feee', 'personnel.json');                                              
+  fs.readFile(filePath, 'utf8', (err, data) => {                                                                                
+    if (err) {                                                                                                                  
+      res.status(500).send('Error reading file');                                                                               
+    } else {                                                                                                                    
+      res.json(JSON.parse(data));                                                                                               
+    }                                                                                                                           
+  });                                                                                                                           
+});                                                                                                                             
+ 
+app.get('/api/programs', (req, res) => {                                                                                        
+  const filePath = path.join(__dirname, 'data', 'tdtu', 'feee', 'programs.json');                                               
+  fs.readFile(filePath, 'utf8', (err, data) => {                                                                                
+    if (err) {                                                                                                                  
+      res.status(500).send('Error reading file');                                                                               
+    } else {                                                                                                                    
+      res.json(JSON.parse(data));                                                                                               
+    }                                                                                                                           
+  });                                                                                                                           
+});                                                                                                                             
+ 
+app.listen(port, () => {                                                                                                        
+  console.log(`Server is running on port ${port}`);                                                                             
+}); 
+```
