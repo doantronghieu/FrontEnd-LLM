@@ -1,16 +1,22 @@
 <template>
   <div>
 
-    <!-- <UContainer> -->
-      <!-- <NuxtPage /> -->
-    <!-- </UContainer> -->
+    <!-- <UContainer>
+      <NuxtPage />
+    </UContainer> -->
 
     <NuxtRouteAnnouncer />
     <!-- <NuxtWelcome /> -->
 
+    
+
     <BackgroundComponent />
     <ChatbotSmall />
     <UNotifications />
+
+    <NuxtLayout>                                                                                                                
+      <NuxtPage />                                                                                                              
+    </NuxtLayout>  
   </div>
 </template>
 

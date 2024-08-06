@@ -28,6 +28,7 @@ const toggleChatWindow = () => {
   border-radius: 50%;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
   transition: transform 0.2s ease-in-out;
+  z-index: 9999;
 }
 
 .chatbot-icon:hover {

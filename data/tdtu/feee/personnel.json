@@ -1,0 +1,371 @@
+[
+  {
+    "Faculty": "Điện - Điện tử",
+    "Name": "TS. Trần Thanh Phương",
+    "Position": "Tiến sĩ, Phó trưởng Khoa, Phụ trách Khoa Điện - Điện tử, Trưởng bộ môn Điện tử - Viễn thông",
+    "Major": "Điện tử - Viễn thông",
+    "Email": "tranthanhphuong@tdt.edu.vn",
+    "Office": "C117",
+    "Department": "Ban chủ nhiệm khoa, Bộ môn Điện tử - Viễn thông"
+  },
+  {
+    "Faculty": "Điện - Điện tử",
+    "Name": "TS. Huỳnh Văn Vạn",
+    "Position": "Tiến sĩ, Phó trưởng Khoa Điện - Điện tử, Giảng viên bộ môn Kỹ Thuật Điện",
+    "Major": "Kỹ Thuật Điện",
+    "Email": "vohoangduy@tdt.edu.vn",
+    "Office": "C118",
+    "Department": "Ban chủ nhiệm khoa, Bộ môn Kỹ thuật Điện"
+  },
+  {
+    "Faculty": "Điện - Điện tử",
+    "Name": "TS. Nguyễn Hữu Khánh Nhân",
+    "Position": "Tiến sĩ, Phó Trưởng Khoa Điện - Điện tử",
+    "Major": "Điện tử - Viễn thông",
+    "Email": "nguyenhuukhanhnhan@tdt.edu.vn",
+    "Office": "C117",
+    "Department": "Ban chủ nhiệm khoa, Bộ môn Điện tử - Viễn thông"
+  },
+  {
+    "Faculty": "Điện - Điện tử",
+    "Name": "TS. Võ Hoàng Duy",
+    "Position": "Tiến sĩ, Phó Hiệu trưởng trường Đại học Tôn Đức Thắng",
+    "Major": "Điều khiển tự động",
+    "Email": "vohoangduy@tdt.edu.vn",
+    "Office": "C116",
+    "Department": "Bộ môn Điều khiển tự động"
+  },
+  {
+    "Faculty": "Điện - Điện tử",
+    "Name": "TS. Đồng Sĩ Thiên Châu",
+    "Position": "Tiến sĩ, Phó Hiệu trưởng trường Đại học Tôn Đức Thắng",
+    "Major": "Điều khiển tự động",
+    "Email": "dongsythienchau@tdt.edu.vn",
+    "Office": "Không",
+    "Department": "Bộ môn Điều khiển tự động"
+  },
+  {
+    "Faculty": "Điện - Điện tử",
+    "Name": "TS. Vũ Trí Viễn",
+    "Position": "Tiến sĩ, Trưởng bộ môn Điều khiển tự động",
+    "Major": "Điều khiển tự động",
+    "Email": "vutrivien@tdtu.edu.vn",
+    "Office": "C117",
+    "Department": "Bộ môn Điều khiển tự động"
+  },
+  {
+    "Faculty": "Điện - Điện tử",
+    "Name": "GS. TS. Pavel Brandstetter",
+    "Position": "Tiến sĩ, Giảng viên - Nghiên cứu viên",
+    "Major": "Điều khiển tự động",
+    "Email": "pavel.brandstetter@vsb.cz",
+    "Office": "Không",
+    "Department": "Bộ môn Điều khiển tự động"
+  },
+  {
+    "Faculty": "Điện - Điện tử",
+    "Name": "TS. Võ Hữu Hậu",
+    "Position": "Tiến sĩ, Giảng viên bộ môn Điều khiển tự động",
+    "Major": "Điều khiển tự động",
+    "Email": "vohuuhau@tdtu.edu.vn",
+    "Office": "C117",
+    "Department": "Bộ môn Điều khiển tự động"
+  },
+  {
+    "Faculty": "Điện - Điện tử",
+    "Name": "TS. Nguyễn Hoàng Nam",
+    "Position": "Tiến sĩ, Giảng viên bộ môn Điều khiển tự động",
+    "Major": "Điều khiển tự động",
+    "Email": "nguyenhoangnam@tdtu.edu.vn",
+    "Office": "C117",
+    "Department": "Bộ môn Điều khiển tự động"
+  },
+  {
+    "Faculty": "Điện - Điện tử",
+    "Name": "TS. Trần Đức Anh Minh",
+    "Position": "Tiến sĩ, Giảng viên bộ môn Điều khiển tự động",
+    "Major": "Điều khiển tự động",
+    "Email": "tranducanhminh@tdtu.edu.vn",
+    "Office": "C117",
+    "Department": "Bộ môn Điều khiển tự động"
+  },
+  {
+    "Faculty": "Điện - Điện tử",
+    "Name": "TS. Lê Anh Tuấn",
+    "Position": "Tiến sĩ, Giảng viên bộ môn Điều khiển tự động",
+    "Major": "Điều khiển tự động",
+    "Email": "leanhtuan1@tdtu.edu.vn",
+    "Office": "C117",
+    "Department": "Bộ môn Điều khiển tự động"
+  },
+  {
+    "Faculty": "Điện - Điện tử",
+    "Name": "ThS. Nguyễn Quang Dũng",
+    "Position": "Thạc sĩ, Giảng viên bộ môn Điều khiển tự động",
+    "Major": "Điều khiển tự động",
+    "Email": "nguyenquangdung@tdtu.edu.vn",
+    "Office": "C117",
+    "Department": "Bộ môn Điều khiển tự động"
+  },
+  {
+    "Faculty": "Điện - Điện tử",
+    "Name": "TS. Phan Tấn Phát",
+    "Position": "Tiến sĩ, Giảng viên bộ môn Điều khiển tự động",
+    "Major": "Điều khiển tự động",
+    "Email": "phantanphat@tdtu.edu.vn",
+    "Office": "Đang đi học nước ngoài",
+    "Department": "Bộ môn Điều khiển tự động"
+  },
+  {
+    "Faculty": "Điện - Điện tử",
+    "Name": "ThS. Thiều Quang Trí",
+    "Position": "Thạc sĩ, Giảng viên bộ môn Điều khiển tự động",
+    "Major": "Điều khiển tự động",
+    "Email": "thieuquangtri@tdtu.edu.vn",
+    "Office": "C117",
+    "Department": "Bộ môn Điều khiển tự động"
+  },
+  {
+    "Faculty": "Điện - Điện tử",
+    "Name": "ThS. Nguyễn Thành Quang",
+    "Position": "Thạc sĩ, Giảng viên bộ môn Điều khiển tự động",
+    "Major": "Điều khiển tự động",
+    "Email": "nguyenthanhquang@tdtu.edu.vn",
+    "Office": "C117",
+    "Department": "Bộ môn Điều khiển tự động"
+  },
+  {
+    "Faculty": "Điện - Điện tử",
+    "Name": "TS. Nguyễn Thị Phương Thảo",
+    "Position": "Tiến sĩ, Giảng viên bộ môn Điều khiển tự động",
+    "Major": "Điều khiển tự động",
+    "Email": "nguyenthiphuongthao@tdtu.edu.vn",
+    "Office": "C118",
+    "Department": "Bộ môn Điều khiển tự động"
+  },
+  {
+    "Faculty": "Điện - Điện tử",
+    "Name": "TS. Đinh Hoàng Bách",
+    "Position": "Tiến sĩ, Viện trưởng Viện hợp tác, nghiên cứu và đào tạo quốc tế, Trưởng Bộ môn Kĩ thuật Điện",
+    "Major": "Kỹ Thuật Điện",
+    "Email": "dinhhoangbach@tdtu.edu.vn",
+    "Office": "C118",
+    "Department": "Bộ môn Kỹ thuật Điện"
+  },
+  {
+    "Faculty": "Điện - Điện tử",
+    "Name": "ThS. Đào Huy Tuấn",
+    "Position": "Thạc sĩ, Giảng viên bộ môn Kỹ thuật điện",
+    "Major": "Kỹ Thuật Điện",
+    "Email": "daohuytuan@tdtu.edu.vn",
+    "Office": "C118",
+    "Department": "Bộ môn Kỹ thuật Điện"
+  },
+  {
+    "Faculty": "Điện - Điện tử",
+    "Name": "ThS. Phan Thành Tài",
+    "Position": "Thạc sĩ, Giảng viên bộ môn Kỹ thuật điện",
+    "Major": "Kỹ Thuật Điện",
+    "Email": "phanthanhtai@tdtu.edu.vn",
+    "Office": "C118",
+    "Department": "Bộ môn Kỹ thuật Điện"
+  },
+  {
+    "Faculty": "Điện - Điện tử",
+    "Name": "TS. Nguyễn Đoàn Quốc Anh",
+    "Position": "Tiến sĩ, Giảng viên bộ môn Kỹ thuật điện",
+    "Major": "Kỹ Thuật Điện",
+    "Email": "nguyendoanquocanh@tdtu.edu.vn",
+    "Office": "C118",
+    "Department": "Bộ môn Kỹ thuật Điện"
+  },
+  {
+    "Faculty": "Điện - Điện tử",
+    "Name": "TS. Nguyễn Dáo",
+    "Position": "Tiến sĩ, Giảng viên bộ môn Kỹ thuật điện",
+    "Major": "Kỹ Thuật Điện",
+    "Email": "nguyendao@tdtu.edu.vn",
+    "Office": "C118",
+    "Department": "Bộ môn Kỹ thuật Điện"
+  },
+  {
+    "Faculty": "Điện - Điện tử",
+    "Name": "TS. Trần Hoàng Quang Minh",
+    "Position": "Tiến sĩ, Giảng viên bộ môn Kỹ thuật điện",
+    "Major": "Kỹ Thuật Điện",
+    "Email": "tranhoangquangminh@tdtu.edu.vn",
+    "Office": "C118",
+    "Department": "Bộ môn Kỹ thuật Điện"
+  },
+  {
+    "Faculty": "Điện - Điện tử",
+    "Name": "TS. Nguyễn Công Tráng",
+    "Position": "Tiến sĩ, Giảng viên bộ môn Kỹ thuật điện",
+    "Major": "Kỹ Thuật Điện",
+    "Email": "nguyencongtrang@tdtu.edu.vn",
+    "Office": "C118",
+    "Department": "Bộ môn Kỹ thuật Điện"
+  },
+  {
+    "Faculty": "Điện - Điện tử",
+    "Name": "TS. Trần Đình Cương",
+    "Position": "Tiến sĩ, Giảng viên bộ môn Kỹ thuật điện",
+    "Major": "Kỹ Thuật Điện",
+    "Email": "trandinhcuong@tdtu.edu.vn",
+    "Office": "C118",
+    "Department": "Bộ môn Kỹ thuật Điện"
+  },
+  {
+    "Faculty": "Điện - Điện tử",
+    "Name": "ThS. Phạm Hữu Lý",
+    "Position": "Thạc sĩ, Giảng viên bộ môn Kỹ thuật điện",
+    "Major": "Kỹ Thuật Điện",
+    "Email": "phamhuuly@tdtu.edu.vn",
+    "Office": "C118",
+    "Department": "Bộ môn Kỹ thuật Điện"
+  },
+  {
+    "Faculty": "Điện - Điện tử",
+    "Name": "TS. Hồ Đăng Sang",
+    "Position": "Tiến sĩ, Giảng viên bộ môn Kỹ thuật điện",
+    "Major": "Kỹ Thuật Điện",
+    "Email": "hodangsang@tdtu.edu.vn",
+    "Office": "C118",
+    "Department": "Bộ môn Kỹ thuật Điện"
+  },
+  {
+    "Faculty": "Điện - Điện tử",
+    "Name": "TS. Nguyễn Trung Thắng",
+    "Position": "Tiến sĩ, Giảng viên bộ môn Kỹ thuật điện",
+    "Major": "Kỹ Thuật Điện",
+    "Email": "nguyentrungthang@tdtu.edu.vn",
+    "Office": "C118",
+    "Department": "Bộ môn Kỹ thuật Điện"
+  },
+  {
+    "Faculty": "Điện - Điện tử",
+    "Name": "ThS. Đặng Ngọc Khoa",
+    "Position": "Thạc sĩ, Giảng viên bộ môn Điện tử - Viễn thông",
+    "Major": "Điện tử - Viễn thông",
+    "Email": "dangngockhoa@tdtu.edu.vn",
+    "Office": "C117",
+    "Department": "Bộ môn Điện tử - Viễn thông"
+  },
+  {
+    "Faculty": "Điện - Điện tử",
+    "Name": "TS. Huỳnh Thanh Thiện",
+    "Position": "Tiến sĩ, Giảng viên bộ môn Điện tử - Viễn thông",
+    "Major": "Điện tử - Viễn thông",
+    "Email": "huynhthanhthien@tdtu.edu.vn",
+    "Office": "C117",
+    "Department": "Bộ môn Điện tử - Viễn thông"
+  },
+  {
+    "Faculty": "Điện - Điện tử",
+    "Name": "TS. Đỗ Vinh Quang",
+    "Position": "Tiến sĩ, Giảng viên bộ môn Điện tử - Viễn thông",
+    "Major": "Điện tử - Viễn thông",
+    "Email": "dovinhquang@tdtu.edu.vn",
+    "Office": "C117",
+    "Department": "Bộ môn Điện tử - Viễn thông"
+  },
+  {
+    "Faculty": "Điện - Điện tử",
+    "Name": "TS. Từ Lâm Thanh",
+    "Position": "Tiến sĩ, Giảng viên bộ môn Điện tử - Viễn thông",
+    "Major": "Điện tử - Viễn thông",
+    "Email": "tulamthanh@tdtu.edu.vn",
+    "Office": "C117",
+    "Department": "Bộ môn Điện tử - Viễn thông"
+  },
+  {
+    "Faculty": "Điện - Điện tử",
+    "Name": "GS. TS. Miroslav Voznak",
+    "Position": "Tiến sĩ, Giảng viên - Nghiên cứu viên",
+    "Major": "Điện tử - Viễn thông",
+    "Email": "voznak@ieee.org",
+    "Office": "Không",
+    "Department": "Bộ môn Điện tử - Viễn thông"
+  },
+  {
+    "Faculty": "Điện - Điện tử",
+    "Name": "TS. Võ Phú Thoại",
+    "Position": "Tiến sĩ, Giảng viên bộ môn Điện tử - Viễn thông",
+    "Major": "Điện tử - Viễn thông",
+    "Email": "vophuthoai@tdtu.edu.vn",
+    "Office": "C117",
+    "Department": "Bộ môn Điện tử - Viễn thông"
+  },
+  {
+    "Faculty": "Điện - Điện tử",
+    "Name": "TS. Hà Duy Hưng",
+    "Position": "Tiến sĩ, Giảng viên bộ môn Điện tử - Viễn thông",
+    "Major": "Điện tử - Viễn thông",
+    "Email": "haduyhung@tdtu.edu.vn",
+    "Office": "C117",
+    "Department": "Bộ môn Điện tử - Viễn thông"
+  },
+  {
+    "Faculty": "Điện - Điện tử",
+    "Name": "TS. Trần Thành Nam",
+    "Position": "Tiến sĩ, Giảng viên bộ môn Điện tử - Viễn thông",
+    "Major": "Điện tử - Viễn thông",
+    "Email": "tranthanhnam@tdtu.edu.vn",
+    "Office": "C117",
+    "Department": "Bộ môn Điện tử - Viễn thông"
+  },
+  {
+    "Faculty": "Điện - Điện tử",
+    "Name": "TS. Nguyễn Kiều Tam",
+    "Position": "Tiến sĩ, Giảng viên bộ môn Điện tử - Viễn thông",
+    "Major": "Điện tử - Viễn thông",
+    "Email": "nguyenkieutam@tdtu.edu.vn",
+    "Office": "C117",
+    "Department": "Bộ môn Điện tử - Viễn thông"
+  },
+  {
+    "Faculty": "Điện - Điện tử",
+    "Name": "TS. Nguyễn Nhật Tân",
+    "Position": "Tiến sĩ, Giảng viên bộ môn Điện tử - Viễn thông",
+    "Major": "Điện tử - Viễn thông",
+    "Email": "nguyennhattan@tdtu.edu.vn",
+    "Office": "C117",
+    "Department": "Bộ môn Điện tử - Viễn thông"
+  },
+  {
+    "Faculty": "Điện - Điện tử",
+    "Name": "TS. Trần Công Thịnh",
+    "Position": "Tiến sĩ, Giảng viên bộ môn Điện tử - Viễn thông",
+    "Major": "Điện tử - Viễn thông",
+    "Email": "trancongthinh@tdtu.edu.vn",
+    "Office": "C117",
+    "Department": "Bộ môn Điện tử - Viễn thông"
+  },
+  {
+    "Faculty": "Điện - Điện tử",
+    "Name": "Phan Thanh Duy",
+    "Position": "Viên chức hành chính",
+    "Major": "Hành Chính",
+    "Email": "phanhthanhduy@tdtu.edu.vn",
+    "Office": "C008",
+    "Department": "Bộ phận Hành Chính"
+  },
+  {
+    "Faculty": "Điện - Điện tử",
+    "Name": "Lê Đức Thịnh",
+    "Position": "Viên chức hành chính",
+    "Major": "Hành Chính",
+    "Email": "leducthinh@tdtu.edu.vn",
+    "Office": "C008",
+    "Department": "Bộ phận Hành Chính"
+  },
+  {
+    "Faculty": "Điện - Điện tử",
+    "Name": "Nguyễn Thị Thu Quyên",
+    "Position": "Viên chức hành chính",
+    "Major": "Hành Chính",
+    "Email": "nguyenthithuquyen@tdtu.edu.vn",
+    "Office": "C008",
+    "Department": "Bộ phận Hành Chính"
+  }
+]

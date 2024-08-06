@@ -14,6 +14,22 @@ Tell me a joke
 
 README.md
 app.vue
+components/ui/BackgroundComponent.vue
+
+layouts/default.vue
+store/personnelStore.js
+store/programStore.js
+components/TDTU/BaseCardPersonnel.vue
+components/TDTU/BaseCardProgramDetail.vue
+components/TDTU/BaseCardProgramIntro.vue
+data/tdtu/feee/personnel.json
+data/tdtu/feee/programs.json
+pages/tdtu/feee/personnel.vue
+pages/tdtu/feee/programs.vue
+store/messages.ts
+store/providers.ts
+server.js
+
 components/ChatbotWidget/ChatProviderIcon.vue
 components/ChatbotWidget/ChatWindow.vue
 components/ChatbotWidget/ChatbotIcon.vue
@@ -28,6 +44,37 @@ store/providers.ts
 
 git reset --hard 188acc2
 
+FrontEnd/
 
+I want that, when we click on the component BaseCardProgramIntro, it will pop up a modal and show the component BaseCardProgramDetail
 
-I want to create a background component in components/ui
+I want a navigation bar that use can click to navigate between pages. Use VerticalNavigation from NuxtUI. Example:
+```python
+<script setup lang="ts">
+const route = useRoute()
+
+const links = [{
+  label: 'Profile',
+  avatar: {
+    src: 'https://avatars.githubusercontent.com/u/739984?v=4'
+  },
+  badge: 100
+}, {
+  label: 'Installation',
+  icon: 'i-heroicons-home',
+  to: '/getting-started/installation'
+}, {
+  label: 'Vertical Navigation',
+  icon: 'i-heroicons-chart-bar',
+  to: `${route.path.startsWith('/dev') ? '/dev' : ''}/components/vertical-navigation`
+}, {
+  label: 'Command Palette',
+  icon: 'i-heroicons-command-line',
+  to: '/components/command-palette'
+}]
+</script>
+
+<template>
+  <UVerticalNavigation :links="links" />
+</template>
+```

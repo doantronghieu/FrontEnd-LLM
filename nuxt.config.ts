@@ -25,4 +25,9 @@ export default defineNuxtConfig({
   nitro: { // Note
     preset: 'node-server'
   },
+  content: {
+    api: {
+      baseURL: '/api/_content'
+    }
+  },
 })
