@@ -1,6 +1,6 @@
 import { ref } from 'vue';                                                                                                      
  import axios from 'axios';                                                                                                      
-                                                                                                                                 
+  
  export function useTdtu() {                                                                                                     
    const fetchPersonnelData = async () => {                                                                                      
      try {                                                                                                                       
@@ -12,7 +12,7 @@ import { ref } from 'vue';
        return [];                                                                                                                
      }                                                                                                                           
    };                                                                                                                            
-                                                                                                                                 
+  
    const fetchProgramData = async () => {                                                                                        
      try {                                                                                                                       
        const response = await axios.get('~/data/tdtu/feee/programs.json');            
@@ -24,7 +24,7 @@ import { ref } from 'vue';
        return [];                                                                                                                
      }                                                                                                                           
    };                                                                                                                            
-                                                                                                                                 
+  
    return {                                                                                                                      
      fetchPersonnelData,                                                                                                         
      fetchProgramData,                                                                                                           

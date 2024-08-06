@@ -1,5 +1,5 @@
 <template>                                                                                                                      
-  <UCard class="base-card-program-intro" @click="showDetails">                                                                  
+  <UCard class="base-card-program-intro" @click="handleClick">                                                                  
     <div class="flex flex-col space-y-2">                                                                                       
       <h2 class="text-xl font-bold">{{ studyField }}</h2>                                                                       
       <p><strong>Faculty:</strong> {{ faculty }}</p>                                                                            
@@ -20,7 +20,7 @@ defineProps({
                                                                                                                                 
 const emit = defineEmits(['click']);                                                                                            
                                                                                                                                 
-const showDetails = () => {                                                                                                     
+const handleClick = () => {                                                                                                     
   emit('click');                                                                                                                
 };                                                                                                                              
 </script>                                                                                                                       
@@ -36,4 +36,4 @@ const showDetails = () => {
 .base-card-program-intro:hover {                                                                                                
   transform: scale(1.05);                                                                                                       
 }                                                                                                                               
-</style> 
+</style>          

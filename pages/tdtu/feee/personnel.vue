@@ -16,15 +16,15 @@
     </div>                                                                                                                      
   </div>                                                                                                                        
 </template>                                                                                                                     
-                                                                                                                                
+
 <script setup>                                                                                                                  
 import { usePersonnelStore } from '~/store/personnelStore';                                                                     
 import { onMounted } from 'vue';                                                                                                
 import BaseCardPersonnel from '~/components/TDTU/BaseCardPersonnel.vue'; // Ensure this path is correct                         
-                                                                                                                                
+ 
 const personnelStore = usePersonnelStore();                                                                                     
 const { personnelList } = personnelStore;                                                                                       
-                                                                                                                                
+ 
 onMounted(() => {                                                                                                               
   personnelStore.fetchPersonnelData();                                                                                          
 });                                                                                                                             

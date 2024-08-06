@@ -1,41 +1,47 @@
 <template>                                                                                                                      
   <div class="default-layout">                                                                                                  
-    <UVerticalNavigation :links="links" />                                                                                            
+    <UVerticalNavigation :links="links" class="sidebar" />                                                                      
     <main class="content">                                                                                                      
       <NuxtPage />                                                                                                              
     </main>                                                                                                                     
   </div>                                                                                                                        
 </template>                                                                                                                     
-
-<script setup>       
-const links = [
-  {
-    label: 'Home',
-    icon: 'i-heroicons-home',
-    to: '/'
-  },
-  {
-    label: 'Personnel',
-    icon: 'i-heroicons-home',
-    to: '/tdtu/feee/personnel'
-  },
-  {
-    label: 'Programms',
-    icon: 'i-heroicons-home',
-    to: '/tdtu/feee/programs'
-  }
-]
+                                                                                                                                
+<script setup>                                                                                                                  
+const links = [                                                                                                                 
+  {                                                                                                                             
+    label: 'Home',                                                                                                              
+    icon: 'i-heroicons-home',                                                                                                   
+    to: '/'                                                                                                                     
+  },                                                                                                                            
+  {                                                                                                                             
+    label: 'Personnel',                                                                                                         
+    icon: 'i-heroicons-home',                                                                                                   
+    to: '/tdtu/feee/personnel'                                                                                                  
+  },                                                                                                                            
+  {                                                                                                                             
+    label: 'Programms',                                                                                                         
+    icon: 'i-heroicons-home',                                                                                                   
+    to: '/tdtu/feee/programs'                                                                                                   
+  }                                                                                                                             
+]                                                                                                                               
 </script>                                                                                                                       
-
+                                                                                                                                
 <style scoped>                                                                                                                  
 .default-layout {                                                                                                               
   display: flex;                                                                                                                
-  flex-direction: column;                                                                                                       
+  flex-direction: row;                                                                                                          
   min-height: 100vh;                                                                                                            
+}                                                                                                                               
+                                                                                                                                
+.sidebar {                                                                                                                      
+  width: 250px; /* Adjust the width as needed */                                                                                
+  background-color: #f4f4f4; /* Adjust the background color as needed */                                                        
+  overflow-y: auto;                                                                                                             
 }                                                                                                                               
                                                                                                                                 
 .content {                                                                                                                      
   flex: 1;                                                                                                                      
   padding: 20px;                                                                                                                
 }                                                                                                                               
-</style>                     
+</style>      

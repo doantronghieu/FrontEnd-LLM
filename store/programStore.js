@@ -1,6 +1,6 @@
 import { defineStore } from 'pinia';                                                                                            
  import programData from '~/data/tdtu/feee/programs.json';                                                                       
-                                                                                                                                 
+  
  export const useProgramStore = defineStore('program', {                                                                         
    state: () => ({                                                                                                               
      programList: [],                                                                                                            

@@ -1,6 +1,6 @@
 import { defineStore } from 'pinia';                                                                                            
  import personnelData from '~/data/tdtu/feee/personnel.json';                                                                    
-                                                                                                                                 
+  
  export const usePersonnelStore = defineStore('personnel', {                                                                     
    state: () => ({                                                                                                               
      personnelList: [],                                                                                                          

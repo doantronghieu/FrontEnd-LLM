@@ -13,32 +13,32 @@
         @click="openModal(program)"                                                                                             
       />                                                                                                                        
     </div>                                                                                                                      
-    <UModal :show="isModalOpen" @close="isModalOpen = false">                                                                   
-      <BaseCardProgramDetail                                                                                                    
-        v-if="selectedProgram"                                                                                                  
-        :faculty="selectedProgram.faculty"                                                                                      
-        :studyField="selectedProgram.studyField"                                                                                
-        :link="selectedProgram.link"                                                                                            
-        :programType="selectedProgram.programType"                                                                              
-        :educationLevel="selectedProgram.educationLevel"                                                                        
-        :introduction="selectedProgram.introduction"                                                                            
-        :careerProspects="selectedProgram.careerProspects"                                                                      
-        :outcome="selectedProgram.outcome"                                                                                      
-        :syllabub="selectedProgram.syllabub"                                                                                    
-        :admissionCandidates="selectedProgram.admissionCandidates"                                                              
-        :registration="selectedProgram.registration"                                                                            
-        :tuition="selectedProgram.tuition"                                                                                      
-        :contact="selectedProgram.contact"                                                                                      
-      />                                                                                                                        
-    </UModal>                                                                                                                   
+    <UModal v-model="isModalOpen">                                                                                              
+       <BaseCardProgramDetail                                                                                                   
+         v-if="selectedProgram"                                                                                                 
+         :faculty="selectedProgram.faculty"                                                                                     
+         :studyField="selectedProgram.studyField"                                                                               
+         :link="selectedProgram.link"                                                                                           
+         :programType="selectedProgram.programType"                                                                             
+         :educationLevel="selectedProgram.educationLevel"                                                                       
+         :introduction="selectedProgram.introduction"                                                                           
+         :careerProspects="selectedProgram.careerProspects"                                                                     
+         :outcome="selectedProgram.outcome"                                                                                     
+         :syllabub="selectedProgram.syllabub"                                                                                   
+         :admissionCandidates="selectedProgram.admissionCandidates"                                                             
+         :registration="selectedProgram.registration"                                                                           
+         :tuition="selectedProgram.tuition"                                                                                     
+         :contact="selectedProgram.contact"                                                                                     
+       />                                                                                                                       
+     </UModal>                                                                                                                  
   </div>                                                                                                                        
 </template>                                                                                                                     
                                                                                                                                 
 <script setup>                                                                                                                  
 import { useProgramStore } from '~/store/programStore';                                                                         
 import { ref, onMounted } from 'vue';                                                                                           
-import BaseCardProgramIntro from '~/components/TDTU/BaseCardProgramIntro.vue'; // Ensure this path is correct                   
-import BaseCardProgramDetail from '~/components/TDTU/BaseCardProgramDetail.vue'; // Ensure this path is correct                 
+import BaseCardProgramIntro from '~/components/TDTU/BaseCardProgramIntro.vue';                                                  
+import BaseCardProgramDetail from '~/components/TDTU/BaseCardProgramDetail.vue';                                                
                                                                                                                                 
 const programStore = useProgramStore();                                                                                         
 const { programList, selectedProgram } = programStore;                                                                          
@@ -52,4 +52,8 @@ const openModal = (program) => {
   programStore.setSelectedProgram(program);                                                                                     
   isModalOpen.value = true;                                                                                                     
 };                                                                                                                              
-</script>                   
+                                                                                                                                
+const closeModal = () => {                                                                                                      
+  isModalOpen.value = false;                                                                                                    
+};                                                                                                                              
+</script>  

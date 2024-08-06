@@ -13,6 +13,7 @@
       <div v-html="registration"></div>                                                                                         
       <div v-html="tuition"></div>                                                                                              
       <div v-html="contact"></div>                                                                                              
+      <button class="focus:outline-none focus:ring focus:border-blue-300">Close</button> <!-- Focusable element -->             
     </div>                                                                                                                      
   </UCard>                                                                                                                      
 </template>                                                                                                                     
@@ -42,4 +43,4 @@ defineProps({
   overflow-y: auto;                                                                                                             
   margin: 1rem;                                                                                                                 
 }                                                                                                                               
-</style>        
+</style>  

@@ -11,7 +11,7 @@
     </div>                                                                                                                      
   </UCard>                                                                                                                      
 </template>                                                                                                                     
-                                                                                                                                
+ 
 <script setup>                                                                                                                  
 defineProps({                                                                                                                   
   faculty: { type: String, required: true },                                                                                    
@@ -23,7 +23,7 @@ defineProps({
   department: { type: String, required: true },                                                                                 
 });                                                                                                                             
 </script>                                                                                                                       
-                                                                                                                                
+ 
 <style scoped>                                                                                                                  
 .base-card-personnel {                                                                                                          
   max-width: 400px;                                                                                                             
