@@ -1,9 +1,9 @@
 <template>
   <div class="container mx-auto px-4">
-    <h1 class="text-3xl font-bold mb-6 text-gray-800">Personnel</h1>
+    <h1 class="text-3xl font-bold mb-6 text-primary">Personnel</h1>
     
     <div class="mb-6 flex flex-wrap items-center gap-4">
-      <UInput v-model="searchQuery" placeholder="Search personnel..." class="w-full sm:w-64">
+      <UInput v-model="searchQuery" placeholder="Search personnel..." class="w-full sm:w-64 focus:ring-2 focus:ring-primary">
         <template #right>
           <UButton v-if="searchQuery" icon="i-heroicons-x-mark" color="gray" variant="ghost" @click="searchQuery = ''" />
         </template>
@@ -16,7 +16,7 @@
         v-for="personnel in filteredPersonnel"
         :key="personnel.email"
         v-bind="personnel"
-        class="transition-all duration-300 ease-in-out hover:shadow-lg"
+        class="transition-all duration-300 ease-in-out hover:shadow-lg hover:scale-105"
       />
     </TransitionGroup>
     
@@ -38,8 +38,7 @@ definePageMeta({
 
 const personnelStore = usePersonnelStore();
 const { personnelList } = storeToRefs(personnelStore);
-
-const { pending } = await useFetch(() => personnelStore.fetchPersonnelData());
+const { pending } = await useLazyFetch(() => personnelStore.fetchPersonnelData());
 
 const searchQuery = ref('');
 const filterDepartment = ref('');
@@ -62,11 +61,16 @@ const filteredPersonnel = computed(() => {
 <style scoped>
 .fade-enter-active,
 .fade-leave-active {
-  transition: opacity 0.5s ease;
+  transition: all 0.5s ease;
 }
 
 .fade-enter-from,
 .fade-leave-to {
   opacity: 0;
+  transform: translateY(30px);
+}
+
+.text-primary {
+  color: var(--color-primary);
 }
 </style>

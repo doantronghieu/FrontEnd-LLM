@@ -1,12 +1,12 @@
 <template>
-  <UCard class="base-card-personnel hover:shadow-lg transition-shadow duration-300">
+  <UCard class="base-card-personnel hover:shadow-lg transition-all duration-300">
     <div class="flex flex-col space-y-2">
-      <h2 class="text-xl font-bold">{{ name }}</h2>
+      <h2 class="text-xl font-bold text-primary">{{ name }}</h2>
       <p><strong>Position:</strong> {{ position }}</p>
       <p><strong>Major:</strong> {{ major }}</p>
       <p><strong>Faculty:</strong> {{ faculty }}</p>
       <p><strong>Department:</strong> {{ department }}</p>
-      <p><strong>Email:</strong> <a :href="`mailto:${email}`" class="text-blue-600 hover:underline">{{ email }}</a></p>
+      <p><strong>Email:</strong> <a :href="`mailto:${email}`" class="text-primary hover:underline">{{ email }}</a></p>
       <p><strong>Office:</strong> {{ office }}</p>
     </div>
   </UCard>
@@ -28,5 +28,9 @@ defineProps({
 .base-card-personnel {
   max-width: 400px;
   margin: 1rem;
+}
+
+.text-primary {
+  color: var(--color-primary);
 }
 </style>

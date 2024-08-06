@@ -1,9 +1,9 @@
 <template>
   <div class="container mx-auto px-4 py-8">
-    <h1 class="text-4xl font-bold mb-8 text-gray-800">Programs</h1>
+    <h1 class="text-4xl font-bold mb-8 text-primary">Programs</h1>
 
     <div class="mb-8 flex flex-wrap items-center gap-4">
-      <UInput v-model="searchQuery" placeholder="Search programs..." class="w-full sm:w-64">
+      <UInput v-model="searchQuery" placeholder="Search programs..." class="w-full sm:w-64 focus:ring-2 focus:ring-primary">
         <template #right>
           <UButton v-if="searchQuery" icon="i-heroicons-x-mark" color="gray" variant="ghost" @click="searchQuery = ''" />
         </template>
@@ -12,13 +12,17 @@
       <USelect v-model="filterProgramType" :options="programTypeOptions" placeholder="Program Type" class="w-full sm:w-64" />
     </div>
 
-    <TransitionGroup name="fade" tag="div" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+    <TransitionGroup 
+      name="fade" 
+      tag="div" 
+      class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6"
+    >
       <BaseCardProgramIntro
         v-for="program in filteredPrograms"
         :key="program.link"
         v-bind="program"
         @click="openModal(program)"
-        class="transition-all duration-300 ease-in-out hover:shadow-lg cursor-pointer"
+        class="transition-all duration-300 ease-in-out hover:shadow-lg cursor-pointer hover:scale-105"
       />
     </TransitionGroup>
 
@@ -26,7 +30,7 @@
       No programs found matching your criteria.
     </p>
 
-    <UModal v-model="isModalOpen" :ui="{ width: 'max-w-4xl' }" @close="closeModal">
+    <UModal v-model="isModalOpen" :ui="{ width: 'max-w-4xl', overlay: { blur: 'sm' } }" @close="closeModal">
       <div v-if="selectedProgram" class="modal-content">
         <BaseCardProgramDetail
           v-bind="selectedProgram"
@@ -53,7 +57,7 @@ const { programList } = storeToRefs(programStore);
 const selectedProgram = ref(null);
 const isModalOpen = ref(false);
 
-const { pending } = await useFetch(() => programStore.fetchProgramData());
+const { pending } = await useLazyFetch(() => programStore.fetchProgramData());
 
 const searchQuery = ref('');
 const filterEducationLevel = ref('');
@@ -87,6 +91,20 @@ const closeModal = () => {
   isModalOpen.value = false;
   selectedProgram.value = null;
 };
+
+onMounted(() => {
+  window.addEventListener('keydown', handleKeyDown);
+});
+
+onUnmounted(() => {
+  window.removeEventListener('keydown', handleKeyDown);
+});
+
+const handleKeyDown = (event) => {
+  if (event.key === 'Escape' && isModalOpen.value) {
+    closeModal();
+  }
+};
 </script>
 
 <style scoped>
@@ -99,5 +117,9 @@ const closeModal = () => {
 .fade-leave-to {
   opacity: 0;
   transform: translateY(30px);
+}
+
+.text-primary {
+  color: var(--color-primary);
 }
 </style>
