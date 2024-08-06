@@ -107,13 +107,35 @@ ${props.contact}
   margin-bottom: 0.5rem;
 }
 
-/* Add smooth scrolling to the card */
 .base-card-program-detail {
   scroll-behavior: smooth;
 }
 
-/* Improve readability with a subtle text shadow */
 .program-content :deep(p) {
   text-shadow: 0 1px 1px rgba(255, 255, 255, 0.5);
+}
+
+/* Add a subtle animation on card entrance */
+@keyframes detailCardEntrance {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.base-card-program-detail {
+  animation: detailCardEntrance 0.5s ease-out;
+}
+
+/* Improve readability on smaller screens */
+@media (max-width: 640px) {
+  .base-card-program-detail {
+    font-size: 14px;
+    padding: 1rem;
+  }
 }
 </style>

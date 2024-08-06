@@ -66,12 +66,32 @@ const links = [
   }
 }
 
-/* Add hover effect to navigation items */
 :deep(.u-vertical-navigation-item) {
-  transition: background-color 0.3s ease;
+  transition: background-color 0.3s ease, color 0.3s ease;
 }
 
 :deep(.u-vertical-navigation-item:hover) {
   background-color: rgba(var(--color-primary-rgb), 0.1);
+}
+
+:deep(.u-vertical-navigation-item.router-link-active) {
+  background-color: var(--color-primary);
+  color: var(--color-text-light);
+}
+
+/* Add a subtle animation to the sidebar */
+.sidebar {
+  animation: sidebarEntrance 0.5s ease-out;
+}
+
+@keyframes sidebarEntrance {
+  from {
+    opacity: 0;
+    transform: translateX(-20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
 }
 </style>

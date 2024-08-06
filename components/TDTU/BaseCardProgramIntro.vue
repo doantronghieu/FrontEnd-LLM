@@ -46,14 +46,35 @@ const handleClick = () => {
   color: var(--color-secondary);
 }
 
-/* Add a subtle gradient background on hover */
 .base-card-program-intro:hover {
   background: linear-gradient(135deg, rgba(255,255,255,0.9) 0%, rgba(var(--color-primary-rgb), 0.1) 100%);
 }
 
-/* Improve focus styles for accessibility */
 .base-card-program-intro:focus {
   outline: none;
   box-shadow: 0 0 0 3px rgba(var(--color-primary-rgb), 0.5);
+}
+
+/* Add a subtle animation on card entrance */
+@keyframes introCardEntrance {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.base-card-program-intro {
+  animation: introCardEntrance 0.5s ease-out;
+}
+
+/* Improve readability on smaller screens */
+@media (max-width: 640px) {
+  .base-card-program-intro {
+    font-size: 14px;
+  }
 }
 </style>

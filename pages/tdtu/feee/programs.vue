@@ -46,7 +46,7 @@
 </template>
 
 <script setup>
-import { ref, computed } from 'vue';
+import { ref, computed, onMounted, onUnmounted } from 'vue';
 import { useProgramStore } from '~/store/programStore';
 import { storeToRefs } from 'pinia';
 import BaseCardProgramIntro from '~/components/TDTU/BaseCardProgramIntro.vue';
@@ -133,7 +133,6 @@ const handleKeyDown = (event) => {
   color: var(--color-primary);
 }
 
-/* Add responsive styles */
 @media (max-width: 640px) {
   .container {
     padding-left: 1rem;
@@ -141,7 +140,6 @@ const handleKeyDown = (event) => {
   }
 }
 
-/* Improve modal animation */
 .modal-enter-active,
 .modal-leave-active {
   transition: opacity 0.3s ease;
@@ -152,12 +150,39 @@ const handleKeyDown = (event) => {
   opacity: 0;
 }
 
-/* Add a subtle animation to the search input */
 .u-input {
   transition: box-shadow 0.3s ease;
 }
 
 .u-input:focus-within {
   box-shadow: 0 0 0 3px rgba(var(--color-primary-rgb), 0.3);
+}
+
+/* Add a loading indicator */
+.loading-indicator {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100px;
+}
+
+.loading-indicator::after {
+  content: '';
+  width: 30px;
+  height: 30px;
+  border: 2px solid var(--color-primary);
+  border-top: 2px solid transparent;
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+/* Add a smooth transition for filter changes */
+.grid {
+  transition: all 0.5s ease;
 }
 </style>

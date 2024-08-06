@@ -40,14 +40,42 @@ body {
   color: var(--color-text-light);
 }
 
-/* Add smooth scrolling */
 html {
   scroll-behavior: smooth;
 }
 
-/* Improve focus styles for accessibility */
 :focus {
   outline: 2px solid var(--color-primary);
   outline-offset: 2px;
+}
+
+/* Add transitions for smooth color changes */
+* {
+  transition: color 0.3s ease, background-color 0.3s ease;
+}
+
+/* Improve readability on mobile devices */
+@media (max-width: 768px) {
+  body {
+    font-size: 16px;
+  }
+}
+
+/* Add a custom scrollbar for better UX */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--color-background);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--color-primary);
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--color-secondary);
 }
 </style>

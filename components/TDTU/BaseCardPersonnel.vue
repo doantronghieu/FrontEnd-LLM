@@ -47,12 +47,34 @@ defineProps({
   color: var(--color-secondary);
 }
 
-/* Add a subtle hover effect to the email link */
 a.text-primary {
   transition: color 0.3s ease;
 }
 
 a.text-primary:hover {
   color: var(--color-secondary);
+}
+
+/* Add a subtle animation on card entrance */
+@keyframes cardEntrance {
+  from {
+    opacity: 0;
+    transform: scale(0.8);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+.base-card-personnel {
+  animation: cardEntrance 0.5s ease-out;
+}
+
+/* Improve readability on smaller screens */
+@media (max-width: 640px) {
+  .base-card-personnel {
+    font-size: 14px;
+  }
 }
 </style>

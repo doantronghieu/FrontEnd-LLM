@@ -83,7 +83,6 @@ const resetFilters = () => {
   color: var(--color-primary);
 }
 
-/* Add responsive styles */
 @media (max-width: 640px) {
   .container {
     padding-left: 1rem;
@@ -91,7 +90,6 @@ const resetFilters = () => {
   }
 }
 
-/* Improve accessibility */
 .sr-only {
   position: absolute;
   width: 1px;
@@ -104,12 +102,34 @@ const resetFilters = () => {
   border-width: 0;
 }
 
-/* Add a subtle animation to the search input */
 .u-input {
   transition: box-shadow 0.3s ease;
 }
 
 .u-input:focus-within {
   box-shadow: 0 0 0 3px rgba(var(--color-primary-rgb), 0.3);
+}
+
+/* Add a loading indicator */
+.loading-indicator {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100px;
+}
+
+.loading-indicator::after {
+  content: '';
+  width: 30px;
+  height: 30px;
+  border: 2px solid var(--color-primary);
+  border-top: 2px solid transparent;
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
 }
 </style>
