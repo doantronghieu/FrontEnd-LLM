@@ -10,8 +10,9 @@
 
 <script setup>
 import { marked } from 'marked';
+import DOMPurify from 'dompurify';
 
-marked.use({ breaks: true, gfm: true })
+marked.use({ breaks: true, gfm: true });
 
 defineProps({
   message: {
@@ -22,7 +23,8 @@ defineProps({
 });
 
 const renderMarkdown = (content) => {
-  return marked.parse(content);
+  const rawHtml = marked.parse(content);
+  return DOMPurify.sanitize(rawHtml);
 };
 </script>
 
@@ -93,6 +95,15 @@ const renderMarkdown = (content) => {
   padding: 8px;
   border-radius: 4px;
   overflow-x: auto;
+  margin: 8px 0;
+  white-space: pre-wrap;
+  word-break: break-word;
+}
+
+.message-content :deep(img) {
+  max-width: 100%;
+  height: auto;
+  border-radius: 4px;
   margin: 8px 0;
 }
 

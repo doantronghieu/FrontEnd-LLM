@@ -37,6 +37,11 @@ const toggleChatWindow = () => {
   box-shadow: 0 6px 16px rgba(0, 0, 0, 0.3);
 }
 
+.chatbot-icon:focus {
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(74, 144, 226, 0.5), 0 4px 12px rgba(0, 0, 0, 0.2);
+}
+
 .chatbot-icon img {
   width: 100%;
   height: 100%;

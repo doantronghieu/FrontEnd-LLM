@@ -137,9 +137,11 @@ const scrollToTop = () => {
 
 const scrollToBottom = () => {
   if (chatMessages.value) {
-    chatMessages.value.scrollTo({
-      top: chatMessages.value.scrollHeight,
-      behavior: 'smooth'
+    nextTick(() => {
+      chatMessages.value.scrollTo({
+        top: chatMessages.value.scrollHeight,
+        behavior: 'smooth'
+      });
     });
   }
 };
@@ -227,6 +229,7 @@ const streamFakeMessage = (sender, message) => {
   overflow: hidden;
   transition: all 0.3s ease-in-out;
   z-index: 9999;
+  transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
 }
 
 .chat-window.fullscreen {
@@ -234,6 +237,7 @@ const streamFakeMessage = (sender, message) => {
   height: 80vh;
   bottom: 10vh;
   right: 10vw;
+  transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
 }
 
 .chat-header {
@@ -302,6 +306,24 @@ const streamFakeMessage = (sender, message) => {
     height: 80vh;
     bottom: 10vh;
     right: 5vw;
+  }
+
+  .chat-window.fullscreen {
+    width: 100vw;
+    height: 100vh;
+    bottom: 0;
+    right: 0;
+    border-radius: 0;
+  }
+}
+
+@media (max-width: 768px) {
+  .chat-window {
+    width: 100vw;
+    height: 100vh;
+    bottom: 0;
+    right: 0;
+    border-radius: 0;
   }
 
   .chat-window.fullscreen {

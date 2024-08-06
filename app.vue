@@ -59,7 +59,7 @@ html {
 
 @media (max-width: 768px) {
   body {
-    font-size: 14px;
+    font-size: 16px;
   }
 }
 

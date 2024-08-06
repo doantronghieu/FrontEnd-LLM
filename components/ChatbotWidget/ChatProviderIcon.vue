@@ -1,12 +1,16 @@
 <template>
   <UTooltip :text="tooltipText">
-    <img
-      :src="isActive ? activeIcon : inactiveIcon"
-      :alt="iconAlt"
+    <button
       class="chat-provider-icon"
       @click="toggleMode"
       :class="{ 'active': isActive }"
-    />
+      :aria-label="iconAlt"
+    >
+      <img
+        :src="isActive ? activeIcon : inactiveIcon"
+        :alt="iconAlt"
+      />
+    </button>
   </UTooltip>
 </template>
 
@@ -50,6 +54,9 @@ const toggleMode = () => {
   transition: transform 0.3s ease-in-out, filter 0.3s ease-in-out, opacity 0.3s ease-in-out;
   opacity: 0.7;
   border-radius: 50%;
+  background: none;
+  border: none;
+  padding: 0;
 }
 .chat-provider-icon:hover {
   transform: scale(1.2);
@@ -60,5 +67,14 @@ const toggleMode = () => {
   opacity: 1;
   transform: scale(1.1);
   box-shadow: 0 0 0 2px rgba(255, 255, 255, 0.5);
+}
+.chat-provider-icon:focus {
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(74, 144, 226, 0.5);
+}
+.chat-provider-icon img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
 }
 </style>
