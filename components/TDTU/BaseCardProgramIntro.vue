@@ -45,4 +45,15 @@ const handleClick = () => {
 .text-secondary {
   color: var(--color-secondary);
 }
+
+/* Add a subtle gradient background on hover */
+.base-card-program-intro:hover {
+  background: linear-gradient(135deg, rgba(255,255,255,0.9) 0%, rgba(var(--color-primary-rgb), 0.1) 100%);
+}
+
+/* Improve focus styles for accessibility */
+.base-card-program-intro:focus {
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(var(--color-primary-rgb), 0.5);
+}
 </style>

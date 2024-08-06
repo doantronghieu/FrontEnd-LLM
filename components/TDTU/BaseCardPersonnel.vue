@@ -46,4 +46,13 @@ defineProps({
 .text-secondary {
   color: var(--color-secondary);
 }
+
+/* Add a subtle hover effect to the email link */
+a.text-primary {
+  transition: color 0.3s ease;
+}
+
+a.text-primary:hover {
+  color: var(--color-secondary);
+}
 </style>

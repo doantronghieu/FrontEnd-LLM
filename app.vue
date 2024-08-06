@@ -22,10 +22,11 @@ import BackgroundComponent from '~/components/ui/BackgroundComponent.vue';
   --color-background: #f5f7fa;
   --color-text: #333333;
   --color-text-light: #ffffff;
+  --font-sans: 'Roboto', 'Arial', sans-serif;
 }
 
 body {
-  font-family: 'Roboto', 'Arial', sans-serif;
+  font-family: var(--font-sans);
   line-height: 1.6;
   margin: 0;
   padding: 0;
@@ -37,5 +38,16 @@ body {
 
 .text-text-light {
   color: var(--color-text-light);
+}
+
+/* Add smooth scrolling */
+html {
+  scroll-behavior: smooth;
+}
+
+/* Improve focus styles for accessibility */
+:focus {
+  outline: 2px solid var(--color-primary);
+  outline-offset: 2px;
 }
 </style>

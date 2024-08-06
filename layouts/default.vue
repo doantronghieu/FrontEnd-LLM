@@ -65,4 +65,13 @@ const links = [
     transform: translateX(0);
   }
 }
+
+/* Add hover effect to navigation items */
+:deep(.u-vertical-navigation-item) {
+  transition: background-color 0.3s ease;
+}
+
+:deep(.u-vertical-navigation-item:hover) {
+  background-color: rgba(var(--color-primary-rgb), 0.1);
+}
 </style>

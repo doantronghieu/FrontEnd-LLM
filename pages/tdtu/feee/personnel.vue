@@ -23,6 +23,10 @@
     <p v-if="filteredPersonnel.length === 0" class="text-center text-gray-600 mt-8">
       No personnel found matching your criteria.
     </p>
+
+    <UButton v-if="filteredPersonnel.length < personnelList.length" @click="resetFilters" class="mt-6 mx-auto block">
+      Reset Filters
+    </UButton>
   </div>
 </template>
 
@@ -56,6 +60,11 @@ const filteredPersonnel = computed(() => {
     return matchesSearch && matchesDepartment;
   });
 });
+
+const resetFilters = () => {
+  searchQuery.value = '';
+  filterDepartment.value = '';
+};
 </script>
 
 <style scoped>
@@ -93,5 +102,14 @@ const filteredPersonnel = computed(() => {
   clip: rect(0, 0, 0, 0);
   white-space: nowrap;
   border-width: 0;
+}
+
+/* Add a subtle animation to the search input */
+.u-input {
+  transition: box-shadow 0.3s ease;
+}
+
+.u-input:focus-within {
+  box-shadow: 0 0 0 3px rgba(var(--color-primary-rgb), 0.3);
 }
 </style>

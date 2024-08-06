@@ -1,6 +1,6 @@
 <template>
   <UCard class="base-card-program-detail rounded-lg shadow-lg">
-    <button @click="$emit('close')" class="close-button focus:outline-none focus:ring focus:border-blue-300">
+    <button @click="$emit('close')" class="close-button focus:outline-none focus:ring focus:border-blue-300" aria-label="Close">
       <UIcon name="i-heroicons-x-mark" class="w-6 h-6" />
     </button>
     <h2 class="text-2xl font-bold mb-6 text-primary">{{ studyField }}</h2>
@@ -105,5 +105,15 @@ ${props.contact}
 
 .program-content :deep(li) {
   margin-bottom: 0.5rem;
+}
+
+/* Add smooth scrolling to the card */
+.base-card-program-detail {
+  scroll-behavior: smooth;
+}
+
+/* Improve readability with a subtle text shadow */
+.program-content :deep(p) {
+  text-shadow: 0 1px 1px rgba(255, 255, 255, 0.5);
 }
 </style>

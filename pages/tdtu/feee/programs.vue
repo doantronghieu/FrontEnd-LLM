@@ -30,6 +30,10 @@
       No programs found matching your criteria.
     </p>
 
+    <UButton v-if="filteredPrograms.length < programList.length" @click="resetFilters" class="mt-6 mx-auto block">
+      Reset Filters
+    </UButton>
+
     <UModal v-model="isModalOpen" :ui="{ width: 'max-w-4xl', overlay: { blur: 'sm' } }" @close="closeModal">
       <div v-if="selectedProgram" class="modal-content">
         <BaseCardProgramDetail
@@ -92,6 +96,12 @@ const closeModal = () => {
   selectedProgram.value = null;
 };
 
+const resetFilters = () => {
+  searchQuery.value = '';
+  filterEducationLevel.value = '';
+  filterProgramType.value = '';
+};
+
 onMounted(() => {
   window.addEventListener('keydown', handleKeyDown);
 });
@@ -140,5 +150,14 @@ const handleKeyDown = (event) => {
 .modal-enter-from,
 .modal-leave-to {
   opacity: 0;
+}
+
+/* Add a subtle animation to the search input */
+.u-input {
+  transition: box-shadow 0.3s ease;
+}
+
+.u-input:focus-within {
+  box-shadow: 0 0 0 3px rgba(var(--color-primary-rgb), 0.3);
 }
 </style>
