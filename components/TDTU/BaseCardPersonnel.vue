@@ -8,7 +8,9 @@
       <p><UBadge color="primary" variant="solid">Faculty</UBadge> {{ faculty }}</p>
       <p><UBadge color="primary" variant="solid">Department</UBadge> {{ department }}</p>
       <p><UBadge color="primary" variant="solid">Email</UBadge> <a :href="`mailto:${email}`" class="text-primary hover:underline">{{ email }}</a></p>
-      <p><UBadge color="primary" variant="solid">Office</UBadge> {{ office }}</p>
+      
+      
+      <p><UBadge color="primary" variant="solid" icon="i-heroicons:map-pin">Office</UBadge> {{ office }}</p>
     </div>
   </UCard>
 </template>
