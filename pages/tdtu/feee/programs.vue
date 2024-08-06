@@ -1,34 +1,35 @@
 <template>
-  <div>
-    <h1 class="text-3xl font-bold mb-4">Programs</h1>
-    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-      <BaseCardProgramIntro
-        v-for="program in programList"
-        :key="program.link"
-        :faculty="program.faculty"
-        :studyField="program.studyField"
-        :link="program.link"
-        :programType="program.programType"
-        :educationLevel="program.educationLevel"
-        @click="openModal(program)"
-      />
+  <div class="container mx-auto px-4 py-8">
+    <h1 class="text-4xl font-bold mb-8 text-gray-800">Programs</h1>
+
+    <!-- Search and filter controls -->
+    <div class="mb-8 flex flex-wrap items-center gap-4">
+      <UInput v-model="searchQuery" placeholder="Search programs..." class="w-full sm:w-64" />
+      <USelect v-model="filterEducationLevel" :options="educationLevelOptions" placeholder="Education Level" class="w-full sm:w-64" />
+      <USelect v-model="filterProgramType" :options="programTypeOptions" placeholder="Program Type" class="w-full sm:w-64" />
     </div>
-    <UModal v-model="isModalOpen" fullscreen>
+
+    <!-- Programs grid -->
+    <TransitionGroup name="fade" tag="div" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+      <BaseCardProgramIntro
+        v-for="program in filteredPrograms"
+        :key="program.link"
+        v-bind="program"
+        @click="openModal(program)"
+        class="transition-all duration-300 ease-in-out hover:shadow-lg"
+      />
+    </TransitionGroup>
+
+    <!-- No results message -->
+    <p v-if="filteredPrograms.length === 0" class="text-center text-gray-600 mt-8">
+      No programs found matching your criteria.
+    </p>
+
+    <!-- Program detail modal -->
+    <UModal v-model="isModalOpen" :ui="{ width: 'max-w-4xl' }" fullscreen>
       <div v-if="selectedProgram" class="modal-content">
         <BaseCardProgramDetail
-          :faculty="selectedProgram.faculty"
-          :studyField="selectedProgram.studyField"
-          :link="selectedProgram.link"
-          :programType="selectedProgram.programType"
-          :educationLevel="selectedProgram.educationLevel"
-          :introduction="selectedProgram.introduction"
-          :careerProspects="selectedProgram.careerProspects"
-          :outcome="selectedProgram.outcome"
-          :syllabub="selectedProgram.syllabub"
-          :admissionCandidates="selectedProgram.admissionCandidates"
-          :registration="selectedProgram.registration"
-          :tuition="selectedProgram.tuition"
-          :contact="selectedProgram.contact"
+          v-bind="selectedProgram"
           @close="closeModal"
         />
       </div>
@@ -37,8 +38,8 @@
 </template>
 
 <script setup>
+import { ref, computed } from 'vue';
 import { useProgramStore } from '~/store/programStore';
-import { ref } from 'vue';
 import { storeToRefs } from 'pinia';
 import BaseCardProgramIntro from '~/components/TDTU/BaseCardProgramIntro.vue';
 import BaseCardProgramDetail from '~/components/TDTU/BaseCardProgramDetail.vue';
@@ -54,23 +55,49 @@ const isModalOpen = ref(false);
 
 await useFetch(() => programStore.fetchProgramData());
 
+const searchQuery = ref('');
+const filterEducationLevel = ref('');
+const filterProgramType = ref('');
+
+const educationLevelOptions = computed(() => {
+  const levels = new Set(programList.value.map(p => p.educationLevel));
+  return Array.from(levels).map(level => ({ label: level, value: level }));
+});
+
+const programTypeOptions = computed(() => {
+  const types = new Set(programList.value.map(p => p.programType));
+  return Array.from(types).map(type => ({ label: type, value: type }));
+});
+
+const filteredPrograms = computed(() => {
+  return programList.value.filter(p => {
+    const matchesSearch = p.studyField.toLowerCase().includes(searchQuery.value.toLowerCase());
+    const matchesEducationLevel = !filterEducationLevel.value || p.educationLevel === filterEducationLevel.value;
+    const matchesProgramType = !filterProgramType.value || p.programType === filterProgramType.value;
+    return matchesSearch && matchesEducationLevel && matchesProgramType;
+  });
+});
 
 const openModal = (program) => {
   selectedProgram.value = program;
   isModalOpen.value = true;
-  // console.log('Selected program:', selectedProgram.value); // Debug log
 };
 
 const closeModal = () => {
   isModalOpen.value = false;
   selectedProgram.value = null;
 };
-
 </script>
 
 <style scoped>
-.modal-content {
-  width: 100%;
-  margin: 0 auto;
+.fade-enter-active,
+.fade-leave-active {
+  transition: all 0.5s ease;
+}
+
+.fade-enter-from,
+.fade-leave-to {
+  opacity: 0;
+  transform: translateY(30px);
 }
 </style>
