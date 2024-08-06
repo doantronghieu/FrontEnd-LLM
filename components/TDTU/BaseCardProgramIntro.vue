@@ -1,10 +1,10 @@
 <template>
   <UCard class="base-card-program-intro" @click="handleClick">
-    <div class="flex flex-col space-y-2">
-      <h2 class="text-xl font-bold">{{ studyField }}</h2>
-      <p><strong>Faculty:</strong> {{ faculty }}</p>
-      <p><strong>Program Type:</strong> {{ programType }}</p>
-      <p><strong>Education Level:</strong> {{ educationLevel }}</p>
+    <div class="flex flex-col space-y-3">
+      <h2 class="text-xl font-bold text-primary">{{ studyField }}</h2>
+      <p><strong class="text-secondary">Faculty:</strong> {{ faculty }}</p>
+      <p><strong class="text-secondary">Program Type:</strong> {{ programType }}</p>
+      <p><strong class="text-secondary">Education Level:</strong> {{ educationLevel }}</p>
     </div>
   </UCard>
 </template>
@@ -27,10 +27,18 @@ const handleClick = () => {
 
 <style scoped>
 .base-card-program-intro {
-  @apply cursor-pointer transition-transform duration-300 ease-in-out;
+  @apply cursor-pointer transition-all duration-300 ease-in-out bg-white bg-opacity-90;
 }
 
 .base-card-program-intro:hover {
-  @apply transform scale-105;
+  @apply transform scale-105 shadow-lg;
+}
+
+.text-primary {
+  color: var(--color-primary);
+}
+
+.text-secondary {
+  color: var(--color-secondary);
 }
 </style>

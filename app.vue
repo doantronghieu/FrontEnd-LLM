@@ -1,8 +1,8 @@
 <template>
-  <div class="min-h-screen bg-background text-text">
+  <div class="min-h-screen bg-background text-text flex flex-col">
     <BackgroundComponent />
     <UNotifications />
-    <NuxtLayout>
+    <NuxtLayout class="flex-grow">
       <NuxtPage />
     </NuxtLayout>
     <ChatbotSmall />
@@ -20,16 +20,22 @@ import BackgroundComponent from '~/components/ui/BackgroundComponent.vue';
   --color-primary: #4a90e2;
   --color-secondary: #f39c12;
   --color-background: #f5f7fa;
-  --color-text: #ffffff;
+  --color-text: #333333;
+  --color-text-light: #ffffff;
 }
 
 body {
-  font-family: 'Arial', sans-serif;
+  font-family: 'Roboto', 'Arial', sans-serif;
+  line-height: 1.6;
+  margin: 0;
+  padding: 0;
 }
-
-
 
 .text-text {
   color: var(--color-text);
+}
+
+.text-text-light {
+  color: var(--color-text-light);
 }
 </style>

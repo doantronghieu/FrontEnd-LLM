@@ -1,5 +1,5 @@
 <template>
-  <div class="container mx-auto px-4">
+  <div class="container mx-auto px-4 py-8">
     <h1 class="text-3xl font-bold mb-6 text-primary">Personnel</h1>
     
     <div class="mb-6 flex flex-wrap items-center gap-4">

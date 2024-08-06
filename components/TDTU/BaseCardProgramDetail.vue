@@ -1,12 +1,10 @@
 <template>
-  <UCard>
-    <div class="base-card-program-detail rounded-lg shadow-lg">
-      <button @click="$emit('close')" class="close-button focus:outline-none focus:ring focus:border-blue-300">
-        <UIcon name="i-heroicons-x-mark" class="w-6 h-6" />
-      </button>
-      <h2 class="text-2xl font-bold mb-4">{{ studyField }}</h2>
-      <div v-html="renderedContent"></div>
-    </div>
+  <UCard class="base-card-program-detail rounded-lg shadow-lg">
+    <button @click="$emit('close')" class="close-button focus:outline-none focus:ring focus:border-blue-300">
+      <UIcon name="i-heroicons-x-mark" class="w-6 h-6" />
+    </button>
+    <h2 class="text-2xl font-bold mb-6 text-primary">{{ studyField }}</h2>
+    <div v-html="renderedContent" class="program-content"></div>
   </UCard>
 </template>
 
@@ -36,38 +34,32 @@ defineEmits(['close']);
 
 const renderedContent = computed(() => {
   const content = `
-<span class="text-cyan-600 font-bold">Faculty:</span> ${props.faculty} 
-<br>
-<span class="text-cyan-600 font-bold">Program Type:</span> ${props.programType}
-<br>
-<span class="text-cyan-600 font-bold">Education Level:</span> ${props.educationLevel}
-<br>
-<span class="text-cyan-600 font-bold">Introduction:</span>
+<p><span class="text-secondary font-bold">Faculty:</span> ${props.faculty}</p>
+<p><span class="text-secondary font-bold">Program Type:</span> ${props.programType}</p>
+<p><span class="text-secondary font-bold">Education Level:</span> ${props.educationLevel}</p>
+
+<h3 class="text-lg font-bold mt-4 mb-2 text-primary">Introduction</h3>
 ${props.introduction}
-<br>
-<br>
 
-<span class="text-cyan-600 font-bold">Career Prospects:</span>
+<h3 class="text-lg font-bold mt-4 mb-2 text-primary">Career Prospects</h3>
 ${props.careerProspects}
-<br>
-<br>
 
-<span class="text-cyan-600 font-bold">Outcome:</span>
+<h3 class="text-lg font-bold mt-4 mb-2 text-primary">Outcome</h3>
 ${props.outcome}
-<br>
-<span class="text-cyan-600 font-bold">Syllabub:</span>
+
+<h3 class="text-lg font-bold mt-4 mb-2 text-primary">Syllabub</h3>
 ${props.syllabub}
-<br>
-<span class="text-cyan-600 font-bold">Admission Candidates:</span>
+
+<h3 class="text-lg font-bold mt-4 mb-2 text-primary">Admission Candidates</h3>
 ${props.admissionCandidates}
-<br>
-<span class="text-cyan-600 font-bold">Registration:</span>
+
+<h3 class="text-lg font-bold mt-4 mb-2 text-primary">Registration</h3>
 ${props.registration}
-<br>
-<span class="text-cyan-600 font-bold">Tuition:</span>
+
+<h3 class="text-lg font-bold mt-4 mb-2 text-primary">Tuition</h3>
 ${props.tuition}
-<br>
-<span class="text-cyan-600 font-bold">Contact:</span>
+
+<h3 class="text-lg font-bold mt-4 mb-2 text-primary">Contact</h3>
 ${props.contact}
   `;
   return marked.parse(content);
@@ -80,20 +72,29 @@ ${props.contact}
   max-height: 85vh;
   margin: 1rem;
   position: relative;
+  padding: 2rem;
 }
 
 .close-button {
   position: absolute;
-  top: 10px;
-  right: 10px;
-  padding: 5px;
+  top: 1rem;
+  right: 1rem;
+  padding: 0.5rem;
   border-radius: 50%;
   cursor: pointer;
-  background-color: #f3f4f6;
   transition: background-color 0.3s;
 }
 
 .close-button:hover {
-  background-color: #e5e7eb;
+  background-color: rgba(0, 0, 0, 0.1);
+}
+
+.program-content :deep(h3) {
+  margin-top: 1.5rem;
+  margin-bottom: 0.75rem;
+}
+
+.program-content :deep(p) {
+  margin-bottom: 0.75rem;
 }
 </style>
