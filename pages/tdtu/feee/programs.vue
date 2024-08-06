@@ -1,9 +1,17 @@
 <template>
   <div class="container mx-auto px-4 py-8">
-    <h1 class="text-4xl font-bold mb-8 text-primary">Programs</h1>
+    <h1 class="text-4xl font-bold mb-8 text-white">Programs</h1>
+
+    <div v-if="pending" class="loading-indicator">
+      <USpinner class="text-primary" />
+      <span class="ml-2">Loading...</span>
+    </div>
 
     <div class="mb-8 flex flex-wrap items-center gap-4">
       <UInput v-model="searchQuery" placeholder="Search programs..." class="w-full sm:w-64 focus:ring-2 focus:ring-primary">
+        <template #left>
+          <UIcon name="i-heroicons-magnifying-glass" class="text-gray-400" />
+        </template>
         <template #right>
           <UButton v-if="searchQuery" icon="i-heroicons-x-mark" color="gray" variant="ghost" @click="searchQuery = ''" />
         </template>
@@ -96,6 +104,7 @@ const closeModal = () => {
   selectedProgram.value = null;
 };
 
+
 const resetFilters = () => {
   searchQuery.value = '';
   filterEducationLevel.value = '';
@@ -158,7 +167,6 @@ const handleKeyDown = (event) => {
   box-shadow: 0 0 0 3px rgba(var(--color-primary-rgb), 0.3);
 }
 
-/* Add a loading indicator */
 .loading-indicator {
   display: flex;
   justify-content: center;
@@ -181,8 +189,39 @@ const handleKeyDown = (event) => {
   100% { transform: rotate(360deg); }
 }
 
-/* Add a smooth transition for filter changes */
 .grid {
   transition: all 0.5s ease;
+}
+
+/* Improve button accessibility */
+.u-button:focus {
+  outline: 2px solid var(--color-primary);
+  outline-offset: 2px;
+}
+
+/* Add a smooth transition for modal */
+.modal-content {
+  transition: transform 0.3s ease, opacity 0.3s ease;
+}
+
+.modal-enter-from .modal-content,
+.modal-leave-to .modal-content {
+  transform: scale(0.9);
+  opacity: 0;
+}
+
+/* Improve select dropdown accessibility */
+.u-select:focus-within {
+  box-shadow: 0 0 0 3px rgba(var(--color-primary-rgb), 0.3);
+}
+
+/* Add a subtle animation for filter changes */
+@keyframes filterChange {
+  0% { transform: translateY(-5px); opacity: 0; }
+  100% { transform: translateY(0); opacity: 1; }
+}
+
+.grid > * {
+  animation: filterChange 0.3s ease-out;
 }
 </style>

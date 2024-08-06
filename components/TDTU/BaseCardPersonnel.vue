@@ -2,12 +2,13 @@
   <UCard class="base-card-personnel hover:shadow-lg transition-all duration-300">
     <div class="flex flex-col space-y-3">
       <h2 class="text-xl font-bold text-primary">{{ name }}</h2>
-      <p><strong class="text-secondary">Position:</strong> {{ position }}</p>
-      <p><strong class="text-secondary">Major:</strong> {{ major }}</p>
-      <p><strong class="text-secondary">Faculty:</strong> {{ faculty }}</p>
-      <p><strong class="text-secondary">Department:</strong> {{ department }}</p>
-      <p><strong class="text-secondary">Email:</strong> <a :href="`mailto:${email}`" class="text-primary hover:underline">{{ email }}</a></p>
-      <p><strong class="text-secondary">Office:</strong> {{ office }}</p>
+      
+      <p><UBadge color="primary" variant="solid">Position</UBadge> {{ position }}</p>
+      <p><UBadge color="primary" variant="solid">Major</UBadge> {{ major }}</p>
+      <p><UBadge color="primary" variant="solid">Faculty</UBadge> {{ faculty }}</p>
+      <p><UBadge color="primary" variant="solid">Department</UBadge> {{ department }}</p>
+      <p><UBadge color="primary" variant="solid">Email</UBadge> <a :href="`mailto:${email}`" class="text-primary hover:underline">{{ email }}</a></p>
+      <p><UBadge color="primary" variant="solid">Office</UBadge> {{ office }}</p>
     </div>
   </UCard>
 </template>
@@ -15,7 +16,7 @@
 <script setup>
 defineProps({
   faculty: { type: String, required: true },
-  name: { type: String, required: true },
+  name: { type: String, required: true }, 
   position: { type: String, required: true },
   major: { type: String, required: true },
   email: { type: String, required: true },

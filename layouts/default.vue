@@ -79,7 +79,6 @@ const links = [
   color: var(--color-text-light);
 }
 
-/* Add a subtle animation to the sidebar */
 .sidebar {
   animation: sidebarEntrance 0.5s ease-out;
 }
@@ -93,5 +92,32 @@ const links = [
     opacity: 1;
     transform: translateX(0);
   }
+}
+
+/* Improve sidebar accessibility */
+.sidebar:focus-within {
+  outline: 2px solid var(--color-primary);
+  outline-offset: -2px;
+}
+
+/* Add a subtle hover effect to navigation items */
+:deep(.u-vertical-navigation-item) {
+  position: relative;
+  overflow: hidden;
+}
+
+:deep(.u-vertical-navigation-item::after) {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 0;
+  width: 0;
+  height: 2px;
+  background-color: var(--color-primary);
+  transition: width 0.3s ease;
+}
+
+:deep(.u-vertical-navigation-item:hover::after) {
+  width: 100%;
 }
 </style>

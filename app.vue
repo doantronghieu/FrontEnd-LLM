@@ -3,7 +3,9 @@
     <BackgroundComponent />
     <UNotifications />
     <NuxtLayout class="flex-grow">
-      <NuxtPage />
+      <Transition name="page" mode="out-in">
+        <NuxtPage />
+      </Transition>
     </NuxtLayout>
     <ChatbotSmall />
     <NuxtRouteAnnouncer />
@@ -49,19 +51,16 @@ html {
   outline-offset: 2px;
 }
 
-/* Add transitions for smooth color changes */
 * {
   transition: color 0.3s ease, background-color 0.3s ease;
 }
 
-/* Improve readability on mobile devices */
 @media (max-width: 768px) {
   body {
     font-size: 16px;
   }
 }
 
-/* Add a custom scrollbar for better UX */
 ::-webkit-scrollbar {
   width: 8px;
 }
@@ -77,5 +76,29 @@ html {
 
 ::-webkit-scrollbar-thumb:hover {
   background: var(--color-secondary);
+}
+
+/* Add smooth page transitions */
+.page-enter-active,
+.page-leave-active {
+  transition: opacity 0.3s, transform 0.3s;
+}
+.page-enter-from,
+.page-leave-to {
+  opacity: 0;
+  transform: translateY(10px);
+}
+
+/* Improve accessibility */
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border-width: 0;
 }
 </style>

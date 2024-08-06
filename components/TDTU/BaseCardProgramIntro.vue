@@ -1,10 +1,11 @@
+import { _white } from '../../.nuxt/types/tailwind.config';
 <template>
   <UCard class="base-card-program-intro" @click="handleClick">
     <div class="flex flex-col space-y-3">
       <h2 class="text-xl font-bold text-primary">{{ studyField }}</h2>
-      <p><strong class="text-secondary">Faculty:</strong> {{ faculty }}</p>
-      <p><strong class="text-secondary">Program Type:</strong> {{ programType }}</p>
-      <p><strong class="text-secondary">Education Level:</strong> {{ educationLevel }}</p>
+      <p><UBadge color="primary" variant="solid">Faculty</UBadge> {{ faculty }}</p>
+      <p><UBadge color="primary" variant="solid">Program Type</UBadge> {{ programType }}</p>
+      <p><UBadge color="primary" variant="solid">Education Level</UBadge> {{ educationLevel }}</p>
     </div>
   </UCard>
 </template>
@@ -36,6 +37,12 @@ const handleClick = () => {
 .base-card-program-intro:hover {
   @apply transform scale-105 shadow-lg;
   box-shadow: 0 10px 15px rgba(0, 0, 0, 0.1);
+  background: linear-gradient(135deg, rgba(255,255,255,0.9) 0%, rgba(var(--color-primary-rgb), 0.1) 100%);
+  color: white;
+}
+
+.base-card-program-intro:hover h2 {
+  color: white;
 }
 
 .text-primary {
@@ -44,10 +51,6 @@ const handleClick = () => {
 
 .text-secondary {
   color: var(--color-secondary);
-}
-
-.base-card-program-intro:hover {
-  background: linear-gradient(135deg, rgba(255,255,255,0.9) 0%, rgba(var(--color-primary-rgb), 0.1) 100%);
 }
 
 .base-card-program-intro:focus {
@@ -68,7 +71,7 @@ const handleClick = () => {
 }
 
 .base-card-program-intro {
-  animation: introCardEntrance 0.5s ease-out;
+  animation: introCardEntrance 0.2s ease-out;
 }
 
 /* Improve readability on smaller screens */

@@ -115,7 +115,6 @@ ${props.contact}
   text-shadow: 0 1px 1px rgba(255, 255, 255, 0.5);
 }
 
-/* Add a subtle animation on card entrance */
 @keyframes detailCardEntrance {
   from {
     opacity: 0;
@@ -131,11 +130,46 @@ ${props.contact}
   animation: detailCardEntrance 0.5s ease-out;
 }
 
-/* Improve readability on smaller screens */
 @media (max-width: 640px) {
   .base-card-program-detail {
     font-size: 14px;
     padding: 1rem;
   }
+}
+
+/* Improve scrollbar appearance */
+.base-card-program-detail::-webkit-scrollbar {
+  width: 8px;
+}
+
+.base-card-program-detail::-webkit-scrollbar-track {
+  background: rgba(0, 0, 0, 0.1);
+  border-radius: 4px;
+}
+
+.base-card-program-detail::-webkit-scrollbar-thumb {
+  background: var(--color-primary);
+  border-radius: 4px;
+}
+
+.base-card-program-detail::-webkit-scrollbar-thumb:hover {
+  background: var(--color-secondary);
+}
+
+/* Add a subtle hover effect on links */
+.program-content :deep(a) {
+  color: var(--color-primary);
+  transition: color 0.3s ease;
+}
+
+.program-content :deep(a:hover) {
+  color: var(--color-secondary);
+  text-decoration: underline;
+}
+
+/* Improve accessibility */
+.base-card-program-detail:focus-within {
+  outline: 2px solid var(--color-primary);
+  outline-offset: 2px;
 }
 </style>

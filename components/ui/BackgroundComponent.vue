@@ -38,7 +38,6 @@ export default {
   100% { background-position: 0% 50%; }
 }
 
-/* Add subtle particle effect */
 .background::before {
   content: '';
   position: absolute;
@@ -53,5 +52,12 @@ export default {
 @keyframes particleAnimation {
   0% { background-position: 0 0; }
   100% { background-position: 1000px 1000px; }
+}
+
+/* Add responsive adjustments */
+@media (max-width: 768px) {
+  .background {
+    animation: gradientAnimation 15s ease infinite;
+  }
 }
 </style>
