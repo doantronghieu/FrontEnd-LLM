@@ -2,37 +2,28 @@
   <div class="default-layout">
     <nav class="top-nav">
       <div class="nav-content">
+        <div class="nav-links">
+          <NuxtLink v-for="link in links" :key="link.to" :to="link.to" class="nav-link">
+            <UIcon :name="link.icon" class="nav-link-icon" />
+            <span class="nav-link-text">{{ link.label }}</span>
+          </NuxtLink>
+        </div>
+      </div>
+    </nav>
+    <div class="sidebar-container">
+      <div class="logo-container">
         <img 
           src="/logo.png" 
           alt="Logo" 
-          class="logo" 
-          @click="toggleSidebar" 
-          :class="{ 'logo-active': isOpen }"
-          :aria-label="isOpen ? 'Close sidebar' : 'Open sidebar'"
+          class="logo"
         />
-        <div class="nav-links">
-          <NuxtLink v-for="link in links" :key="link.to" :to="link.to" class="nav-link">
-            {{ link.label }}
-          </NuxtLink>
-        </div>
-        <button @click="toggleSidebar" class="sidebar-toggle" :aria-label="isOpen ? 'Close sidebar' : 'Open sidebar'">
-          <UIcon :name="isOpen ? 'i-heroicons-x-mark' : 'i-heroicons-bars-3'" />
-        </button>
       </div>
-    </nav>
-    <UVerticalNavigation 
-      :links="links" 
-      class="sidebar" 
-      :class="{ 'sidebar-open': isOpen, 'sidebar-closed': !isOpen }"
-      v-show="isOpen"
-    >
-      <template #bottom>
-        <button @click="toggleSidebar" class="sidebar-toggle-arrow" :aria-label="isOpen ? 'Close sidebar' : 'Open sidebar'">
-          <UIcon :name="isOpen ? 'i-heroicons-chevron-left' : 'i-heroicons-chevron-right'" />
-        </button>
-      </template>
-    </UVerticalNavigation>
-    <main class="content" :class="{ 'content-shifted': isOpen }">
+      <UVerticalNavigation 
+        :links="links" 
+        class="sidebar"
+      />
+    </div>
+    <main class="content">
       <NuxtPage />
     </main>
   </div>
@@ -58,18 +49,11 @@ const links = [
     to: '/tdtu/feee/programs'
   }
 ];
-
-const isOpen = ref(false);
-
-const toggleSidebar = () => {
-  isOpen.value = !isOpen.value;
-};
 </script>
 
 <style scoped>
 .default-layout {
   display: flex;
-  flex-direction: column;
   min-height: 100vh;
 }
 
@@ -79,27 +63,20 @@ const toggleSidebar = () => {
   left: 0;
   right: 0;
   z-index: 30;
+  height: 60px;
+  background-color: rgba(255, 255, 255, 0.8);
+  backdrop-filter: blur(10px);
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
 .nav-content {
   display: flex;
   align-items: center;
-  justify-content: space-between;
-  padding: 10px 20px;
+  justify-content: flex-end;
+  padding: 0 20px;
   max-width: 1200px;
   margin: 0 auto;
-}
-
-.logo {
-  height: 40px;
-  width: auto;
-  cursor: pointer;
-  transition: transform var(--transition-speed) ease;
-}
-
-.logo:hover {
-  transform: scale(1.05);
+  height: 100%;
 }
 
 .nav-links {
@@ -108,100 +85,63 @@ const toggleSidebar = () => {
 }
 
 .nav-link {
-  color: var(--color-text-light);
+  color: var(--color-text);
   text-decoration: none;
   font-weight: 500;
-  transition: color var(--transition-speed) ease;
+  transition: all var(--transition-speed) ease;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  padding: 5px 10px;
+  border-radius: 4px;
+}
+
+.nav-link-icon {
+  font-size: 1.2em;
 }
 
 .nav-link:hover,
 .nav-link.router-link-active {
-  color: var(--color-secondary);
+  background-color: rgba(0, 0, 0, 0.05);
+  color: var(--color-primary);
 }
 
-.sidebar-toggle {
-  display: none;
-  background: none;
-  border: none;
-  color: var(--color-text-light);
-  font-size: 24px;
-  cursor: pointer;
+.sidebar-container {
+  width: 250px;
+  height: 100vh;
+  position: fixed;
+  top: 0;
+  left: 0;
+  background-color: rgba(255, 255, 255, 0.8);
+  backdrop-filter: blur(10px);
+  box-shadow: 2px 0 10px rgba(0, 0, 0, 0.1);
+  z-index: 40;
+  display: flex;
+  flex-direction: column;
+}
+
+.logo-container {
+  height: 60px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+.logo {
+  height: 40px;
+  width: auto;
 }
 
 .sidebar {
-  width: 13vw;
-  height: calc(100vh - 60px);
-  position: fixed;
-  top: 60px;
+  flex-grow: 1;
   overflow-y: auto;
-  background-color: rgba(255, 255, 255, 0.95);
-  box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
-  transition: all var(--transition-speed) ease;
-  z-index: 20;
-  left: 0;
 }
 
 .content {
   flex: 1;
   padding: 80px 20px 20px;
-  margin-left: 0;
-  transition: margin-left var(--transition-speed) ease;
-}
-
-.content-shifted {
   margin-left: 250px;
-}
-
-.sidebar-toggle-arrow {
-  position: absolute;
-  bottom: 20px;
-  right: -20px;
-  background-color: var(--color-primary);
-  color: var(--color-text-light);
-  border: none;
-  border-radius: 50%;
-  width: 40px;
-  height: 40px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  cursor: pointer;
-  transition: all var(--transition-speed) ease;
-}
-
-.sidebar-toggle-arrow:hover {
-  background-color: var(--color-secondary);
-}
-
-@media (max-width: 768px) {
-  .nav-links {
-    display: none;
-  }
-
-  .sidebar-toggle {
-    display: block;
-  }
-
-  .sidebar {
-    width: 250px;
-    transform: translateX(-100%);
-  }
-
-  .sidebar-open {
-    transform: translateX(0);
-  }
-
-  .sidebar-closed {
-    transform: translateX(-100%);
-  }
-
-  .content {
-    margin-left: 0;
-  }
-
-  .content-shifted {
-    margin-left: 0;
-  }
 }
 
 :deep(.u-vertical-navigation-item) {
@@ -209,32 +149,12 @@ const toggleSidebar = () => {
 }
 
 :deep(.u-vertical-navigation-item:hover) {
-  background-color: rgba(var(--color-primary-rgb), 0.1);
+  background-color: rgba(0, 0, 0, 0.05);
 }
 
 :deep(.u-vertical-navigation-item.router-link-active) {
-  background-color: var(--color-primary);
-  color: var(--color-text-light);
-}
-
-.sidebar {
-  animation: sidebarEntrance 0.5s ease-out;
-}
-
-@keyframes sidebarEntrance {
-  from {
-    opacity: 0;
-    transform: translateX(-20px);
-  }
-  to {
-    opacity: 1;
-    transform: translateX(0);
-  }
-}
-
-.sidebar:focus-within {
-  outline: 2px solid var(--color-primary);
-  outline-offset: -2px;
+  background-color: rgba(var(--color-primary-rgb), 0.1);
+  color: var(--color-primary);
 }
 
 :deep(.u-vertical-navigation-item) {
@@ -255,5 +175,31 @@ const toggleSidebar = () => {
 
 :deep(.u-vertical-navigation-item:hover::after) {
   width: 100%;
+}
+
+@media (max-width: 768px) {
+  .sidebar-container {
+    width: 60px;
+  }
+
+  .logo {
+    height: 30px;
+  }
+
+  .content {
+    margin-left: 60px;
+  }
+
+  .nav-link-text {
+    display: none;
+  }
+
+  :deep(.u-vertical-navigation-item-label) {
+    display: none;
+  }
+
+  :deep(.u-vertical-navigation-item) {
+    justify-content: center;
+  }
 }
 </style>
