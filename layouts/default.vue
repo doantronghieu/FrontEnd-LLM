@@ -3,7 +3,13 @@
     <button @click="toggleSidebar" class="sidebar-toggle" :aria-label="isOpen ? 'Close sidebar' : 'Open sidebar'">
       <UIcon :name="isOpen ? 'i-heroicons-x-mark' : 'i-heroicons-menu'" />
     </button>
-    <UVerticalNavigation :links="links" class="sidebar" :class="{ 'sidebar-open': isOpen, 'sidebar-closed': !isOpen }" />
+    <UVerticalNavigation :links="links" class="sidebar" :class="{ 'sidebar-open': isOpen, 'sidebar-closed': !isOpen }">
+      <template #bottom>
+        <button @click="toggleSidebar" class="sidebar-toggle-arrow" :aria-label="isOpen ? 'Close sidebar' : 'Open sidebar'">
+          <UIcon :name="isOpen ? 'i-heroicons-chevron-left' : 'i-heroicons-chevron-right'" />
+        </button>
+      </template>
+    </UVerticalNavigation>
     <main class="content" :class="{ 'content-shifted': isOpen }">
       <NuxtPage />
     </main>
@@ -45,7 +51,7 @@ const toggleSidebar = () => {
 }
 
 .sidebar {
-  width: 240px;
+  width: 12vw;
   height: 100vh;
   position: fixed;
   overflow-y: auto;
@@ -59,14 +65,14 @@ const toggleSidebar = () => {
 .content {
   flex: 1;
   padding: 20px;
-  margin-left: 240px;
+  margin-left: 12vw;
   transition: margin-left 0.3s ease;
 }
 
 .sidebar-toggle {
   position: fixed;
   top: 10px;
-  left: 10px;
+  right: 10px;
   z-index: 30;
   background-color: var(--color-primary);
   color: white;
@@ -82,6 +88,27 @@ const toggleSidebar = () => {
 }
 
 .sidebar-toggle:hover {
+  background-color: var(--color-secondary);
+}
+
+.sidebar-toggle-arrow {
+  position: absolute;
+  bottom: 20px;
+  right: -20px;
+  background-color: var(--color-primary);
+  color: white;
+  border: none;
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.sidebar-toggle-arrow:hover {
   background-color: var(--color-secondary);
 }
 

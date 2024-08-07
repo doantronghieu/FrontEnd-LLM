@@ -23,7 +23,7 @@ import BackgroundComponent from '~/components/ui/BackgroundComponent.vue';
   --color-secondary: #f39c12;
   --color-background: #f5f7fa;
   --color-text: #333333;
-  --color-text-light: #ffffff;
+  --color-text-light: #000000;
   --font-sans: 'Roboto', 'Arial', sans-serif;
 }
 
@@ -102,14 +102,16 @@ html {
   border-width: 0;
 }
 
+/* Add smooth transitions for color scheme changes */
 @media (prefers-color-scheme: dark) {
   :root {
     --color-background: #1a1a1a;
     --color-text: #000000;
-    --color-text-light: #cccccc;
+    --color-text-light: #333333;
   }
 }
 
+/* Improve focus styles for better accessibility */
 a:focus,
 button:focus,
 input:focus,
@@ -119,6 +121,7 @@ textarea:focus {
   outline-offset: 2px;
 }
 
+/* Add a subtle animation for page transitions */
 .page-enter-active,
 .page-leave-active {
   transition: opacity 0.5s ease, transform 0.5s ease;
