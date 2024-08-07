@@ -22,10 +22,13 @@ import BackgroundComponent from '~/components/ui/BackgroundComponent.vue';
   --color-primary: #4a90e2;
   --color-secondary: #f39c12;
   --color-background: #f5f7fa;
-  --color-text: #000000;
+  --color-text: #333333;
   --color-text-light: #ffffff;
+  --color-sidebar-bg: rgba(255, 255, 255, 0.8);
+  --color-sidebar-text: #000000;
   --font-sans: 'Roboto', 'Arial', sans-serif;
   --transition-speed: 0.3s;
+  --box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
 
 body {
@@ -109,6 +112,8 @@ html {
     --color-background: #1a1a1a;
     --color-text: #000000;
     --color-text-light: #cccccc;
+    --color-sidebar-bg: rgba(40, 40, 40, 0.8);
+    --color-sidebar-text: #ffffff;
   }
 }
 
