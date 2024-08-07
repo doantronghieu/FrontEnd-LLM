@@ -38,9 +38,9 @@ const links = [
   height: 100vh;
   position: fixed;
   overflow-y: auto;
-  background-color: rgba(255, 255, 255, 0.9);
+  background-color: rgba(255, 255, 255, 0.95);
   box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
-  transition: width 0.3s ease, transform 0.3s ease;
+  transition: all 0.3s ease;
   z-index: 20;
 }
 
@@ -66,7 +66,7 @@ const links = [
 }
 
 :deep(.u-vertical-navigation-item) {
-  transition: background-color 0.3s ease, color 0.3s ease;
+  transition: all 0.3s ease;
 }
 
 :deep(.u-vertical-navigation-item:hover) {
@@ -93,13 +93,11 @@ const links = [
   }
 }
 
-/* Improve sidebar accessibility */
 .sidebar:focus-within {
   outline: 2px solid var(--color-primary);
   outline-offset: -2px;
 }
 
-/* Add a subtle hover effect to navigation items */
 :deep(.u-vertical-navigation-item) {
   position: relative;
   overflow: hidden;
@@ -108,7 +106,7 @@ const links = [
 :deep(.u-vertical-navigation-item::after) {
   content: '';
   position: absolute;
-  top: 50%;
+  bottom: 0;
   left: 0;
   width: 0;
   height: 2px;

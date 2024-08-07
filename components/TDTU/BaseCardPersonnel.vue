@@ -1,22 +1,30 @@
 <template>
   <UCard class="base-card-personnel hover:shadow-lg transition-all duration-300">
-    <div class="flex flex-col space-y-3">
-      <h2 class="text-xl font-bold text-primary">{{ name }}</h2>
+    <div class="flex flex-col space-y-4">
+      <h2 class="text-2xl font-bold text-primary">{{ name }}</h2>
       
-      <p><UBadge color="primary" variant="solid">Position</UBadge> {{ position }}</p>
-      <p><UBadge color="primary" variant="solid">Major</UBadge> {{ major }}</p>
-      <p><UBadge color="primary" variant="solid">Faculty</UBadge> {{ faculty }}</p>
-      <p><UBadge color="primary" variant="solid">Department</UBadge> {{ department }}</p>
-      <p><UBadge color="primary" variant="solid">Email</UBadge> <a :href="`mailto:${email}`" class="text-primary hover:underline">{{ email }}</a></p>
+      <div v-for="(value, key) in cardInfo" :key="key" class="flex items-center space-x-2">
+        <UBadge color="primary" class="w-24 text-center">{{ key }}</UBadge>
+        <p class="flex-1">{{ value }}</p>
+      </div>
       
+      <a :href="`mailto:${email}`" class="text-primary hover:underline flex items-center space-x-2">
+        <UIcon name="i-heroicons-envelope" />
+        <span>{{ email }}</span>
+      </a>
       
-      <p><UBadge color="primary" variant="solid" icon="i-heroicons:map-pin">Office</UBadge> {{ office }}</p>
+      <div class="flex items-center space-x-2">
+        <UIcon name="i-heroicons-map-pin" class="text-primary" />
+        <p>{{ office }}</p>
+      </div>
     </div>
   </UCard>
 </template>
 
 <script setup>
-defineProps({
+import { computed } from 'vue';
+
+const props = defineProps({
   faculty: { type: String, required: true },
   name: { type: String, required: true }, 
   position: { type: String, required: true },
@@ -25,14 +33,21 @@ defineProps({
   office: { type: String, required: true },
   department: { type: String, required: true },
 });
+
+const cardInfo = computed(() => ({
+  Position: props.position,
+  Major: props.major,
+  Faculty: props.faculty,
+  Department: props.department,
+}));
 </script>
 
 <style scoped>
 .base-card-personnel {
   max-width: 400px;
   margin: 1rem;
-  background-color: rgba(255, 255, 255, 0.9);
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  background-color: rgba(255, 255, 255, 0.95);
+  transition: all 0.3s ease;
   border-radius: 10px;
   overflow: hidden;
 }
@@ -46,27 +61,14 @@ defineProps({
   color: var(--color-primary);
 }
 
-.text-secondary {
-  color: var(--color-secondary);
-}
-
-a.text-primary {
-  transition: color 0.3s ease;
-}
-
-a.text-primary:hover {
-  color: var(--color-secondary);
-}
-
-/* Add a subtle animation on card entrance */
 @keyframes cardEntrance {
   from {
     opacity: 0;
-    transform: scale(0.8);
+    transform: scale(0.8) translateY(20px);
   }
   to {
     opacity: 1;
-    transform: scale(1);
+    transform: scale(1) translateY(0);
   }
 }
 
@@ -74,7 +76,6 @@ a.text-primary:hover {
   animation: cardEntrance 0.5s ease-out;
 }
 
-/* Improve readability on smaller screens */
 @media (max-width: 640px) {
   .base-card-personnel {
     font-size: 14px;
