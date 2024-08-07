@@ -4,7 +4,7 @@
       <h2 class="text-2xl font-bold text-primary">{{ name }}</h2>
       
       <div v-for="(value, key) in cardInfo" :key="key" class="flex items-center space-x-2">
-        <UBadge color="primary" class="w-24 text-center">{{ key }}</UBadge>
+        <UBadge color="primary" class="w-20 text-center">{{ key }}</UBadge>
         <p class="flex-1">{{ value }}</p>
       </div>
       
@@ -80,5 +80,19 @@ const cardInfo = computed(() => ({
   .base-card-personnel {
     font-size: 14px;
   }
+}
+
+.base-card-personnel:focus-within {
+  outline: 2px solid var(--color-primary);
+  outline-offset: 2px;
+}
+
+.base-card-personnel a:focus {
+  outline: 2px solid var(--color-primary);
+  outline-offset: 2px;
+}
+
+.base-card-personnel:hover .text-primary {
+  color: var(--color-secondary);
 }
 </style>

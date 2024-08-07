@@ -137,7 +137,6 @@ ${props.contact}
   }
 }
 
-/* Improve scrollbar appearance */
 .base-card-program-detail::-webkit-scrollbar {
   width: 8px;
 }
@@ -156,7 +155,6 @@ ${props.contact}
   background: var(--color-secondary);
 }
 
-/* Add a subtle hover effect on links */
 .program-content :deep(a) {
   color: var(--color-primary);
   transition: color 0.3s ease;
@@ -167,9 +165,61 @@ ${props.contact}
   text-decoration: underline;
 }
 
-/* Improve accessibility */
 .base-card-program-detail:focus-within {
   outline: 2px solid var(--color-primary);
   outline-offset: 2px;
+}
+
+.program-content :deep(h3) {
+  color: var(--color-primary);
+  font-weight: bold;
+  margin-top: 1.5em;
+  margin-bottom: 0.5em;
+}
+
+.program-content :deep(ul), .program-content :deep(ol) {
+  padding-left: 1.5em;
+}
+
+.program-content :deep(li) {
+  margin-bottom: 0.5em;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .base-card-program-detail {
+    animation: none;
+  }
+}
+
+.close-button:focus {
+  outline: 2px solid var(--color-primary);
+  outline-offset: 2px;
+}
+
+.program-content :deep(table) {
+  width: 100%;
+  border-collapse: collapse;
+  margin-bottom: 1em;
+}
+
+.program-content :deep(th), .program-content :deep(td) {
+  border: 1px solid #ddd;
+  padding: 8px;
+  text-align: left;
+}
+
+.program-content :deep(th) {
+  background-color: var(--color-primary);
+  color: white;
+}
+
+.program-content :deep(tr:nth-child(even)) {
+  background-color: #f2f2f2;
+}
+
+@media (max-width: 768px) {
+  .program-content :deep(table) {
+    font-size: 14px;
+  }
 }
 </style>

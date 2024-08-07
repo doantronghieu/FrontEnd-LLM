@@ -1,13 +1,18 @@
 <template>
   <div class="default-layout">
-    <UVerticalNavigation :links="links" class="sidebar" />
-    <main class="content">
+    <button @click="toggleSidebar" class="sidebar-toggle" :aria-label="isOpen ? 'Close sidebar' : 'Open sidebar'">
+      <UIcon :name="isOpen ? 'i-heroicons-x-mark' : 'i-heroicons-menu'" />
+    </button>
+    <UVerticalNavigation :links="links" class="sidebar" :class="{ 'sidebar-open': isOpen, 'sidebar-closed': !isOpen }" />
+    <main class="content" :class="{ 'content-shifted': isOpen }">
       <NuxtPage />
     </main>
   </div>
 </template>
 
 <script setup>
+import { ref } from 'vue';
+
 const links = [
   {
     label: 'Home',
@@ -24,7 +29,13 @@ const links = [
     icon: 'i-heroicons-academic-cap',
     to: '/tdtu/feee/programs'
   }
-]
+];
+
+const isOpen = ref(false);
+
+const toggleSidebar = () => {
+  isOpen.value = !isOpen.value;
+};
 </script>
 
 <style scoped>
@@ -42,6 +53,7 @@ const links = [
   box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
   transition: all 0.3s ease;
   z-index: 20;
+  left: 0;
 }
 
 .content {
@@ -51,8 +63,39 @@ const links = [
   transition: margin-left 0.3s ease;
 }
 
+.sidebar-toggle {
+  position: fixed;
+  top: 10px;
+  left: 10px;
+  z-index: 30;
+  background-color: var(--color-primary);
+  color: white;
+  border: none;
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.sidebar-toggle:hover {
+  background-color: var(--color-secondary);
+}
+
 @media (max-width: 768px) {
   .sidebar {
+    width: 200px;
+    transform: translateX(-100%);
+  }
+
+  .sidebar-open {
+    transform: translateX(0);
+  }
+
+  .sidebar-closed {
     transform: translateX(-100%);
   }
 
@@ -60,8 +103,8 @@ const links = [
     margin-left: 0;
   }
 
-  .sidebar:focus-within {
-    transform: translateX(0);
+  .content-shifted {
+    margin-left: 200px;
   }
 }
 
