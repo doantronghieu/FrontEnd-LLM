@@ -22,7 +22,7 @@ import BackgroundComponent from '~/components/ui/BackgroundComponent.vue';
   --color-primary: #4a90e2;
   --color-secondary: #f39c12;
   --color-background: #f5f7fa;
-  --color-text: #333333;
+  --color-text: #000000;
   --color-text-light: #ffffff;
   --font-sans: 'Roboto', 'Arial', sans-serif;
   --transition-speed: 0.3s;
