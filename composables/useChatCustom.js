@@ -26,7 +26,13 @@ export function useChatCustom() {
     userId = null,
     sessionId = 'default'
   ) => {
-    const ip = await getUserIp();
+    let ip;
+    try {
+      ip = await getUserIp();
+    } catch (error) {
+      console.error('Failed to get user IP:', error.message);
+      ip = null; // Fallback to null if IP fetching fails
+    }
     
     const url = `${serverFastapi}/stream-agent`;
     const params = new URLSearchParams({
