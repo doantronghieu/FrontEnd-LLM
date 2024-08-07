@@ -3,7 +3,7 @@
     <h1 class="text-3xl font-bold mb-6 text-white">Personnel</h1>
     
     <div v-if="pending" class="loading-indicator">
-      <USpinner class="text-primary" />
+      <UProgress animation="carousel" />
       <span class="ml-2">Loading...</span>
     </div>
 

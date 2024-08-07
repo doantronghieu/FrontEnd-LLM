@@ -2,7 +2,6 @@
   <div class="default-layout">
     <UVerticalNavigation :links="links" class="sidebar" />
     <main class="content">
-      <Breadcrumbs class="mb-4" />
       <NuxtPage />
     </main>
   </div>

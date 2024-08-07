@@ -24,7 +24,8 @@ defineProps({
 
 const renderMarkdown = (content) => {
   const rawHtml = marked.parse(content);
-  return DOMPurify.sanitize(rawHtml);
+  return rawHtml
+  // return DOMPurify.sanitize(rawHtml);
 };
 </script>
 

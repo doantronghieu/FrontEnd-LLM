@@ -3,8 +3,7 @@
     <h1 class="text-4xl font-bold mb-8 text-white">Programs</h1>
 
     <div v-if="pending" class="loading-indicator">
-      <USpinner class="text-primary" />
-      <span class="ml-2">Loading...</span>
+      <UProgress animation="carousel" />
     </div>
 
     <div class="mb-8 flex flex-wrap items-center gap-4">
