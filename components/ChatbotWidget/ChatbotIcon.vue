@@ -1,5 +1,5 @@
 <template>
-  <div v-if="visible" class="chatbot-icon" @click="toggleChatWindow">
+  <div v-if="visible" class="chatbot-icon" @click="toggleChatWindow" tabindex="0" role="button" aria-label="Open chat">
     <img src="/assets/bot-icon.gif" alt="Chatbot Icon" />
   </div>
 </template>
@@ -32,13 +32,14 @@ const toggleChatWindow = () => {
   background-color: #ffffff;
 }
 
-.chatbot-icon:hover {
+.chatbot-icon:hover,
+.chatbot-icon:focus {
   transform: scale(1.1) rotate(5deg);
   box-shadow: 0 6px 16px rgba(0, 0, 0, 0.3);
+  outline: none;
 }
 
 .chatbot-icon:focus {
-  outline: none;
   box-shadow: 0 0 0 3px rgba(74, 144, 226, 0.5), 0 4px 12px rgba(0, 0, 0, 0.2);
 }
 
@@ -49,7 +50,8 @@ const toggleChatWindow = () => {
   transition: filter 0.3s ease-in-out;
 }
 
-.chatbot-icon:hover img {
+.chatbot-icon:hover img,
+.chatbot-icon:focus img {
   filter: brightness(1.1);
 }
 

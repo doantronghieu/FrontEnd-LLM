@@ -1,7 +1,11 @@
 <template>
-  <div>
+  <div class="chatbot-small">
     <ChatbotIcon @toggle-chat-window="toggleChatWindow" :visible="true" />
-    <ChatWindow :visible="chatWindowVisible" @fullscreen-change="handleFullscreenChange" @close="closeChatWindow"/>
+    <ChatWindow 
+      :visible="chatWindowVisible" 
+      @fullscreen-change="handleFullscreenChange" 
+      @close="closeChatWindow"
+    />
   </div>
 </template>
 
@@ -28,3 +32,12 @@ const handleFullscreenChange = (fullscreen) => {
   }
 };
 </script>
+
+<style scoped>
+.chatbot-small {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  z-index: 9999;
+}
+</style>

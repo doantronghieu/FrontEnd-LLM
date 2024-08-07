@@ -7,9 +7,19 @@
       placeholder="Type a message..." 
       :disabled="isLoading"
       ref="inputField"
+      aria-label="Message input"
     />
-    <button class="btn-send-msg" @click="sendMessage" :disabled="isLoading || !message.trim()">
-      <Icon :name="isLoading ? 'eos-icons:loading' : 'material-symbols:send-outline-rounded'" size="1.5em" :color="isLoading || !message.trim() ? '#999' : '#007bff'"/>
+    <button 
+      class="btn-send-msg" 
+      @click="sendMessage" 
+      :disabled="isDisabled"
+      aria-label="Send message"
+    >
+      <Icon 
+        :name="isLoading ? 'eos-icons:loading' : 'material-symbols:send-outline-rounded'" 
+        size="1.5em" 
+        :color="isDisabled ? '#999' : 'var(--color-primary)'"
+      />
     </button>
   </div>
 </template>
@@ -41,7 +51,7 @@ const isDisabled = computed(() => isLoading.value || !message.value.trim());
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 10px;
+  padding: 12px;
   border-top: 1px solid #eee;
   background-color: #ffffff;
 }
@@ -59,8 +69,8 @@ const isDisabled = computed(() => isLoading.value || !message.value.trim());
 }
 
 .message-input input:focus {
-  border-color: #007bff;
-  box-shadow: 0 0 0 2px rgba(0, 123, 255, 0.25);
+  border-color: var(--color-primary);
+  box-shadow: 0 0 0 2px rgba(74, 144, 226, 0.25);
 }
 
 .message-input input:disabled {
@@ -80,7 +90,8 @@ const isDisabled = computed(() => isLoading.value || !message.value.trim());
   justify-content: center;
 }
 
-.btn-send-msg:hover:not(:disabled) {
+.btn-send-msg:hover:not(:disabled),
+.btn-send-msg:focus:not(:disabled) {
   background-color: #e0e0e0;
   transform: scale(1.1);
 }
@@ -92,7 +103,7 @@ const isDisabled = computed(() => isLoading.value || !message.value.trim());
 
 @media (max-width: 768px) {
   .message-input {
-    padding: 8px;
+    padding: 10px;
   }
   
   .message-input input {

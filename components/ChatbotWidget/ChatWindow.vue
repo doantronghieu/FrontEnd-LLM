@@ -4,24 +4,24 @@
       <div class="chat-header">
         <div class="scroll-buttons">
           <UTooltip text="Maximize/Minimize">
-            <button @click="toggleFullscreen">
-              <Icon :name="isFullscreen ? 'material-symbols:fullscreen-exit' : 'material-symbols:fullscreen'" size="1.2em" color="white"/>
+            <button @click="toggleFullscreen" class="header-button">
+              <Icon :name="isFullscreen ? 'material-symbols:fullscreen-exit' : 'material-symbols:fullscreen'" size="1.2em" />
             </button>
           </UTooltip>
           
           <UTooltip text="Scroll up">
-            <button @click="scrollToTop">
-              <Icon name="material-symbols:arrow-upward" size="1.2em" color="white"/>
+            <button @click="scrollToTop" class="header-button">
+              <Icon name="material-symbols:arrow-upward" size="1.2em" />
             </button>
           </UTooltip>
           <UTooltip text="Scroll down">
-            <button @click="scrollToBottom">
-              <Icon name="material-symbols:arrow-downward" size="1.2em" color="white"/>
+            <button @click="scrollToBottom" class="header-button">
+              <Icon name="material-symbols:arrow-downward" size="1.2em" />
             </button>
           </UTooltip>
         </div>
   
-        <span>Chat</span>
+        <span class="chat-title">Chat</span>
   
         <div class="chat-providers">
           <ChatProviderIcon
@@ -43,8 +43,8 @@
           />
           
           <UTooltip text="Close">
-            <button @click="closeChat" class="close-button">
-              <Icon name="material-symbols:close" size="1.2em" color="white"/>
+            <button @click="closeChat" class="header-button close-button">
+              <Icon name="material-symbols:close" size="1.2em" />
             </button>
           </UTooltip>
         </div>
@@ -227,9 +227,8 @@ const streamFakeMessage = (sender, message) => {
   flex-direction: column;
   border-radius: 12px;
   overflow: hidden;
-  transition: all 0.3s ease-in-out;
-  z-index: 9999;
   transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+  z-index: 9999;
 }
 
 .chat-window.fullscreen {
@@ -237,14 +236,12 @@ const streamFakeMessage = (sender, message) => {
   height: 80vh;
   bottom: 10vh;
   right: 10vw;
-  transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
 }
 
 .chat-header {
-  background-color: #007bff;
+  background-color: var(--color-primary);
   color: white;
   padding: 10px;
-  cursor: default;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -256,7 +253,7 @@ const streamFakeMessage = (sender, message) => {
   align-items: center;
 }
 
-.chat-header span {
+.chat-title {
   font-weight: bold;
   font-size: 1.1em;
 }
@@ -273,16 +270,17 @@ const streamFakeMessage = (sender, message) => {
   gap: 5px;
 }
 
-.scroll-buttons button, .close-button {
+.header-button {
   cursor: pointer;
   transition: transform 0.2s ease-in-out, background-color 0.2s ease-in-out;
   padding: 5px;
   background: none;
   border: none;
   border-radius: 50%;
+  color: white;
 }
 
-.scroll-buttons button:hover, .close-button:hover {
+.header-button:hover {
   transform: scale(1.2);
   background-color: rgba(255, 255, 255, 0.2);
 }
@@ -298,23 +296,6 @@ const streamFakeMessage = (sender, message) => {
 .fade-enter-from, .fade-leave-to {
   opacity: 0;
   transform: translateY(20px);
-}
-
-@media (max-width: 768px) {
-  .chat-window {
-    width: 90vw;
-    height: 80vh;
-    bottom: 10vh;
-    right: 5vw;
-  }
-
-  .chat-window.fullscreen {
-    width: 100vw;
-    height: 100vh;
-    bottom: 0;
-    right: 0;
-    border-radius: 0;
-  }
 }
 
 @media (max-width: 768px) {

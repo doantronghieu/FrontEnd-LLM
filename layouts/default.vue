@@ -1,9 +1,31 @@
 <template>
   <div class="default-layout">
-    <button @click="toggleSidebar" class="sidebar-toggle" :aria-label="isOpen ? 'Close sidebar' : 'Open sidebar'">
-      <UIcon :name="isOpen ? 'i-heroicons-x-mark' : 'i-heroicons-menu'" />
-    </button>
-    <UVerticalNavigation :links="links" class="sidebar" :class="{ 'sidebar-open': isOpen, 'sidebar-closed': !isOpen }">
+    <nav class="top-nav">
+      <div class="nav-content">
+        <img 
+          src="/logo.png" 
+          alt="Logo" 
+          class="logo" 
+          @click="toggleSidebar" 
+          :class="{ 'logo-active': isOpen }"
+          :aria-label="isOpen ? 'Close sidebar' : 'Open sidebar'"
+        />
+        <div class="nav-links">
+          <NuxtLink v-for="link in links" :key="link.to" :to="link.to" class="nav-link">
+            {{ link.label }}
+          </NuxtLink>
+        </div>
+        <button @click="toggleSidebar" class="sidebar-toggle" :aria-label="isOpen ? 'Close sidebar' : 'Open sidebar'">
+          <UIcon :name="isOpen ? 'i-heroicons-x-mark' : 'i-heroicons-bars-3'" />
+        </button>
+      </div>
+    </nav>
+    <UVerticalNavigation 
+      :links="links" 
+      class="sidebar" 
+      :class="{ 'sidebar-open': isOpen, 'sidebar-closed': !isOpen }"
+      v-show="isOpen"
+    >
       <template #bottom>
         <button @click="toggleSidebar" class="sidebar-toggle-arrow" :aria-label="isOpen ? 'Close sidebar' : 'Open sidebar'">
           <UIcon :name="isOpen ? 'i-heroicons-chevron-left' : 'i-heroicons-chevron-right'" />
@@ -47,48 +69,87 @@ const toggleSidebar = () => {
 <style scoped>
 .default-layout {
   display: flex;
+  flex-direction: column;
   min-height: 100vh;
 }
 
-.sidebar {
-  width: 12vw;
-  height: 100vh;
+.top-nav {
   position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 30;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.nav-content {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px 20px;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.logo {
+  height: 40px;
+  width: auto;
+  cursor: pointer;
+  transition: transform var(--transition-speed) ease;
+}
+
+.logo:hover {
+  transform: scale(1.05);
+}
+
+.nav-links {
+  display: flex;
+  gap: 20px;
+}
+
+.nav-link {
+  color: var(--color-text-light);
+  text-decoration: none;
+  font-weight: 500;
+  transition: color var(--transition-speed) ease;
+}
+
+.nav-link:hover,
+.nav-link.router-link-active {
+  color: var(--color-secondary);
+}
+
+.sidebar-toggle {
+  display: none;
+  background: none;
+  border: none;
+  color: var(--color-text-light);
+  font-size: 24px;
+  cursor: pointer;
+}
+
+.sidebar {
+  width: 13vw;
+  height: calc(100vh - 60px);
+  position: fixed;
+  top: 60px;
   overflow-y: auto;
   background-color: rgba(255, 255, 255, 0.95);
   box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
-  transition: all 0.3s ease;
+  transition: all var(--transition-speed) ease;
   z-index: 20;
   left: 0;
 }
 
 .content {
   flex: 1;
-  padding: 20px;
-  margin-left: 12vw;
-  transition: margin-left 0.3s ease;
+  padding: 80px 20px 20px;
+  margin-left: 0;
+  transition: margin-left var(--transition-speed) ease;
 }
 
-.sidebar-toggle {
-  position: fixed;
-  top: 10px;
-  right: 10px;
-  z-index: 30;
-  background-color: var(--color-primary);
-  color: white;
-  border: none;
-  border-radius: 50%;
-  width: 40px;
-  height: 40px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  cursor: pointer;
-  transition: background-color 0.3s ease;
-}
-
-.sidebar-toggle:hover {
-  background-color: var(--color-secondary);
+.content-shifted {
+  margin-left: 250px;
 }
 
 .sidebar-toggle-arrow {
@@ -96,7 +157,7 @@ const toggleSidebar = () => {
   bottom: 20px;
   right: -20px;
   background-color: var(--color-primary);
-  color: white;
+  color: var(--color-text-light);
   border: none;
   border-radius: 50%;
   width: 40px;
@@ -105,7 +166,7 @@ const toggleSidebar = () => {
   align-items: center;
   justify-content: center;
   cursor: pointer;
-  transition: all 0.3s ease;
+  transition: all var(--transition-speed) ease;
 }
 
 .sidebar-toggle-arrow:hover {
@@ -113,8 +174,16 @@ const toggleSidebar = () => {
 }
 
 @media (max-width: 768px) {
+  .nav-links {
+    display: none;
+  }
+
+  .sidebar-toggle {
+    display: block;
+  }
+
   .sidebar {
-    width: 200px;
+    width: 250px;
     transform: translateX(-100%);
   }
 
@@ -131,12 +200,12 @@ const toggleSidebar = () => {
   }
 
   .content-shifted {
-    margin-left: 200px;
+    margin-left: 0;
   }
 }
 
 :deep(.u-vertical-navigation-item) {
-  transition: all 0.3s ease;
+  transition: all var(--transition-speed) ease;
 }
 
 :deep(.u-vertical-navigation-item:hover) {
@@ -181,7 +250,7 @@ const toggleSidebar = () => {
   width: 0;
   height: 2px;
   background-color: var(--color-primary);
-  transition: width 0.3s ease;
+  transition: width var(--transition-speed) ease;
 }
 
 :deep(.u-vertical-navigation-item:hover::after) {

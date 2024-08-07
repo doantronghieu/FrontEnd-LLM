@@ -23,8 +23,9 @@ import BackgroundComponent from '~/components/ui/BackgroundComponent.vue';
   --color-secondary: #f39c12;
   --color-background: #f5f7fa;
   --color-text: #333333;
-  --color-text-light: #000000;
+  --color-text-light: #ffffff;
   --font-sans: 'Roboto', 'Arial', sans-serif;
+  --transition-speed: 0.3s;
 }
 
 body {
@@ -54,7 +55,7 @@ html {
 }
 
 * {
-  transition: color 0.3s ease, background-color 0.3s ease;
+  transition: color var(--transition-speed) ease, background-color var(--transition-speed) ease;
 }
 
 @media (max-width: 768px) {
@@ -82,8 +83,9 @@ html {
 
 .page-enter-active,
 .page-leave-active {
-  transition: opacity 0.5s, transform 0.5s;
+  transition: opacity var(--transition-speed), transform var(--transition-speed);
 }
+
 .page-enter-from,
 .page-leave-to {
   opacity: 0;
@@ -102,16 +104,14 @@ html {
   border-width: 0;
 }
 
-/* Add smooth transitions for color scheme changes */
 @media (prefers-color-scheme: dark) {
   :root {
     --color-background: #1a1a1a;
     --color-text: #000000;
-    --color-text-light: #333333;
+    --color-text-light: #cccccc;
   }
 }
 
-/* Improve focus styles for better accessibility */
 a:focus,
 button:focus,
 input:focus,
@@ -121,10 +121,9 @@ textarea:focus {
   outline-offset: 2px;
 }
 
-/* Add a subtle animation for page transitions */
 .page-enter-active,
 .page-leave-active {
-  transition: opacity 0.5s ease, transform 0.5s ease;
+  transition: opacity var(--transition-speed) ease, transform var(--transition-speed) ease;
 }
 
 .page-enter-from,

@@ -24,8 +24,7 @@ defineProps({
 
 const renderMarkdown = (content) => {
   const rawHtml = marked.parse(content);
-  return rawHtml
-  // return DOMPurify.sanitize(rawHtml);
+  return DOMPurify.sanitize(rawHtml);
 };
 </script>
 
@@ -33,7 +32,7 @@ const renderMarkdown = (content) => {
 .message-container {
   display: flex;
   width: 100%;
-  margin: 8px 0;
+  margin: 12px 0;
 }
 
 .message-container.user-message {
@@ -41,7 +40,7 @@ const renderMarkdown = (content) => {
 }
 
 .message-bubble {
-  padding: 12px;
+  padding: 12px 16px;
   border-radius: 18px;
   max-width: 80%;
   box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
@@ -49,24 +48,24 @@ const renderMarkdown = (content) => {
 }
 
 .user-message .message-bubble {
-  background-color: #007bff;
+  background-color: var(--color-primary);
   color: white;
   border-bottom-right-radius: 4px;
 }
 
 .chatbot-message {
   background-color: #f0f0f0;
-  color: #333;
+  color: var(--color-text);
   border-bottom-left-radius: 4px;
 }
 
 .message-content {
   word-wrap: break-word;
-  line-height: 1.4;
+  line-height: 1.5;
 }
 
 .message-content :deep(p) {
-  margin: 0 0 8px 0;
+  margin: 0 0 10px 0;
 }
 
 .message-content :deep(p:last-child) {
@@ -93,10 +92,10 @@ const renderMarkdown = (content) => {
 
 .message-content :deep(pre) {
   background-color: rgba(0, 0, 0, 0.05);
-  padding: 8px;
+  padding: 12px;
   border-radius: 4px;
   overflow-x: auto;
-  margin: 8px 0;
+  margin: 10px 0;
   white-space: pre-wrap;
   word-break: break-word;
 }
@@ -105,7 +104,7 @@ const renderMarkdown = (content) => {
   max-width: 100%;
   height: auto;
   border-radius: 4px;
-  margin: 8px 0;
+  margin: 10px 0;
 }
 
 .message-content :deep(pre code) {
