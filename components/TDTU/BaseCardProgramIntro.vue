@@ -2,9 +2,9 @@
   <UCard class="base-card-program-intro" @click="handleClick" tabindex="0" @keydown.enter="handleClick">
     <div class="flex flex-col space-y-3">
       <h2 class="text-xl font-bold text-primary">{{ studyField }}</h2>
-      <p><UBadge color="primary" variant="solid">Faculty</UBadge> {{ faculty }}</p>
-      <p><UBadge color="primary" variant="solid">Program Type</UBadge> {{ programType }}</p>
-      <p><UBadge color="primary" variant="solid">Education Level</UBadge> {{ educationLevel }}</p>
+      <p><UBadge color="primary" variant="solid"><Icon name="heroicons:light-bulb" class="w-4 h-4"/></UBadge> {{ faculty }}</p>
+      <p><UBadge color="primary" variant="solid"><Icon name="heroicons:adjustments-horizontal" class="w-4 h-4"/></UBadge> {{ programType }}</p>
+      <p><UBadge color="primary" variant="solid"><Icon name="heroicons:chart-bar" class="w-4 h-4"/></UBadge> {{ educationLevel }}</p>
     </div>
   </UCard>
 </template>
