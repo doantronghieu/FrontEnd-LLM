@@ -23,7 +23,7 @@ import BackgroundComponent from '~/components/ui/BackgroundComponent.vue';
   --color-secondary: #f39c12;
   --color-background: #f5f7fa;
   --color-text: #333333;
-  --color-text-light: #ffffff;
+  --color-text-light: #000000;
   --color-sidebar-bg: rgba(255, 255, 255, 0.8);
   --color-sidebar-text: #000000;
   --font-sans: 'Roboto', 'Arial', sans-serif;

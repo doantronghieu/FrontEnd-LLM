@@ -118,6 +118,7 @@ const links = [
   z-index: 40;
   display: flex;
   flex-direction: column;
+  transition: width var(--transition-speed) ease;
 }
 
 .logo-container {
@@ -131,6 +132,7 @@ const links = [
 .logo {
   height: 40px;
   width: auto;
+  transition: height var(--transition-speed) ease;
 }
 
 .sidebar {
@@ -142,6 +144,7 @@ const links = [
   flex: 1;
   padding: 80px 20px 20px;
   margin-left: 250px;
+  transition: margin-left var(--transition-speed) ease;
 }
 
 :deep(.u-vertical-navigation-item) {
