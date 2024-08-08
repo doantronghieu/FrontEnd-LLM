@@ -77,4 +77,12 @@ const toggleMode = () => {
   height: 100%;
   object-fit: contain;
 }
+
+@media (max-width: 768px) {
+  .chat-provider-icon {
+    width: 24px;
+    height: 24px;
+    margin-left: 8px;
+  }
+}
 </style>

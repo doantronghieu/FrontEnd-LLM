@@ -103,12 +103,16 @@ const isDisabled = computed(() => isLoading.value || !message.value.trim());
 
 @media (max-width: 768px) {
   .message-input {
-    padding: 10px;
+    padding: 8px;
   }
   
   .message-input input {
     padding: 10px 14px;
     font-size: 16px;
+  }
+  
+  .btn-send-msg {
+    padding: 6px;
   }
 }
 </style>

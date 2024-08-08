@@ -212,7 +212,6 @@ const streamFakeMessage = (sender, message) => {
 
 </script>
 
-
 <style scoped>
 .chat-window {
   position: fixed;
@@ -301,7 +300,7 @@ const streamFakeMessage = (sender, message) => {
 @media (max-width: 768px) {
   .chat-window {
     width: 100vw;
-    height: 100vh;
+    height: calc(100vh - 60px); /* Reduce height to show header */
     bottom: 0;
     right: 0;
     border-radius: 0;
@@ -313,6 +312,18 @@ const streamFakeMessage = (sender, message) => {
     bottom: 0;
     right: 0;
     border-radius: 0;
+  }
+
+  .chat-header {
+    padding: 8px;
+  }
+
+  .chat-title {
+    font-size: 1em;
+  }
+
+  .header-button {
+    padding: 4px;
   }
 }
 </style>

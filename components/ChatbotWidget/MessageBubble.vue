@@ -119,6 +119,11 @@ const renderMarkdown = (content) => {
 @media (max-width: 768px) {
   .message-bubble {
     max-width: 90%;
+    padding: 10px 14px;
+  }
+  
+  .message-content {
+    font-size: 14px;
   }
 }
 
